@@ -1,7 +1,9 @@
+import Button from "../common/Button";
 import { Fragment, useEffect, useRef } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+
 
 gsap.registerPlugin(useGSAP);
 
@@ -84,23 +86,6 @@ const FRAGMENT = /* glsl */ `
     gl_FragColor = vec4(col, smoothstep(0.5, 0.2, d) * vAlpha);
   }
 `;
-
-function ArrowIcon() {
-    return (
-        <svg
-            viewBox="0 0 24 24"
-            className="h-[22px] w-[22px]"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-        >
-            <path d="M4 12h16M14 6l6 6-6 6" />
-        </svg>
-    );
-}
 
 export default function Hero({ play }: HeroProps) {
     const heroRef = useRef<HTMLElement>(null);
@@ -261,7 +246,6 @@ export default function Hero({ play }: HeroProps) {
         () => {
             gsap.set(".hero-word", { yPercent: 115 });
             gsap.set(".hero-copy", { opacity: 0, y: 24 });
-            gsap.set(".hero-fade-down", { opacity: 0, y: -20 });
             gsap.set(".hero-fade-up", { opacity: 0, y: 30 });
             gsap.set(".hero-card", { opacity: 0, scale: 0.96 });
             gsap.set(canvasRef.current, { opacity: 0 });
@@ -277,7 +261,7 @@ export default function Hero({ play }: HeroProps) {
             const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
             if (reduce) {
                 gsap.set(
-                    [".hero-word", ".hero-copy", ".hero-fade-down", ".hero-fade-up", ".hero-card", canvasRef.current],
+                    [".hero-word", ".hero-copy", ".hero-fade-up", ".hero-card", canvasRef.current],
                     { clearProps: "all" }
                 );
                 return;
@@ -287,7 +271,6 @@ export default function Hero({ play }: HeroProps) {
             tl.to(".hero-word", { yPercent: 0, duration: 1.1, stagger: 0.12, ease: "expo.out" }, 0)
                 .to(canvasRef.current, { opacity: 1, duration: 1.6, ease: "power2.out" }, 0)
                 .to(".hero-card", { opacity: 1, scale: 1, duration: 1.2, stagger: 0.08 }, 0.2)
-                .to(".hero-fade-down", { opacity: 1, y: 0, duration: 0.9 }, 0.4)
                 .to(".hero-copy", { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, 0.55)
                 .to(".hero-fade-up", { opacity: 1, y: 0, duration: 0.9 }, 0.8);
         },
@@ -297,7 +280,7 @@ export default function Hero({ play }: HeroProps) {
     return (
         <section
             ref={heroRef}
-            className="relative flex min-h-[100svh] flex-col overflow-hidden bg-[#f6f7fb] px-[4.4%] text-[#0b1b3a]"
+            className="relative flex min-h-[100svh] flex-col overflow-hidden bg-[#f6f7fb] px-[4.4%] pt-[clamp(72px,10vh,110px)] text-[#0b1b3a]"
         >
             {/* Background cards */}
             {BG_CARDS.map((pos) => (
@@ -309,31 +292,6 @@ export default function Hero({ play }: HeroProps) {
 
             {/* Particle canvas sits behind the text */}
             <canvas ref={canvasRef} className="absolute inset-0 z-[1] block h-full w-full" />
-
-            {/* Header */}
-            <header className="hero-fade-down relative z-[5] flex items-center justify-between py-[clamp(16px,3vh,32px)]">
-                <a href="#" aria-label="Zebaq" className="flex items-center">
-                    <img
-                        src="/images/logo/full-logo.png"
-                        alt="Zebaq"
-                        className="h-[clamp(40px,5vw,64px)] w-auto"
-                    />
-                </a>
-                <div className="flex items-center gap-7">
-                    <button aria-label="Menu" className="grid place-items-center text-[#0b1b3a]">
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-                            <path d="M3 6h18M3 12h18M3 18h18" />
-                        </svg>
-                    </button>
-                    <button aria-label="Search" className="grid place-items-center text-[#0b1b3a]">
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-                            <circle cx="11" cy="11" r="7.5" />
-                            <path d="M16.5 16.5L21 21" />
-                        </svg>
-                    </button>
-                    <button className="text-lg font-medium tracking-[0.02em] text-[#0b1b3a]">ENG</button>
-                </div>
-            </header>
 
             {/* Headline + side copy */}
             <div className="pointer-events-none relative z-[3] flex flex-1 flex-col items-center justify-center">
@@ -376,30 +334,17 @@ export default function Hero({ play }: HeroProps) {
             {/* CTA pill */}
             <div
                 className="hero-fade-up relative z-[5] mb-[clamp(16px,4vh,48px)] flex items-center gap-4 self-center rounded-full
-                   bg-white/85 px-6 py-[14px] shadow-[0_10px_40px_rgba(20,50,110,0.10)] backdrop-blur-sm
+                   bg-white/85 px-4 py-3 shadow-[0_10px_40px_rgba(20,50,110,0.10)] backdrop-blur-sm
                    max-[820px]:flex-wrap max-[820px]:justify-center max-[820px]:rounded-[28px]"
             >
                 <img src="/images/logo/z.png" alt="" className="h-7 w-auto max-[820px]:hidden" />
                 <span className="h-8 w-px bg-[#dfe3ee] max-[820px]:hidden" />
-                <a
-                    href="#"
-                    className="inline-flex items-center gap-[14px] rounded-full border border-[#0b57d0] bg-[#0b57d0] px-[clamp(24px,2.8vw,40px)]
-                     py-[clamp(12px,2.2vh,18px)] text-[19px] font-medium text-white transition duration-200
-                     hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(11,87,208,0.35)]
-                     max-[820px]:px-6 max-[820px]:py-[14px] max-[820px]:text-base"
-                >
+                <Button href="#contact" variant="primary" size="lg">
                     Book a consultation
-                    <ArrowIcon />
-                </a>
-                <a
-                    href="#"
-                    className="inline-flex items-center gap-[14px] rounded-full border border-[#0b57d0] bg-white px-[clamp(24px,2.8vw,40px)]
-                     py-[clamp(12px,2.2vh,18px)] text-[19px] font-medium text-[#0b1b3a] transition duration-200
-                     hover:-translate-y-0.5 max-[820px]:px-6 max-[820px]:py-[14px] max-[820px]:text-base"
-                >
+                </Button>
+                <Button href="#work" variant="secondary" size="lg">
                     View our work
-                    <ArrowIcon />
-                </a>
+                </Button>
             </div>
         </section>
     );
