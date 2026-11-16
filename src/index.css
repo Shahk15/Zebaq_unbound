@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+/* ZEBAQ BRAND VARIABLES */
+:root {
+  --navy: #0b1b3a;
+  --blue: #0b57d0;
+  --bg: #f6f7fb;
+
+  --heading-start: #004c94;
+  --heading-end: #297bc4;
+
+  --text-secondary: #3a4560;
+  --text-muted: #5d6987;
+
+  --font-heading: "SF Pro Display", "SF Pro Icons",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* TEXT GRADIENT */
+.gradient-heading {
+  background-image: linear-gradient(rgb(0, 76, 148) 45%,
+      rgb(41, 123, 196) 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* BACKGROUND CARDS */
+.bg-card {
+  border-radius: 28px;
+  background: linear-gradient(135deg,
+      rgba(228, 232, 242, 0.55),
+      rgba(240, 242, 249, 0.35));
+}
+
+/* CUSTOM SELECTION */
+::selection {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b7c9e8;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
