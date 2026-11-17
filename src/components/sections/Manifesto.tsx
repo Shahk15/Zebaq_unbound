@@ -9,10 +9,6 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const TEXT =
     "We design, build and grow digital experiences, from *AI search* and *web development* to *automation* and *performance marketing*, so your business can focus on what comes next.";
 
-const WORDS = TEXT.split(" ").map((raw) => ({
-    text: raw.replace(/\*/g, ""),
-    accent: raw.includes("*"),
-}));
 
 // Marks words that belong to the same starred phrase ("AI search"), so the whole phrase stays blue
 function withAccent(text: string) {

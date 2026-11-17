@@ -10,6 +10,7 @@ import Manifesto from "../components/sections/Manifesto";
 import Impact from "../components/sections/Impact";
 import WhoWeHelp from "../components/sections/WhoWeHelp";
 
+
 type HomeProps = {
     // Becomes true when the loader curtain starts opening
     play: boolean;
@@ -33,6 +34,7 @@ export default function Home({ play }: HomeProps) {
                 <Impact />
                 <Manifesto />
                 <WhoWeHelp />
+                
             </main>
         </>
     );
