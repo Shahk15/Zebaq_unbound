@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import Button from "../common/Button";
 import Navigation from "./Navigation";
 import MegaMenu from "./MegaMenu";
+import Magnetic from "../common/Magnetic";
 
 gsap.registerPlugin(useGSAP);
 
@@ -143,9 +144,11 @@ export default function Header({ play = true }: HeaderProps) {
                     {/* Right: CTA + hamburger */}
                     <div className="flex items-center gap-3 justify-self-end md:gap-4">
                         <div className="hm-item hidden sm:block">
+                            <Magnetic>
                             <Button href="#contact" size="sm" arrow="up-right">
                                 Let&apos;s talk
                             </Button>
+                            </Magnetic>
                         </div>
 
                         <button

@@ -94,14 +94,7 @@ export default function Loader({ onReveal, onDone }: LoaderProps) {
                     { backgroundPosition: "0% 0%", duration: 1.1, ease: "power2.inOut", stagger: 0.25 },
                     1.6
                 )
-                // 4) Tagline fades in
-                .fromTo(
-                    ".zl-tagline",
-                    { opacity: 0, y: 10 },
-                    { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
-                    1.5
-                )
-                // Counter + progress run alongside
+                // Counter + progress
                 .to(
                     counter,
                     {
@@ -109,8 +102,12 @@ export default function Loader({ onReveal, onDone }: LoaderProps) {
                         duration: 2.6,
                         ease: "power2.inOut",
                         onUpdate: () => {
-                            if (numRef.current) numRef.current.textContent = String(Math.round(counter.v)).padStart(3, "0");
-                            if (barRef.current) barRef.current.style.transform = `scaleX(${counter.v / 100})`;
+                            if (numRef.current) {
+                                numRef.current.textContent = String(Math.round(counter.v)).padStart(3, "0");
+                            }
+                            if (barRef.current) {
+                                barRef.current.style.transform = `scaleX(${counter.v / 100})`;
+                            }
                         },
                     },
                     0

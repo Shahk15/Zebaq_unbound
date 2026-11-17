@@ -3,6 +3,7 @@ import { Fragment, useEffect, useRef } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Magnetic from "../common/Magnetic";
 
 
 gsap.registerPlugin(useGSAP);
@@ -339,12 +340,16 @@ export default function Hero({ play }: HeroProps) {
             >
                 <img src="/images/logo/z.png" alt="" className="h-7 w-auto max-[820px]:hidden" />
                 <span className="h-8 w-px bg-[#dfe3ee] max-[820px]:hidden" />
+                <Magnetic>
                 <Button href="#contact" variant="primary" size="lg">
                     Book a consultation
                 </Button>
+                </Magnetic>
+                <Magnetic>
                 <Button href="#work" variant="secondary" size="lg">
                     View our work
                 </Button>
+                </Magnetic>
             </div>
         </section>
     );

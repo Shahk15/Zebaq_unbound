@@ -227,6 +227,7 @@ export default function Services({ play = true }: ServicesProps) {
                         >
                             <a
                                 href={s.href}
+                                data-cursor="View"
                                 className="svc-link group relative grid w-full origin-left grid-cols-[clamp(44px,6vw,90px)_minmax(0,1.15fr)_minmax(0,1fr)_48px] items-center gap-x-[clamp(16px,3vw,56px)] px-[4.4vw] py-[clamp(22px,3.4vh,40px)] will-change-[transform,opacity] max-[820px]:grid-cols-[36px_1fr_40px] max-[820px]:gap-x-3 max-[820px]:gap-y-4"
                             >
                                 {/* Full-bleed highlight on hover */}

@@ -2,6 +2,17 @@
 
 @import "tailwindcss";
 
+/* CUSTOM CURSOR: hides the native cursor only when the custom one is active */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+html.has-custom-cursor input,
+html.has-custom-cursor textarea {
+  cursor: text !important;
+}
+
 /* ZEBAQ BRAND VARIABLES */
 :root {
   --navy: #0b1b3a;

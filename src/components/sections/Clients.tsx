@@ -8,11 +8,32 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // Replace these filenames with the exact files in public/images/clientslogo/
 const LOGOS = [
-    { name: "Client 01", src: "/images/clientslogo/obsession.avif" },
-    { name: "Client 02", src: "/images/clientslogo/uthopia.webp" },
-    { name: "Client 03", src: "/images/clientslogo/insomnia.webp" },
-    { name: "Client 04", src: "/images/clientslogo/abestinsurance.webp" },
-    { name: "Client 05", src: "/images/clientslogo/aaprice.webp" },
+    { name: "Client 01", src: "/images/clientslogo/abest.png" },
+    { name: "Client 02", src: "/images/clientslogo/americancups.png" },
+    { name: "Client 03", src: "/images/clientslogo/artistryrecords.png" },
+    { name: "Client 04", src: "/images/clientslogo/bigmadre.png" },
+    { name: "Client 05", src: "/images/clientslogo/bubbletail.png" },
+    { name: "Client 06", src: "/images/clientslogo/chicoschoice.png" },
+    { name: "Client 07", src: "/images/clientslogo/Chikopokopo.png" },
+    { name: "Client 08", src: "/images/clientslogo/cogleus.png" },
+    { name: "Client 09", src: "/images/clientslogo/collibet.png" },
+    { name: "Client 10", src: "/images/clientslogo/destination 360.png" },
+    { name: "Client 11", src: "/images/clientslogo/DFWLImO.png" },
+    { name: "Client 12", src: "/images/clientslogo/gladwyns.png" },
+    { name: "Client 13", src: "/images/clientslogo/homedecor.png" },
+    { name: "Client 14", src: "/images/clientslogo/honeylemonginger.png" },
+    { name: "Client 15", src: "/images/clientslogo/insomnia.png" },
+    { name: "Client 16", src: "/images/clientslogo/kashatraining.png" },
+    { name: "Client 17", src: "/images/clientslogo/lunarlighting.png" },
+    { name: "Client 18", src: "/images/clientslogo/nexusrolls.png" },
+    { name: "Client 19", src: "/images/clientslogo/nirvanix.png" },
+    { name: "Client 20", src: "/images/clientslogo/palmresidential.png" },
+    { name: "Client 21", src: "/images/clientslogo/queensdesign.png" },
+    { name: "Client 22", src: "/images/clientslogo/royalblessings.png" },
+    { name: "Client 23", src: "/images/clientslogo/tarmind.png" },
+    { name: "Client 24", src: "/images/clientslogo/utopia.png" },
+    { name: "Client 25", src: "/images/clientslogo/velocitality.png" },
+    { name: "Client 26", src: "/images/clientslogo/Zamasama.png" },
 ];
 
 /* ---------- One row of the logo wall ---------- */
@@ -222,7 +243,7 @@ export default function Clients() {
             id="clients"
             variant="frame"
             panelClassName="bg-[linear-gradient(180deg,#e3ebf8_0%,#f6f7fb_100%)]"
-            className="py-[clamp(90px,12vw,160px)]"
+            className="pt-[clamp(75px,9vw,120px)] pb-[clamp(35px,4vw,60px)]"
         >
             <div ref={scopeRef} className="mx-auto max-w-[1600px]">
                 {/* Section introduction */}
