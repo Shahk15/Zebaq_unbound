@@ -256,6 +256,7 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
         <div
             ref={rootRef}
             id="site-menu"
+            data-lenis-prevent
             aria-hidden={!open}
             style={{ visibility: "hidden" }}
             className="fixed inset-0 z-[60] overflow-y-auto bg-[#0b1b3a] bg-[radial-gradient(70%_50%_at_90%_0%,rgba(41,123,196,0.14),transparent_70%)] text-white"

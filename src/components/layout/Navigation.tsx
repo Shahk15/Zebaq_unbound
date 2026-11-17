@@ -262,7 +262,7 @@ export default function Navigation({ disabled = false, onOpenChange }: Navigatio
                                     }`}
                             >
                                 <div
-                                    className={`mx-auto w-full ${PANEL_WIDTH[item.key] ?? "max-w-[860px]"} rounded-[28px] border border-[#0b1b3a]/10 bg-[#eef3fb] shadow-[0_40px_90px_-24px_rgba(11,27,58,0.28)] transition-[clip-path] duration-[650ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${isOpen ? SHUTTER_OPEN : SHUTTER_CLOSED
+                                    className={`mx-auto w-full ${PANEL_WIDTH[item.key] ?? "max-w-[860px]"} rounded-[28px] border border-[#0b1b3a]/10 bg-[#eef3fb] shadow-[0_40px_90px_-24px_rgba(11,27,58,0.28)] transition-[clip-path] duration-[650ms] mt-2 ease-[cubic-bezier(0.76,0,0.24,1)] ${isOpen ? SHUTTER_OPEN : SHUTTER_CLOSED
                                         }`}
                                 >
                                     {item.kind === "services" ? (

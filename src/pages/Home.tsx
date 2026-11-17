@@ -1,8 +1,11 @@
+
 import Header from "../components/layout/Header";
+import HeroStage from "../components/common/HeroStage";
 import Hero from "../components/sections/Hero";
+import Services from "../components/sections/Services";
+import Clients from "../components/sections/Clients";
 
 type HomeProps = {
-    // Becomes true when the loader curtain starts opening
     play: boolean;
 };
 
@@ -11,8 +14,12 @@ export default function Home({ play }: HomeProps) {
         <>
             <Header play={play} />
             <main>
-                <Hero play={play} />
-                {/* Next: <Services />, <FeaturedWork />, <TrustBar /> ... */}
+                <HeroStage>
+                    <Hero play={play} />
+                </HeroStage>
+
+                <Services play={play} />
+                <Clients />
             </main>
         </>
     );

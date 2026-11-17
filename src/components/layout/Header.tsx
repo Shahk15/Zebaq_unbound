@@ -157,7 +157,7 @@ export default function Header({ play = true }: HeaderProps) {
                             aria-controls="site-menu"
                             className={`hm-item group grid h-11 w-11 place-items-center rounded-full border transition-colors duration-300 ${menuOpen
                                 ? "border-white/25 hover:bg-white/10"
-                                : "border-[#0b1b3a]/15 hover:bg-white"
+                                : "border-[#0b1b3a]/15"
                                 }`}
                         >
                             {/* 3 equal lines, 8px pitch (4px multiples stay crisp on 125% / 150% screens) */}

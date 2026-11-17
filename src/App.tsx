@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Loader from "./components/common/Loader";
+import SmoothScroll from "./components/layout/SmoothScroll";
 import Home from "./pages/Home";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
 
   return (
     <>
+      <SmoothScroll />
       {loading && (
         <Loader
           onReveal={() => setRevealed(true)}
