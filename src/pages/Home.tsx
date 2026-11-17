@@ -9,7 +9,7 @@ import Clients from "../components/sections/Clients";
 import Manifesto from "../components/sections/Manifesto";
 import Impact from "../components/sections/Impact";
 import WhoWeHelp from "../components/sections/WhoWeHelp";
-
+import Work from "../components/sections/Work";
 
 type HomeProps = {
     // Becomes true when the loader curtain starts opening
@@ -34,7 +34,7 @@ export default function Home({ play }: HomeProps) {
                 <Impact />
                 <Manifesto />
                 <WhoWeHelp />
-                
+                <Work />
             </main>
         </>
     );
