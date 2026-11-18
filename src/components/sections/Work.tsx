@@ -221,7 +221,6 @@ export default function Work() {
     );
 
     return (
-        <>
             <section
                 ref={sectionRef}
                 id="work"
@@ -251,6 +250,5 @@ export default function Work() {
                     </ol>
                 </div>
             </section>
-        </>
     );
 }

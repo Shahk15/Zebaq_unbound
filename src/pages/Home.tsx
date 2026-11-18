@@ -10,6 +10,7 @@ import Manifesto from "../components/sections/Manifesto";
 import Impact from "../components/sections/Impact";
 import WhoWeHelp from "../components/sections/WhoWeHelp";
 import Work from "../components/sections/Work";
+import Technology from "../components/sections/Technology";
 
 type HomeProps = {
     // Becomes true when the loader curtain starts opening
@@ -35,6 +36,7 @@ export default function Home({ play }: HomeProps) {
                 <Manifesto />
                 <WhoWeHelp />
                 <Work />
+                <Technology />
             </main>
         </>
     );
