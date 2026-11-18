@@ -33,9 +33,10 @@ function CaseCard({ c }: { c: CaseStudy }) {
         <li className="work-card h-[680px] w-[min(86vw,440px)] shrink-0 snap-center min-[821px]:w-[clamp(340px,34vw,540px)] group-data-[pin=true]/work:h-full group-data-[pin=true]/work:max-h-[900px]">
             <a
                 href={c.href}
-                className={`group relative block h-full overflow-hidden rounded-[32px] ${dark
-                        ? "bg-[linear-gradient(160deg,#16305f,#0b1b3a)] text-white"
-                        : "border border-[#0b1b3a]/[0.08] bg-[#f4f7fc] text-[#0b1b3a]"
+                data-cursor="View"
+                className={`work-face group relative block h-full overflow-hidden rounded-[32px] ${dark
+                    ? "bg-[linear-gradient(160deg,#16305f,#0b1b3a)] text-white"
+                    : "border border-[#0b1b3a]/[0.08] bg-[#f4f7fc] text-[#0b1b3a]"
                     }`}
             >
                 {/* Background: image or video */}
@@ -68,8 +69,8 @@ function CaseCard({ c }: { c: CaseStudy }) {
                     <span
                         aria-hidden="true"
                         className={`pointer-events-none absolute inset-0 ${dark
-                                ? "bg-[linear-gradient(to_top,rgba(6,16,38,0.8)_0%,rgba(6,16,38,0.28)_45%,transparent_72%)]"
-                                : "bg-[linear-gradient(to_top,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.5)_40%,transparent_70%)]"
+                            ? "bg-[linear-gradient(to_top,rgba(6,16,38,0.8)_0%,rgba(6,16,38,0.28)_45%,transparent_72%)]"
+                            : "bg-[linear-gradient(to_top,rgba(255,255,255,0.92)_0%,rgba(255,255,255,0.5)_40%,transparent_70%)]"
                             }`}
                     />
                 )}
@@ -115,13 +116,16 @@ export default function Work() {
 
             mm.add(
                 {
+                    motion: "(prefers-reduced-motion: no-preference)",
                     pinned: "(min-width: 821px) and (min-height: 600px)",
-                    reduce: "(prefers-reduced-motion: reduce)",
                 },
                 (ctx) => {
-                    const { pinned, reduce } = ctx.conditions as { pinned: boolean; reduce: boolean };
-                    if (reduce) return;
+                    const { motion, pinned } = ctx.conditions as { motion: boolean; pinned: boolean };
+                    if (!motion) return;
 
+                    const faces = q(".work-face") as HTMLElement[];
+
+                    /* Heading: each line rises out of its mask */
                     gsap.set(q(".work-line"), { yPercent: 110 });
                     gsap.to(q(".work-line"), {
                         yPercent: 0,
@@ -130,11 +134,44 @@ export default function Work() {
                         scrollTrigger: { trigger: q(".work-head")[0], start: "top 85%", once: true },
                     });
 
-                    // Small screens: normal sideways swipe, no pin
-                    if (!pinned) return;
+                    /* Small screens: normal sideways swipe, no pin. Cards slide in once. */
+                    if (!pinned) {
+                        gsap.from(faces, {
+                            x: 70,
+                            opacity: 0,
+                            duration: 0.9,
+                            stagger: 0.12,
+                            ease: "power3.out",
+                            scrollTrigger: { trigger: view, start: "top 88%", once: true },
+                        });
+                        return;
+                    }
+
+                    section.dataset.pin = "true";
+
+                    /* ENTRANCE: as the section scrolls up, the cards rise from behind the bottom edge,
+                       tilt into place and settle one after another. Finishes right before the pin starts. */
+                    gsap.timeline({
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 92%",
+                            end: "top 8%",
+                            scrub: 0.8,
+                            invalidateOnRefresh: true,
+                        },
+                    }).fromTo(
+                        faces,
+                        {
+                            y: 220,
+                            rotate: (i: number) => (i % 2 === 0 ? -5 : 5),
+                            scale: 0.9,
+                            opacity: 0,
+                            transformOrigin: "50% 100%",
+                        },
+                        { y: 0, rotate: 0, scale: 1, opacity: 1, ease: "power3.out", stagger: 0.14 }
+                    );
 
                     /* Scrolling down slides the cards sideways */
-                    section.dataset.pin = "true";
                     const dist = () => Math.max(0, track.offsetWidth - view.clientWidth);
 
                     const slide = gsap.to(track, {
@@ -184,34 +221,36 @@ export default function Work() {
     );
 
     return (
-        <section
-            ref={sectionRef}
-            id="work"
-            className="group/work relative z-10 flex flex-col bg-white text-[#0b1b3a] data-[pin=true]:h-[100svh] data-[pin=true]:overflow-hidden"
-        >
-            <div className="work-head px-[4.4vw] pb-[clamp(12px,2vh,24px)] pt-[clamp(80px,12vw,140px)] group-data-[pin=true]/work:pt-[clamp(88px,12vh,120px)]">
-                <h2 className="text-[clamp(38px,4.8vw,76px)] font-bold leading-[1.02] tracking-[-0.04em]">
-                    <span className="block overflow-hidden pb-[0.1em]">
-                        <span className="work-line block">
-                            Featured <span className="gradient-heading">Work.</span>
-                        </span>
-                    </span>
-                </h2>
-            </div>
-
-            <div
-                ref={viewRef}
-                className="relative min-h-0 flex-1 snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] group-data-[pin=true]/work:snap-none group-data-[pin=true]/work:overflow-hidden"
+        <>
+            <section
+                ref={sectionRef}
+                id="work"
+                className="group/work relative z-10 flex flex-col bg-white text-[#0b1b3a] data-[pin=true]:h-[100svh] data-[pin=true]:overflow-hidden"
             >
-                <ol
-                    ref={trackRef}
-                    className="flex w-max items-center gap-4 pb-[clamp(36px,6vw,80px)] pl-[4.4vw] pr-[4.4vw] will-change-transform group-data-[pin=true]/work:h-full group-data-[pin=true]/work:pb-[clamp(16px,3vh,32px)] md:gap-5"
+                <div className="work-head px-[4.4vw] pb-[clamp(12px,2vh,24px)] pt-[clamp(80px,12vw,140px)] group-data-[pin=true]/work:pt-[clamp(88px,12vh,120px)]">
+                    <h2 className="text-[clamp(38px,4.8vw,76px)] font-bold leading-[1.02] tracking-[-0.04em]">
+                        <span className="block overflow-hidden pb-[0.1em]">
+                            <span className="work-line block">
+                                Featured <span className="gradient-heading">Work.</span>
+                            </span>
+                        </span>
+                    </h2>
+                </div>
+
+                <div
+                    ref={viewRef}
+                    className="relative min-h-0 flex-1 snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] group-data-[pin=true]/work:snap-none group-data-[pin=true]/work:overflow-hidden"
                 >
-                    {CASES.map((c) => (
-                        <CaseCard key={c.slug} c={c} />
-                    ))}
-                </ol>
-            </div>
-        </section>
+                    <ol
+                        ref={trackRef}
+                        className="flex w-max items-center gap-4 pb-[clamp(36px,6vw,80px)] pl-[4.4vw] pr-[4.4vw] will-change-transform group-data-[pin=true]/work:h-full group-data-[pin=true]/work:pb-[clamp(16px,3vh,32px)] md:gap-5"
+                    >
+                        {CASES.map((c) => (
+                            <CaseCard key={c.slug} c={c} />
+                        ))}
+                    </ol>
+                </div>
+            </section>
+        </>
     );
 }

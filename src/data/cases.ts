@@ -32,7 +32,7 @@ export const CASES: CaseStudy[] = [
         title: "Project title goes here",
         text: "Write a short line about this project and its result.",
         href: "/work/case-02",
-        media: { type: "image", src: "/images/work/case2.png", alt: "Case 2" },
+        media: { type: "image", src: "/images/work/case4.avif", alt: "Case 2" },
     },
     {
         slug: "case-03",
@@ -40,5 +40,12 @@ export const CASES: CaseStudy[] = [
         text: "Write a short line about this project and its result.",
         href: "/work/case-03",
         media: { type: "image", src: "/images/work/case3.avif", alt: "Case 3" },
+    },
+    {
+        slug: "case-04",
+        title: "Project title goes here",
+        text: "Write a short line about this project and its result.",
+        href: "/work/case-04",
+        media: { type: "image", src: "/images/work/case2.png", alt: "Case 4" },
     },
 ];
