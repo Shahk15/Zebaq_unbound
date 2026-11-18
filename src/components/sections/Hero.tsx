@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { HERO, IMAGES, MARKETS, STATS } from "../../data/content";
+import { HERO } from "../../data/hero";
+import { IMAGES } from "../../data/images";
+import { MARKETS, STATS } from "../../data/impact";
 import { Dot, Pill, Verify } from "../common/ui";
 import { DotField } from "../common/fx";
 

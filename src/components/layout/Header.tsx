@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { NAV, NAV_CTA, SERVICES, SITE } from "../../data/content";
+import { NAV, NAV_CTA } from "../../data/header";
+import { SERVICES } from "../../data/services";
+import { SITE } from "../../data/site";
 import { Arrow, Dot, Pill } from "../common/ui";
 
 export default function Header() {

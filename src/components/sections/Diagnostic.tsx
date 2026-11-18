@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { DIAGNOSTIC, DIAGNOSTIC_INSIGHT, SERVICES, SITE } from "../../data/content";
+import { DIAGNOSTIC, DIAGNOSTIC_INSIGHT } from "../../data/diagnostic";
+import { SERVICES } from "../../data/services";
+import { SITE } from "../../data/site";
 import { Arrow } from "../common/ui";
 
 // Lead form used in the final CTA: three quick questions → tailored insight → contact.

@@ -1,4 +1,5 @@
-import { AUDIENCES, IMAGES } from "../../data/content";
+import { AUDIENCES } from "../../data/audiences";
+import { IMAGES } from "../../data/images";
 import { Arrow, Split } from "../common/ui";
 import { AutoCarousel } from "../common/fx";
 

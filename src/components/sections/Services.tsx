@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { SERVICES, type Service } from "../../data/content";
+import { SERVICES, type Service } from "../../data/services";
 import { Arrow, Pill, Split, Verify } from "../common/ui";
 
 // 05 — Ten disciplines. One growth system.

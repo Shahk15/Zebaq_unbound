@@ -1,4 +1,5 @@
-import { SITE, WHITE_LABEL } from "../../data/content";
+import { SITE } from "../../data/site";
+import { WHITE_LABEL } from "../../data/white-label";
 import { Pill } from "../common/ui";
 
 // 15 — White-label partnerships: compact band near the bottom.

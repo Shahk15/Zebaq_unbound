@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { PROCESS } from "../../data/content";
+import { PROCESS } from "../../data/process";
 import { Pill, Split } from "../common/ui";
 
 // "What happens when you get in touch" — removes the fear of the first call.

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { MARKETS, STATS } from "../../data/content";
+import { MARKETS, STATS } from "../../data/impact";
 import { Split, Verify } from "../common/ui";
 import { Globe } from "../common/fx";
 

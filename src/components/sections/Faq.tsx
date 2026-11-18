@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FAQ } from "../../data/content";
+import { FAQ } from "../../data/faq";
 import { Split } from "../common/ui";
 
 // Answers are written for the questions buyers ask ChatGPT, Gemini and

@@ -1,0 +1,4 @@
+export const WORK = [
+  { client: "Obsessions Jewellery", sector: "Luxury retail · E-commerce", services: "Web development · SEO", challenge: "A premium collection presented like a catalogue — beautiful pieces, no reason to buy today.", solution: "A conversion-led storefront with search-ready product content and appointment booking.", outcome: "Add verified outcome before launch", verify: true, img: "/v2/work/obsessionsj.png", url: "https://obsessionsj.com" },
+  { client: "Zamasama", sector: "Education · Children's stories", services: "Web development · UX", challenge: "Stories from dozens of countries with no simple way for families to explore them.", solution: "An interactive story map and multilingual library built for discovery.", outcome: "Add verified outcome before launch", verify: true, img: "/v2/work/zamasama.png", url: "https://zamasama.com" },
+];

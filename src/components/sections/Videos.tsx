@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { IMAGES, VIDEOS } from "../../data/content";
+import { IMAGES } from "../../data/images";
+import { VIDEOS } from "../../data/videos";
 import { Split, Verify } from "../common/ui";
 import { AutoCarousel } from "../common/fx";
 

@@ -1,4 +1,4 @@
-import { MODELS } from "../../data/content";
+import { MODELS } from "../../data/models";
 import { Split } from "../common/ui";
 
 export default function Models() {

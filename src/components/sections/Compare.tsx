@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { IMAGES, WHY } from "../../data/content";
+import { IMAGES } from "../../data/images";
+import { WHY } from "../../data/why";
 import { Split } from "../common/ui";
 
 // "Without a system vs with ZEBAQ": the same marble horse, twice —
