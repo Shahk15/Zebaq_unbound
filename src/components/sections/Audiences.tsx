@@ -1,6 +1,6 @@
-import { AUDIENCES, IMAGES } from "../content";
-import { Arrow, Split } from "../components/ui";
-import { AutoCarousel } from "../components/fx";
+import { AUDIENCES, IMAGES } from "../../data/content";
+import { Arrow, Split } from "../common/ui";
+import { AutoCarousel } from "../common/fx";
 
 const ART = [IMAGES.perfected, IMAGES.kintsugi, IMAGES.ai];
 

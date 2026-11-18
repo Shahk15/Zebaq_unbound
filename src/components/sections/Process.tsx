@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { PROCESS } from "../content";
-import { Pill, Split } from "../components/ui";
+import { PROCESS } from "../../data/content";
+import { Pill, Split } from "../common/ui";
 
 // "What happens when you get in touch" — removes the fear of the first call.
 export default function Process() {

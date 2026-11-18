@@ -1,5 +1,5 @@
-import { SITE, WHITE_LABEL } from "../content";
-import { Pill } from "../components/ui";
+import { SITE, WHITE_LABEL } from "../../data/content";
+import { Pill } from "../common/ui";
 
 // 15 — White-label partnerships: compact band near the bottom.
 export default function WhiteLabel() {

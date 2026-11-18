@@ -1,4 +1,4 @@
-import { WHY } from "../content";
+import { WHY } from "../../data/content";
 import AiHuman from "./AiHuman";
 import Compare from "./Compare";
 

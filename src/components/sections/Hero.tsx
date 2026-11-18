@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { HERO, IMAGES, MARKETS, STATS } from "../content";
-import { Dot, Pill, Verify } from "../components/ui";
-import { DotField } from "../components/fx";
+import { HERO, IMAGES, MARKETS, STATS } from "../../data/content";
+import { Dot, Pill, Verify } from "../common/ui";
+import { DotField } from "../common/fx";
 
 // 02 — Hero. Centred headline over a rearing marble horse mended with gold (kintsugi).
 // Cursor: horse turns toward you, marble gilds under the light, seams burn molten,

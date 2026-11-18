@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { NAV, NAV_CTA, SERVICES, SITE } from "../content";
-import { Arrow, Dot, Pill } from "../components/ui";
+import { NAV, NAV_CTA, SERVICES, SITE } from "../../data/content";
+import { Arrow, Dot, Pill } from "../common/ui";
 
 export default function Header() {
   const [hidden, setHidden] = useState(false);

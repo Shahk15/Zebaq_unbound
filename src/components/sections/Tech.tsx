@@ -1,5 +1,5 @@
-import { TECH, TECH_NOTE, TECH_TITLE } from "../content";
-import { Split } from "../components/ui";
+import { TECH, TECH_NOTE, TECH_TITLE } from "../../data/content";
+import { Split } from "../common/ui";
 
 // 10 — Technology Ecosystem: rows that light up as you hover across them.
 export default function Tech() {

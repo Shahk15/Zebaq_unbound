@@ -1,5 +1,5 @@
-import { MODELS } from "../content";
-import { Split } from "../components/ui";
+import { MODELS } from "../../data/content";
+import { Split } from "../common/ui";
 
 export default function Models() {
   return (

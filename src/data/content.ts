@@ -57,13 +57,36 @@ export const INDUSTRIES = [
 ];
 // Add as many logos as you like — the wall is an endless marquee.
 // tone: "light" = white/pale artwork (shown on a dark tile); "dark" = dark artwork (shown on a white tile)
-export const LOGOS: { src: string; alt: string; tone: "light" | "dark" }[] = [
-  { src: "/images/clientslogo/obsession.avif", alt: "Obsessions Jewellery", tone: "light" },
-  { src: "/images/clientslogo/insomnia.webp", alt: "Insomnia Night Club", tone: "light" },
-  { src: "/images/clientslogo/aaprice.webp", alt: "AAprice", tone: "dark" },
-  { src: "/images/clientslogo/abestinsurance.webp", alt: "A-Best Insurance", tone: "dark" },
-  { src: "/images/clientslogo/uthopia.webp", alt: "Utopia Restaurant Bar Lounge", tone: "light" },
+
+export const LOGOS: readonly { src: string; alt: string; tone: "normal" | "light" }[] = [
+  { src: "/images/clientslogo/abest.png", alt: "A-Best Insurance", tone: "normal" },
+  { src: "/images/clientslogo/americancups.png", alt: "American Cups", tone: "normal" },
+  { src: "/images/clientslogo/artistryrecords.png", alt: "Artistry Records", tone: "normal" },
+  { src: "/images/clientslogo/bigmadre.png", alt: "Big Madre", tone: "normal" },
+  { src: "/images/clientslogo/bubbletail.png", alt: "Bubble Tail", tone: "normal" },
+  { src: "/images/clientslogo/chicoschoice.png", alt: "Chicos Choice", tone: "normal" },
+  { src: "/images/clientslogo/Chikopokopo.png", alt: "Chikopokopo", tone: "normal" },
+  { src: "/images/clientslogo/cogleus.png", alt: "Cogle US", tone: "normal" },
+  { src: "/images/clientslogo/collibet.png", alt: "Collibet", tone: "normal" },
+  { src: "/images/clientslogo/destination%20360.png", alt: "Destination 360", tone: "normal" },
+  { src: "/images/clientslogo/DFWLImO.png", alt: "DFW Limo", tone: "normal" },
+  { src: "/images/clientslogo/gladwyns.png", alt: "Gladwyns", tone: "normal" },
+  { src: "/images/clientslogo/homedecor.png", alt: "Home Decor", tone: "normal" },
+  { src: "/images/clientslogo/honeylemonginger.png", alt: "Honey Lemon Jainger", tone: "normal" },
+  { src: "/images/clientslogo/insomnia.png", alt: "Insomnia", tone: "normal" },
+  { src: "/images/clientslogo/kashatraining.png", alt: "Kasha Training", tone: "normal" },
+  { src: "/images/clientslogo/lunarlighting.png", alt: "Lunar Lighting", tone: "normal" },
+  { src: "/images/clientslogo/nexusrolls.png", alt: "Nexus Rolls", tone: "normal" },
+  { src: "/images/clientslogo/nirvanix.png", alt: "Nirvanix", tone: "normal" },
+  { src: "/images/clientslogo/palmresidential.png", alt: "Palm Residential", tone: "normal" },
+  { src: "/images/clientslogo/queensdesign.png", alt: "Queens Design", tone: "normal" },
+  { src: "/images/clientslogo/royalblessings.png", alt: "Royal Blessings", tone: "normal" },
+  { src: "/images/clientslogo/tarmind.png", alt: "Tarmind", tone: "normal" },
+  { src: "/images/clientslogo/utopia.png", alt: "Utopia", tone: "normal" },
+  { src: "/images/clientslogo/velocitality.png", alt: "Velocitailty", tone: "normal" },
+  { src: "/images/clientslogo/Zamasama.png", alt: "Zamasama", tone: "normal" },
 ];
+
 
 // 04 Impact & Global Reach — only stats with a value are shown.
 export const STATS: { value: number; suffix: string; label: string; verify?: boolean }[] = [

@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { WORK } from "../content";
-import { Arrow, Split, Verify } from "../components/ui";
+import { WORK } from "../../data/content";
+import { Arrow, Split, Verify } from "../common/ui";
 
 // 07 — Featured Work & Results: real client sites in laptop mockups,
 // told as Challenge → Solution → Verified Outcome → View Case Study.

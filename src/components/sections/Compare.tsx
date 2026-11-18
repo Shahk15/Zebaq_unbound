@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { IMAGES, WHY } from "../content";
-import { Split } from "../components/ui";
+import { IMAGES, WHY } from "../../data/content";
+import { Split } from "../common/ui";
 
 // "Without a system vs with ZEBAQ": the same marble horse, twice —
 // fractured on the left, flawless on the right — in identical, aligned frames.

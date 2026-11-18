@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { MARKETS, STATS } from "../content";
-import { Split, Verify } from "../components/ui";
-import { Globe } from "../components/fx";
+import { MARKETS, STATS } from "../../data/content";
+import { Split, Verify } from "../common/ui";
+import { Globe } from "../common/fx";
 
 // 04 — Impact & Global Reach. Slides up over the navy Trusted section (overlap),
 // counters run, and a dotted-continent globe rises and spins with live arcs

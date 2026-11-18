@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { IMAGES, WHY } from "../content";
-import { Dot } from "../components/ui";
+import { IMAGES, WHY } from "../../data/content";
+import { Dot } from "../common/ui";
 
 // Cinematic image reveal: the frame opens from a small window to full bleed
 // while the three-line manifesto slides across it.

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FAQ } from "../content";
-import { Split } from "../components/ui";
+import { FAQ } from "../../data/content";
+import { Split } from "../common/ui";
 
 // Answers are written for the questions buyers ask ChatGPT, Gemini and
 // Perplexity. The same Q&A is emitted as FAQPage JSON-LD (see vite.config.ts).

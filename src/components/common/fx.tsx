@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import LAND from "../data/land-dots.json";
+import LAND from "../../data/land-dots.json";
 
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { SERVICES, type Service } from "../content";
-import { Arrow, Pill, Split, Verify } from "../components/ui";
+import { SERVICES, type Service } from "../../data/content";
+import { Arrow, Pill, Split, Verify } from "../common/ui";
 
 // 05 — Ten disciplines. One growth system.
 // Oversized rows; a lemon card trails the cursor with each outcome;

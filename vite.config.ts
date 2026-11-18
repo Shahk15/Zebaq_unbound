@@ -1,7 +1,7 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { SITE, FAQ, SERVICES } from "./src/content.ts";
+import { SITE, FAQ, SERVICES } from "./src/data/content.ts";
 
 // Writes JSON-LD (Organization, Services, FAQ) straight into index.html so
 // search engines and AI crawlers that don't run JavaScript still read it.

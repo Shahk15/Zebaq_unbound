@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { FINAL, FOOTER_LINKS, SERVICES, SITE } from "../content";
-import { Arrow, Split } from "../components/ui";
-import { DotField } from "../components/fx";
+import { FINAL, FOOTER_LINKS, SERVICES, SITE } from "../../data/content";
+import { Arrow, Split } from "../common/ui";
+import { DotField } from "../common/fx";
 import LeadForm from "./Diagnostic";
 
 // 16 — Final CTA (with the strategy-call form) & Footer.

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { IMAGES, VIDEOS } from "../content";
-import { Split, Verify } from "../components/ui";
-import { AutoCarousel } from "../components/fx";
+import { IMAGES, VIDEOS } from "../../data/content";
+import { Split, Verify } from "../common/ui";
+import { AutoCarousel } from "../common/fx";
 
 const FALLBACK = [IMAGES.kintsugi, IMAGES.perfected, IMAGES.broken, IMAGES.ai];
 
@@ -63,7 +63,7 @@ function Lightbox({ src, poster, onClose }: { src: string; poster: string; onClo
     document.body.style.overflow = "hidden";
     const esc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     addEventListener("keydown", esc);
-    vid.current?.play().catch(() => {});
+    vid.current?.play().catch(() => { });
     return () => { document.body.style.overflow = ""; removeEventListener("keydown", esc); };
   }, [onClose]);
   return (

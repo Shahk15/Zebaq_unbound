@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
-import { DIAGNOSTIC, DIAGNOSTIC_INSIGHT, SERVICES, SITE } from "../content";
-import { Arrow } from "../components/ui";
+import { DIAGNOSTIC, DIAGNOSTIC_INSIGHT, SERVICES, SITE } from "../../data/content";
+import { Arrow } from "../common/ui";
 
 // Lead form used in the final CTA: three quick questions → tailored insight → contact.
 // Leads POST as JSON to VITE_LEAD_ENDPOINT (Zapier/Make/n8n/HubSpot webhook);
