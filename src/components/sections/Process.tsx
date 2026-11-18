@@ -1,19 +1,69 @@
 import { useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { PROCESS } from "../../data/process";
 import { Pill, Split } from "../common/ui";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 // "What happens when you get in touch" — removes the fear of the first call.
 export default function Process() {
   const root = useRef<HTMLElement>(null);
+
   useGSAP(
     () => {
-      const tl = gsap.timeline({ scrollTrigger: { trigger: ".pr-track", start: "top 75%", end: "bottom 45%", scrub: true } });
-      tl.fromTo(".pr-fill", { scaleX: 0 }, { scaleX: 1, ease: "none", duration: 1 });
-      gsap.utils.toArray<HTMLElement>(".pr-node").forEach((el, i, all) => {
-        tl.to(el, { backgroundColor: "#f5ea3b", scale: 1.4, duration: 0.05 }, i / (all.length - 1) - 0.02);
+      const mm = gsap.matchMedia();
+
+      /* Desktop: track is pinned, scroll is slowed down, steps light up one by one */
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+        const steps = gsap.utils.toArray<HTMLElement>(".pr-step");
+        const nodes = gsap.utils.toArray<HTMLElement>(".pr-node");
+        const n = steps.length;
+
+        gsap.set(steps, { opacity: 0.22, y: 28 });
+
+        const tl = gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: ".pr-track",
+            start: "center center",
+            end: () => `+=${Math.round(window.innerHeight * 1.6)}`, // bigger = slower
+            pin: true,
+            scrub: 1, // smooth catch-up, feels premium
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // line fills across the whole timeline
+        tl.fromTo(".pr-fill", { scaleX: 0 }, { scaleX: 1, duration: n - 1 }, 0);
+
+        steps.forEach((step, i) => {
+          const at = i === 0 ? 0 : i - 0.15;
+          tl.to(nodes[i], { backgroundColor: "#f5ea3b", scale: 1.5, duration: 0.2, ease: "power2.out" }, at)
+            .to(step, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, at)
+            // previous step settles back a little so the active one stands out
+            .to(steps[i - 1] ?? {}, { opacity: 0.55, duration: 0.3 }, at + 0.2);
+        });
+
+        // hold at the end so the last step stays on screen before the pin releases
+        tl.to({}, { duration: 0.8 });
       });
+
+      /* Mobile / reduced motion: simple scrubbed reveal, no pin */
+      mm.add("(max-width: 767px), (prefers-reduced-motion: reduce)", () => {
+        gsap.utils.toArray<HTMLElement>(".pr-step").forEach((el) => {
+          gsap.from(el, {
+            y: 30,
+            opacity: 0,
+            ease: "none",
+            scrollTrigger: { trigger: el, start: "top 90%", end: "top 65%", scrub: true },
+          });
+        });
+      });
+
+      return () => mm.revert();
     },
     { scope: root },
   );
@@ -42,7 +92,7 @@ export default function Process() {
           </div>
           <ol className="grid gap-12 md:mt-12 md:grid-cols-4 md:gap-8">
             {PROCESS.map((p, i) => (
-              <li key={p.t} data-reveal>
+              <li key={p.t} className="pr-step">
                 <p className="text-sm text-glacier-3">Step 0{i + 1}</p>
                 <h3 className="mt-4 text-4xl tracking-tight">{p.t}</h3>
                 <p className="mt-4 max-w-[30ch] leading-relaxed text-glacier-3">{p.d}</p>
