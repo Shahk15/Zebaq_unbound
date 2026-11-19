@@ -1,5 +1,5 @@
-import { AUDIENCES } from "../../data/audiences";
-import { IMAGES } from "../../data/images";
+import { AUDIENCES } from "../../data/home/audiences";
+import { IMAGES } from "../../data/home/images";
 import { Arrow, Split } from "../common/ui";
 import { AutoCarousel } from "../common/fx";
 

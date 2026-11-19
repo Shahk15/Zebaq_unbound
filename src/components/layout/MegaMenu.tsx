@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import type { RefObject } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { CONTACT_EMAIL, NAV, NAV_CTA, SERVICE_LINKS, SOCIALS } from "../../data/navigation";
-import type { IconName, NavItem, NavKey } from "../../data/navigation";
-import { SITE } from "../../data/site";
+import { CONTACT_EMAIL, NAV, NAV_CTA, SERVICE_LINKS, SOCIALS } from "../../data/shared/navigation";
+import type { IconName, NavItem, NavKey } from "../../data/shared/navigation";
+import { SITE } from "../../data/home/site";
 import { Pill } from "../common/ui";
 import NavIcon, { ArrowRight, Plus } from "../common/NavIcon";
 

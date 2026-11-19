@@ -9,7 +9,7 @@ import {
   MARKET_CHIPS,
   WALL_COLUMNS,
   flagSrc,
-} from "../../data/markets";
+} from "../../data/home/markets";
 import { Split } from "../common/ui";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);

@@ -2,8 +2,8 @@ import { Fragment, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { SITE } from "../../data/site";
-import { WHITE_LABEL } from "../../data/white-label";
+import { SITE } from "../../data/home/site";
+import { WHITE_LABEL } from "../../data/home/white-label";
 import { Pill } from "../common/ui";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -108,21 +108,21 @@ export default function WhiteLabel() {
             </div>
 
             <h2 className="mx-auto mt-5 max-w-[22ch] text-[clamp(32px,4.2vw,68px)] leading-[0.98] tracking-[-0.05em] text-navy">              {words.map((w, i) => (
-                <Fragment key={i}>
-                  <span className="sw">
-                    <span className="wl-w relative">
-                      {/* Lemon marker sits behind the highlighted word */}
-                      {w.includes("White-Label") && (
-                        <span
-                          aria-hidden="true"
-                          className="wl-mark absolute inset-x-0 bottom-[0.08em] -z-10 h-[0.34em] origin-left bg-lemon"
-                        />
-                      )}
-                      {w}
-                    </span>
-                  </span>{" "}
-                </Fragment>
-              ))}
+              <Fragment key={i}>
+                <span className="sw">
+                  <span className="wl-w relative">
+                    {/* Lemon marker sits behind the highlighted word */}
+                    {w.includes("White-Label") && (
+                      <span
+                        aria-hidden="true"
+                        className="wl-mark absolute inset-x-0 bottom-[0.08em] -z-10 h-[0.34em] origin-left bg-lemon"
+                      />
+                    )}
+                    {w}
+                  </span>
+                </span>{" "}
+              </Fragment>
+            ))}
             </h2>
 
             <p className="wl-fade mt-5 max-w-[34ch] text-[clamp(17px,1.5vw,22px)] leading-[1.6] text-navy-2">

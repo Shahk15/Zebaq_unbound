@@ -2,8 +2,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { INDUSTRIES, INDUSTRIES_VERIFY, LOGOS, LOGOS_TITLE } from "../../data/logos";
-import { STATS } from "../../data/impact";
+import { INDUSTRIES, INDUSTRIES_VERIFY, LOGOS, LOGOS_TITLE } from "../../data/home/logos";
+import { STATS } from "../../data/home/impact";
 import { Split, Verify } from "../common/ui";
 import { AutoCarousel } from "../common/fx";
 

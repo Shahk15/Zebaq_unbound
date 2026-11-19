@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { MessageCircle } from "lucide-react";
-import { NAV_CTA } from "../../data/navigation";
+import { NAV_CTA } from "../../data/shared/navigation";
 import { Pill } from "../common/ui";
 import Magnetic from "../common/Magnetic";
 import Navigation from "./Navigation";

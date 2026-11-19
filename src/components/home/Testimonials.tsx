@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TESTIMONIALS } from "../../data/testimonials";
+import { TESTIMONIALS } from "../../data/shared/testimonials";
 import { Arrow, Split, Verify } from "../common/ui";
 
 // 08 — Written testimonials: auto-advancing, with a progress ring per quote.

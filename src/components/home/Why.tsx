@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
-import { WHY_ITEMS, WHY_SIDES } from "../../data/why";
+import { WHY_ITEMS, WHY_SIDES } from "../../data/home/why";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

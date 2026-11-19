@@ -1,5 +1,5 @@
 import { SERVICES } from "./services";
-import { SITE } from "./site";
+import { SITE } from "../home/site";
 
 export type IconName =
     | "home"

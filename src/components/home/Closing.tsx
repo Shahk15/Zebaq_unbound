@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { FINAL, FOOTER_LINKS } from "../../data/closing";
-import { SERVICES } from "../../data/services";
-import { SITE } from "../../data/site";
+import { FINAL, FOOTER_LINKS } from "../../data/home/closing";
+import { SERVICES } from "../../data/shared/services";
+import { SITE } from "../../data/home/site";
 import { Arrow, Split } from "../common/ui";
 import { DotField } from "../common/fx";
 import LeadForm from "./Diagnostic";

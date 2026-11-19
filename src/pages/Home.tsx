@@ -4,21 +4,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 import Header from "../components/layout/Header";
-import Hero from "../components/sections/Hero";
-import Logos from "../components/sections/Logos";
-import Impact from "../components/sections/Impact";
-import Services from "../components/sections/Services";
-import Audiences from "../components/sections/Audiences";
-import Work from "../components/sections/Work";
-import Testimonials from "../components/sections/Testimonials";
-import Videos from "../components/sections/Videos";
-import Tech from "../components/sections/Tech";
-import Why from "../components/sections/Why";
-import Models from "../components/sections/Models";
-import Process from "../components/sections/Process";
-import Faq from "../components/sections/Faq";
-import WhiteLabel from "../components/sections/WhiteLabel";
-import Closing from "../components/sections/Closing";
+import Hero from "../components/home/Hero";
+import Logos from "../components/home/Logos";
+import Impact from "../components/home/Impact";
+import Services from "../components/home/Services";
+import Audiences from "../components/home/Audiences";
+import Work from "../components/home/Work";
+import Testimonials from "../components/home/Testimonials";
+import Videos from "../components/home/Videos";
+import Tech from "../components/home/Tech";
+import Why from "../components/home/Why";
+import Models from "../components/home/Models";
+import Process from "../components/home/Process";
+import Faq from "../components/home/Faq";
+import WhiteLabel from "../components/home/WhiteLabel";
+import Closing from "../components/home/Closing";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 

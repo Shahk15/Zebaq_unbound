@@ -19,7 +19,7 @@ import {
     Video,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import type { IconName } from "../../data/navigation";
+import type { IconName } from "../../data/shared/navigation";
 
 const ICONS: Record<IconName, LucideIcon> = {
     home: House,

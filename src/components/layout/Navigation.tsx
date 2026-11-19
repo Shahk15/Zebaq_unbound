@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
-import { NAV, SERVICE_LINKS } from "../../data/navigation";
-import type { NavItem, NavKey } from "../../data/navigation";
+import { NAV, SERVICE_LINKS } from "../../data/shared/navigation";
+import type { NavItem, NavKey } from "../../data/shared/navigation";
 import { Pill } from "../common/ui";
 import NavIcon, { ArrowRight } from "../common/NavIcon";
 

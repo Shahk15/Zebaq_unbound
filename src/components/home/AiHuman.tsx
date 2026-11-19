@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { IMAGES } from "../../data/images";
-import { WHY } from "../../data/why";
+import { IMAGES } from "../../data/home/images";
+import { WHY } from "../../data/home/why";
 import { Dot } from "../common/ui";
 
 // Cinematic image reveal: the frame opens from a small window to full bleed

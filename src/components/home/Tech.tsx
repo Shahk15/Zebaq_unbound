@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { TECH, TECH_NOTE, TECH_TITLE } from "../../data/tech";
+import { TECH, TECH_NOTE, TECH_TITLE } from "../../data/home/tech";
 import { Split } from "../common/ui";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
