@@ -111,34 +111,35 @@ function ImpactMetric({
   text: string;
 }) {
   return (
-    <li className="imp-stat group relative border-t border-navy/10 last:border-b">
-      {/* Line that draws itself across the top of the row */}
+    <li className="imp-stat group relative">
+      {/* Hairline that draws itself across the top of the row (hidden on the first row) */}
       <span
         aria-hidden="true"
-        className="imp-bar absolute -top-px left-0 h-[2px] w-full origin-left bg-lemon-deep"
+        className="imp-bar absolute -top-px left-0 h-px w-full origin-left bg-navy/15 group-first:hidden"
       />
 
       {/* Soft wash on hover */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.35),transparent_85%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-x-3 inset-y-0 rounded-2xl bg-[linear-gradient(90deg,rgba(255,255,255,0.6),transparent_85%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       />
 
-      <div className="relative grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center gap-x-5 py-[clamp(22px,3vh,34px)] md:gap-x-8">
+      <div className="relative grid grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] items-center gap-x-5 py-[clamp(18px,2.6vh,30px)] md:gap-x-7">
         <p
-          className="flex items-baseline whitespace-nowrap text-[clamp(54px,6.3vw,100px)] font-medium leading-none tracking-[-0.065em] tabular-nums text-navy"
+          className="flex items-baseline whitespace-nowrap text-[clamp(48px,5vw,84px)] font-bold leading-none tracking-[-0.01em] tabular-nums text-navy"
           style={{ fontFamily: "var(--font-display)" }}
         >
           <Odometer value={value} />
-          <span className="ml-1 text-[0.75em] text-lemon-deep">{suffix}</span>
+          <span className="ml-1 text-[0.8em] font-bold text-lemon-deep">{suffix}</span>
         </p>
 
-        <div className="min-w-0">
+        {/* lemon vertical divider */}
+        <div className="min-w-0 border-l-2 border-lemon-deep pl-5 md:pl-6">
           <h3 className="text-[clamp(16px,1.45vw,22px)] font-semibold leading-[1.2] tracking-[-0.025em] text-navy">
             {label}
           </h3>
 
-          <p className="mt-2 max-w-[30ch] text-[13px] leading-[1.65] text-navy-2">{text}</p>
+          <p className="mt-1.5 max-w-[34ch] text-[13px] leading-[1.6] text-navy-2">{text}</p>
         </div>
       </div>
     </li>
@@ -431,53 +432,72 @@ export default function Impact() {
           {/* Left: impact metrics */}
 
           <div className="lg:col-span-5">
-            <div className="mb-7 flex items-center justify-between gap-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-navy-2">
+            {/* heading: lemon underline on the title, "01 — 03" on the right */}
+            <div className="mb-5 flex items-end justify-between gap-4 border-b border-navy/10">
+              <p className="relative -mb-px pb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-navy">
                 Our impact in numbers
+                <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] bg-lemon-deep" />
               </p>
 
-              <span className="h-px flex-1 bg-navy/15" />
-
-              <span className="font-mono text-[10px] tracking-wider text-navy">01 — 03</span>
+              <span className="pb-3 font-mono text-[10px] tracking-wider text-navy">01 — 03</span>
             </div>
 
-            <ul>
-              {IMPACT_STATS.map((stat) => (
-                <ImpactMetric
-                  key={stat.label}
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  label={stat.label}
-                  text={stat.text}
+            {/* frosted glass card */}
+            <div className="relative isolate rounded-[28px]">
+              {/* lemon glow behind the bottom-right corner */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-4 -right-4 -z-10 h-28 w-44 rounded-full bg-lemon/45 blur-2xl"
+              />
+
+              <div className="relative rounded-[28px] bg-[linear-gradient(155deg,rgba(255,255,255,0.92),rgba(236,243,249,0.75))] px-[clamp(20px,2.4vw,36px)] shadow-[0_30px_60px_-30px_rgba(10,31,68,0.35),inset_0_1px_0_rgba(255,255,255,0.95)] ring-1 ring-white/80 backdrop-blur-xl">
+                <ul>
+                  {IMPACT_STATS.map((stat) => (
+                    <ImpactMetric
+                      key={stat.label}
+                      value={stat.value}
+                      suffix={stat.suffix}
+                      label={stat.label}
+                      text={stat.text}
+                    />
+                  ))}
+                </ul>
+
+                {/* lemon edge on the bottom-right corner, fading out along the sides */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute bottom-0 right-0 h-24 w-40 rounded-br-[28px] border-b-[3px] border-r-[3px] border-lemon-deep [-webkit-mask-image:linear-gradient(135deg,transparent_35%,#000_100%)] [mask-image:linear-gradient(135deg,transparent_35%,#000_100%)]"
                 />
-              ))}
-            </ul>
+              </div>
+            </div>
 
             {/* Market chips */}
 
-            <div className="imp-chips mt-9">
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-navy-2">
-                Markets represented
-              </p>
+            <div className="imp-chips mt-8">
+              <div className="mb-4 flex items-center gap-4">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-navy">
+                  Markets represented
+                </p>
+                <span className="h-px flex-1 bg-navy/15" />
+              </div>
 
               <ul className="flex flex-wrap gap-2.5">
                 {MARKET_CHIPS.map((market) => (
                   <li
                     key={market.label}
-                    className="imp-chip flex items-center gap-2 rounded-full border border-navy/10 bg-off py-1.5 pl-1.5 pr-3.5 text-[12px] font-medium text-navy transition-colors duration-300 hover:border-lemon-deep"
+                    className="imp-chip flex items-center gap-2 rounded-full border border-navy/[0.06] bg-white py-1.5 pl-1.5 pr-3.5 text-[12px] font-medium text-navy shadow-[0_8px_18px_-12px_rgba(10,31,68,0.4)] transition-[translate,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-lemon-deep"
                   >
-                    <span className="flex -space-x-2">
-                      {market.codes.map((code) => (
-                        <img
-                          key={code}
-                          src={flagSrc(code, 80)}
-                          alt=""
-                          loading="lazy"
-                          draggable={false}
-                          className="h-5 w-5 rounded-full border-2 border-white object-cover"
-                        />
-                      ))}
-                    </span>
+                    {/* design shows one flag per chip */}
+                    {market.codes.slice(0, 1).map((code) => (
+                      <img
+                        key={code}
+                        src={flagSrc(code, 80)}
+                        alt=""
+                        loading="lazy"
+                        draggable={false}
+                        className="h-[18px] w-[18px] rounded-full object-cover ring-1 ring-navy/10"
+                      />
+                    ))}
 
                     {market.label}
                   </li>

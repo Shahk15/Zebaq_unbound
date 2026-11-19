@@ -380,7 +380,7 @@ export default function Why() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
-                <h3 className="mt-2 text-[clamp(17px,1.4vw,21px)] font-medium text-off">
+                <h3 className="mt-2 text-[clamp(17px,1.4vw,21px)] font-medium text-off tracking-[0.05em]">
                   {item.title}
                 </h3>
 

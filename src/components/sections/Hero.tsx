@@ -110,9 +110,9 @@ export default function Hero({ play }: { play: boolean }) {
       <DotField interactive top={0.45} className="hz-field absolute inset-0 h-full w-full" />
       <div ref={glow} className="pointer-events-none absolute left-0 top-0 -ml-[22vmin] -mt-[22vmin] h-[44vmin] w-[44vmin] rounded-full bg-lemon/25 blur-[70px]" />
 
-      {/* the horse, centred behind the headline */}
-      <div className="hz-horse-wrap pointer-events-none absolute inset-x-0 bottom-[-2%] flex justify-center opacity-40 md:opacity-100" style={{ perspective: "1400px" }}>
-        <div ref={stage} className="hz-horse relative h-[64svh] [transform-style:preserve-3d] md:h-[86svh]">
+      {/* the horse: now top-centre, just under the header (was bottom-centre) */}
+      <div className="hz-horse-wrap pointer-events-none absolute inset-x-0 top-[10%] flex justify-center opacity-40 md:opacity-100" style={{ perspective: "1400px" }}>
+        <div ref={stage} className="hz-horse relative h-[48svh] [transform-style:preserve-3d] md:h-[61svh]">
           {/* soft floor shadow (a CSS drop-shadow filter renders as a faint box in Chrome) */}
           <span className="pointer-events-none absolute bottom-[1%] left-1/2 h-[7%] w-[56%] -translate-x-[42%] rounded-[50%] bg-navy/25 blur-2xl" />
           <div className="relative h-full [mask-image:linear-gradient(to_bottom,black_93%,transparent_100%)]">
@@ -126,44 +126,58 @@ export default function Hero({ play }: { play: boolean }) {
         </div>
       </div>
 
-      <div className="wrap relative flex h-full flex-col pb-[3vh] pt-[max(96px,12vh)]">
-        <p className="hz-fade eyebrow mx-auto text-center">{HERO.eyebrow}</p>
-
-        <h1 className="mt-[3vh] text-center" aria-label={`${HERO.h1.join(" ")} ${HERO.h1Tail}`}>
-          <span className="flex flex-wrap justify-center gap-x-[0.24em] text-[clamp(56px,min(12.5vw,19vh),220px)] font-medium leading-[0.86] tracking-[-0.06em]" style={{ fontFamily: "var(--font-display)" }}>
-            <span className="hz-line hz-left" data-split><span className="sw"><span>AI-Driven<Dot /></span></span></span>
-            <span className="hz-line hz-right" data-split><span className="sw"><span>Human-Led<Dot /></span></span></span>
-          </span>
-          <span className="hz-tail hz-fade mt-[2.2vh] block text-[clamp(18px,2.4vh,26px)] font-medium tracking-[-0.02em] text-navy-2" style={{ fontFamily: "var(--font-display)" }}>
-            Solutions <span className="text-lemon-deep">·</span> Strategies <span className="text-lemon-deep">·</span> Built around <span className="relative whitespace-nowrap text-navy"><span className="absolute inset-x-0 bottom-[0.08em] -z-10 h-[0.34em] bg-lemon" />your business</span>
-          </span>
-        </h1>
-
-        <div className="hz-band mt-auto grid items-end gap-8 md:grid-cols-[1fr_auto_1fr]">
+      <div className="wrap relative flex h-full flex-col pb-[4vh] pt-[max(96px,15vh)]">
+        {/* TOP ROW: CTAs on the left, stats on the right (fades out on scroll, as before) */}
+        <div className="hz-band grid items-start gap-8 md:grid-cols-[1fr_auto]">
           <div className="max-w-[360px]">
-            <p className="hz-fade text-[clamp(15px,1.9vh,18px)] leading-relaxed text-navy-2">{HERO.sub}</p>
+            <p className="hz-fade text-[clamp(15px,2.2vh,19px)] leading-relaxed text-navy">{HERO.sub}</p>
             <div className="hz-fade mt-[2.5vh] flex flex-wrap gap-3">
               <Pill href="#contact" variant="navy">{HERO.primary}</Pill>
               <Pill href="#services" variant="ghost" className="hidden text-navy xl:inline-flex">{HERO.secondary}</Pill>
             </div>
           </div>
-          <a href="#logos" className="hz-fade hidden flex-col items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-navy-2 md:flex">
-            {HERO.hint}
-            <span className="relative block h-10 w-px overflow-hidden bg-navy/15"><span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollcue_1.8s_ease-in-out_infinite] bg-navy" /></span>
-          </a>
-          <div className="hidden flex-col items-end gap-4 md:flex">
-            <dl className="hz-fade flex gap-10">
-              {STATS.filter((s) => s.value > 0).map((s) => (
-                <div key={s.label}>
-                  <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-navy-2">{s.label}<Verify on={s.verify} /></dt>
-                  <dd className="mt-1.5 text-[clamp(26px,3.6vh,38px)] font-medium tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-                    <span className="hz-count" data-to={s.value}>0</span>{s.suffix}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            <p className="hz-fade text-right text-sm text-navy-2">Trusted across {MARKETS.slice(0, 5).map((m) => m.name).join(" · ")} and beyond.</p>
+
+          <div className="hidden flex-col items-end md:flex md:pt-3">
+            <div>
+              <dl className="hz-fade flex">
+                {STATS.filter((s) => s.value > 0).map((s) => (
+                  <div key={s.label} className="px-7 first:pl-0 last:pr-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-navy/35">
+                    <dt className="whitespace-nowrap text-[12px] font-bold uppercase tracking-[0.14em] text-navy [&_.verify-tag]:ml-0 [&_.verify-tag]:mt-1.5 [&_.verify-tag]:block [&_.verify-tag]:w-fit">
+                      {s.label}<Verify on={s.verify} />
+                    </dt>
+                    <dd className="mt-1.5 text-[clamp(28px,4.7vh,44px)] font-medium tracking-tight text-navy" style={{ fontFamily: "var(--font-display)" }}>
+                      <span className="hz-count" data-to={s.value}>0</span>{s.suffix}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="hz-fade mt-3 whitespace-nowrap text-[clamp(13px,2vh,15px)] text-navy-2">
+                Trusted across {MARKETS.slice(0, 5).map((m) => m.name).join(" · ")} and beyond.
+              </p>
+            </div>
           </div>
+        </div>
+
+        {/* BOTTOM BLOCK: eyebrow, big headline, tagline */}
+        <div className="mt-auto text-center">
+          <p className="hz-tail hz-fade eyebrow mx-auto text-center">{HERO.eyebrow}</p>
+
+          <h1 className="mt-[1vh] text-center" aria-label={`${HERO.h1.join(" ")} ${HERO.h1Tail}`}>
+            <span className="flex flex-wrap justify-center gap-x-[0.24em] text-[clamp(56px,min(12vw,17.6vh),220px)] font-medium leading-[0.86] tracking-[-0.06em]" style={{ fontFamily: "var(--font-display)" }}>
+              <span className="hz-line hz-left" data-split><span className="sw"><span>AI-Driven<Dot /></span></span></span>
+              <span className="hz-line hz-right" data-split><span className="sw"><span>Human-Led<Dot /></span></span></span>
+            </span>
+            <span
+              className="hz-tail hz-fade mt-[1.8vh] block text-[clamp(18px,2.7vh,26px)] font-medium leading-[1.25] tracking-[-0.02em] text-navy"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Solutions. Strategies. Built around{" "}
+              <span className="relative isolate whitespace-nowrap font-semibold">
+                <span aria-hidden="true" className="absolute inset-x-0 bottom-[0.06em] -z-10 h-[0.34em] bg-lemon" />
+                your business
+              </span>
+            </span>
+          </h1>
         </div>
       </div>
 
