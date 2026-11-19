@@ -1,195 +1,122 @@
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { MessageCircle } from "lucide-react";
-import { NAV_CTA } from "../../data/shared/navigation";
-import { Pill } from "../common/ui";
-import Magnetic from "../common/Magnetic";
-import Navigation from "./Navigation";
-import MegaMenu from "./MegaMenu";
+import { NAV, NAV_CTA } from "../../data/header";
+import { SERVICES } from "../../data/services";
+import { SITE } from "../../data/site";
+import { Arrow, Dot, Pill } from "../common/ui";
 
-gsap.registerPlugin(useGSAP);
+export default function Header() {
+  const { pathname } = useLocation();
+  const isAbout = pathname.replace(/\/$/, "") === "/about";
+  const [hidden, setHidden] = useState(false);
+  const [dark, setDark] = useState(false);
+  const [open, setOpen] = useState(false);
+  const menu = useRef<HTMLDivElement>(null);
 
-type HeaderProps = {
-  // Becomes true when the page loader reveals the site
-  play?: boolean;
-};
-
-export default function Header({ play = true }: HeaderProps) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLElement>(null);
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const menuOpenRef = useRef(false);
-  const prevMenuOpen = useRef(false);
-
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    menuOpenRef.current = menuOpen;
-  }, [menuOpen]);
-
-  /* ---------- Hide header items until the loader reveals ---------- */
-  useGSAP(
-    () => {
-      gsap.set(".hm-item", { opacity: 0, y: -18 });
-    },
-    { scope: rootRef, dependencies: [] }
-  );
-
-  /* ---------- Entrance ---------- */
-  useGSAP(
-    () => {
-      if (!play) return;
-      gsap.to(".hm-item", {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        stagger: 0.08,
-        ease: "power3.out",
-        delay: 0.3,
-        // Remove the leftover transform: it blurs thin lines and breaks dropdown positioning
-        onComplete: () => {
-          gsap.set(".hm-item", { clearProps: "transform,opacity" });
-        },
-      });
-    },
-    { scope: rootRef, dependencies: [play] }
-  );
-
-  /* ---------- Hamburger <-> cross, logo color ---------- */
-  useGSAP(
-    () => {
-      if (prevMenuOpen.current === menuOpen) return;
-      prevMenuOpen.current = menuOpen;
-
-      const tl = gsap.timeline();
-      if (menuOpen) {
-        tl.to(".hm-nav-fade", { autoAlpha: 0, duration: 0.3 }, 0)
-          .to(".hm-logo", { filter: "brightness(0) invert(1)", duration: 0.5 }, 0.1)
-          .to(".hm-line", { backgroundColor: "#ffffff", duration: 0.4 }, 0.1)
-          .to(".hm-line-top", { y: 4, rotate: 45, duration: 0.6, ease: "power3.inOut" }, 0.2)
-          .to(".hm-line-bot", { y: -4, rotate: -45, duration: 0.6, ease: "power3.inOut" }, 0.2);
-      } else {
-        tl.to(".hm-line-top", { y: 0, rotate: 0, duration: 0.5, ease: "power3.inOut" }, 0.3)
-          .to(".hm-line-bot", { y: 0, rotate: 0, duration: 0.5, ease: "power3.inOut" }, 0.3)
-          .to(".hm-line", { backgroundColor: "#0a1f44", duration: 0.4 }, 0.4)
-          .to(".hm-logo", { filter: "brightness(1) invert(0)", duration: 0.5 }, 0.4)
-          .to(".hm-nav-fade", { autoAlpha: 1, duration: 0.4 }, 0.6);
-      }
-    },
-    { scope: rootRef, dependencies: [menuOpen] }
-  );
-
-  /* ---------- Scroll: blur bar, hide on scroll down, show on scroll up ---------- */
+  // hide on scroll down, and flip colours over [data-dark] sections
   useEffect(() => {
     let last = window.scrollY;
-    let hidden = false;
     const onScroll = () => {
       const y = window.scrollY;
-      setScrolled(y > 40);
-      if (!menuOpenRef.current && headerRef.current) {
-        const shouldHide = y > last && y > 160;
-        if (shouldHide !== hidden) {
-          hidden = shouldHide;
-          gsap.to(headerRef.current, {
-            yPercent: hidden ? -110 : 0,
-            duration: 0.5,
-            ease: "power3.out",
-            overwrite: true,
-          });
-        }
-      }
+      setHidden(y > last && y > 300);
       last = y;
+      const under = document.elementsFromPoint(window.innerWidth / 2, 44).find((el) => !el.closest("header"));
+      // the hero fades to navy while pinned — treat it as dark once the fade is mostly in
+      const veil = document.querySelector<HTMLElement>(".hz-veil");
+      const veilOn = !!veil && Number(getComputedStyle(veil).opacity) > 0.5 && veil.getBoundingClientRect().top <= 44 && veil.getBoundingClientRect().bottom > 44;
+      setDark(veilOn || !!under?.closest("[data-dark]"));
     };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    if (!menu.current) return;
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      gsap.fromTo(menu.current, { clipPath: "circle(0% at 96% 4%)" }, { clipPath: "circle(150% at 96% 4%)", duration: 0.9, ease: "expo.inOut" });
+      gsap.from(menu.current.querySelectorAll(".mi > span"), { yPercent: 110, duration: 1, ease: "expo.out", stagger: 0.05, delay: 0.3 });
+    }
+  }, [open]);
 
-  // Bar background: solid while a dropdown is open, soft blur after scrolling
-  const barBg = menuOpen
-    ? ""
-    : dropdownOpen
-      ? "bg-off"
-      : scrolled
-        ? "bg-off/75 shadow-[0_1px_0_rgba(10,31,68,0.06)] backdrop-blur-md"
-        : "";
+  const tone = dark && !open ? "text-off" : "text-navy";
+  const navItems = NAV.map((n) => ({
+    ...n,
+    href: n.label === "About" ? "/about" : isAbout ? `/${n.href}` : n.href,
+  }));
+  const menuItems = [...navItems, { label: NAV_CTA, href: isAbout ? "/#contact" : "#contact" }];
 
   return (
-    <div ref={rootRef}>
-      <header ref={headerRef} className="fixed inset-x-0 top-0 z-[70]">
-        {/* relative: dropdown panels are positioned against this bar */}
-        <div
-          className={`relative flex items-center justify-between px-[4.4%] py-4 transition-[background-color,box-shadow] duration-500 md:grid md:grid-cols-[1fr_auto_1fr] ${barBg}`}
-        >
-          {/* Left: logo + contact badge */}
-          <div className="flex items-center gap-3 justify-self-start">
-            <a href="#" onClick={closeMenu} aria-label="Home" className="hm-item flex items-center">
-              <img src="/images/logo/full-logo.png" alt="Zebaq" className="hm-logo h-11 w-auto md:h-[52px]" />
+    <>
+      <header className={`fixed inset-x-0 top-0 z-[60] transition-transform duration-700 ${hidden && !open ? "-translate-y-full" : ""}`}>
+        <div className={`wrap flex h-[84px] items-center justify-between transition-colors duration-500 ${open ? "text-off" : tone}`}>
+          <div className="flex items-center gap-5">
+            <a href={isAbout ? "/" : "#top"} aria-label="ZEBAQ home" className="flex items-center" onClick={() => setOpen(false)}>
+              <img src="/images/logo/full-logo.png" alt="ZEBAQ" className={`h-8 w-auto transition md:h-9 ${dark || open ? "brightness-0 invert" : ""}`} />
             </a>
+            <span className="hidden items-center gap-2 rounded-full px-3.5 py-2 text-[13px] font-medium shadow-[inset_0_0_0_1px_currentColor] xl:inline-flex" style={{ opacity: 0.85 }}>
+              <span className="h-2 w-2 rounded-full bg-[#34c759]" style={{ animation: "pulse-dot 2s infinite" }} />
+              Booking strategy calls
+            </span>
+          </div>
 
-            {/* Round icon that opens into a pill on hover */}
-            <div className="hm-item hm-nav-fade hidden md:block">
-              <a href="#contact" aria-label="Contact us" className="group flex items-center">
-                <span className="badge-blink relative grid h-11 w-11 shrink-0 place-items-center rounded-full border border-navy/15 text-navy">
-                  <MessageCircle className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />
-                </span>
-
-                <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:grid-cols-[1fr] group-focus-visible:grid-cols-[1fr]">
-                  <span className="overflow-hidden">
-                    <span className="ml-2 flex items-center gap-2 whitespace-nowrap rounded-full border border-navy/10 bg-white px-4 py-2.5 text-[14px] font-medium text-navy opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100">
-                      <span className="h-2 w-2 rounded-full bg-lemon-deep" />
-                      Contact us
-                    </span>
-                  </span>
-                </span>
+          <nav className="hidden items-center gap-8 whitespace-nowrap xl:flex" aria-label="Primary">
+            {navItems.map((n) => (
+              <a key={n.href} href={n.href} className="group relative text-[15px] font-medium">
+                {n.label}
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-current transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
               </a>
-            </div>
-          </div>
+            ))}
+          </nav>
 
-          {/* Center: desktop navigation with dropdowns */}
-          <div className="hm-item hidden md:block">
-            <div className="hm-nav-fade">
-              <Navigation disabled={menuOpen} onOpenChange={setDropdownOpen} />
-            </div>
-          </div>
-
-          {/* Right: CTA + hamburger */}
-          <div className="flex items-center gap-3 justify-self-end md:gap-4">
-            <div className="hm-item hidden lg:block">
-              <Magnetic>
-                <Pill href="#contact" variant="navy">
-                  {NAV_CTA}
-                </Pill>
-              </Magnetic>
-            </div>
-
-            {/* Two lines: long on top, short below. The short one grows on hover. */}
-            <button
-              ref={btnRef}
-              type="button"
-              onClick={() => setMenuOpen((v) => !v)}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={menuOpen}
-              aria-controls="site-menu"
-              className="hm-item group grid h-11 w-11 place-items-center rounded-full"
-            >
-              <span className="relative block h-[10px] w-[26px]">
-                <span className="hm-line hm-line-top absolute left-0 top-0 block h-[2px] w-full origin-center rounded-full bg-navy" />
-                <span
-                  className={`hm-line hm-line-bot absolute right-0 top-[8px] block h-[2px] origin-center rounded-full bg-navy transition-[width] duration-300 ease-out ${menuOpen ? "w-full" : "w-[58%] group-hover:w-full"
-                    }`}
-                />
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:inline-flex">
+              <Pill href="#contact" variant={dark || open ? "lemon" : "navy"} className="!py-1.5 !pl-5">
+                {NAV_CTA}
+              </Pill>
+            </span>
+            <button onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-label="Menu" className="grid h-12 w-12 place-items-center" data-cursor="hover">
+              <span className="relative block h-3 w-7">
+                <span className={`absolute right-0 h-[1.5px] bg-current transition-all duration-500 ${open ? "top-1.5 w-7 rotate-45" : "top-0 w-7"}`} />
+                <span className={`absolute right-0 h-[1.5px] bg-current transition-all duration-500 ${open ? "top-1.5 w-7 -rotate-45" : "top-3 w-4"}`} />
               </span>
             </button>
           </div>
         </div>
       </header>
 
-      <MegaMenu open={menuOpen} originRef={btnRef} onClose={closeMenu} />
-    </div>
+      {open && (
+        <div ref={menu} className="fixed inset-0 z-[55] overflow-y-auto bg-ink text-off" data-dark>
+          <div className="wrap grid min-h-full gap-16 pb-12 pt-32 lg:grid-cols-[1.3fr_1fr]">
+            <nav className="flex flex-col" aria-label="Menu">
+              {menuItems.map((n, i) => (
+                <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="mi group flex items-baseline gap-6 overflow-hidden py-1">
+                  <span className="inline-block text-[clamp(44px,7vw,104px)] font-medium leading-[1.02] tracking-[-0.05em] transition-colors group-hover:text-lemon" style={{ fontFamily: "var(--font-display)" }}>
+                    <span className="mr-5 align-top text-sm tracking-normal text-glacier-3">0{i + 1}</span>
+                    {n.label}
+                  </span>
+                </a>
+              ))}
+            </nav>
+            <div className="flex flex-col justify-between gap-12 lg:pt-6">
+              <div>
+                <p className="eyebrow text-glacier-3">Services</p>
+                <ul className="mt-6 grid gap-2 text-glacier-2">
+                  {SERVICES.map((s) => (
+                    <li key={s.slug}><a href="#services" onClick={() => setOpen(false)} className="hover:text-lemon">{s.short}</a></li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-3xl font-medium tracking-tight" style={{ fontFamily: "var(--font-display)" }}>Let's build what fits your business<Dot /></p>
+                <a href={`mailto:${SITE.email}`} className="mt-4 inline-flex items-center gap-2 text-glacier-2 hover:text-lemon">{SITE.email} <Arrow size={14} /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
