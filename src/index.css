@@ -149,3 +149,28 @@
 @media (prefers-reduced-motion: reduce) {
   .marquee { animation: none; }
 }
+
+/* Contact badge: soft yellow blink */
+@keyframes badge-blink {
+
+  0%,
+  100% {
+    background-color: transparent;
+    border-color: rgb(10 31 68 / 0.15);
+  }
+
+  50% {
+    background-color: var(--color-lemon);
+    border-color: var(--color-lemon);
+  }
+}
+
+.badge-blink {
+  animation: badge-blink 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-blink {
+    animation: none;
+  }
+}
