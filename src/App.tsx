@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { Cursor, Loader, ScrollProgress, SectionIndex } from "./components/common/fx";
 import SmoothScroll from "./components/layout/SmoothScroll";
+import PageTransition from "./components/common/PageTransition";
 import Home from "./pages/Home";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
       <Cursor />
       <ScrollProgress />
       <SectionIndex />
+      <PageTransition />
       <Home play={ready} />
     </>
   );
