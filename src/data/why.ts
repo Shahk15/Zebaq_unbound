@@ -11,3 +11,12 @@ export const WHY_ITEMS = [
   { title: "Made to grow", text: "Systems that keep improving results after launch." },
   { title: "Direct communication", text: "Clear updates from the team doing the work." },
 ];
+
+export const WHY = {
+  title: ["AI makes us faster.", "Human judgement makes it matter.", "Together, we build with purpose."],
+  points: [
+    { t: "Strategy-led", d: "Every decision starts with your goals, audience, and the outcome we need to create." },
+    { t: "Built for performance", d: "Fast, focused experiences turn attention into action and create measurable growth." },
+    { t: "Designed to scale", d: "Flexible systems give your team a stronger foundation for every stage ahead." },
+  ],
+};
