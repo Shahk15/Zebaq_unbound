@@ -1,10 +1,13 @@
-export const WHY = {
-  title: ["AI Efficiency.", "Human Judgment.", "Accountable Execution."],
-  points: [
-    { t: "Customized strategies", d: "Shaped around your numbers, market and team — never a package we sell everyone." },
-    { t: "Human review", d: "AI makes us fast. Experienced people decide what ships." },
-    { t: "Transparent reporting", d: "Leads, pipeline and revenue impact — not impressions dressed up as progress." },
-    { t: "Long-term partnership", d: "We measure success by how long clients stay, not how fast we close them." },
-  ],
-  teamNote: "Add real team photography here",
+// Labels above each statue
+export const WHY_SIDES = {
+  left: { tag: "Without us", line: "Work that cracks" },
+  right: { tag: "With us", line: "Work that lasts" },
 };
+
+// The four reasons (placeholder copy: replace with the final text)
+export const WHY_ITEMS = [
+  { title: "Strategy before design", text: "We start with your goals, then choose the tools." },
+  { title: "Built to convert", text: "Clean, fast pages designed to turn visitors into leads." },
+  { title: "Made to grow", text: "Systems that keep improving results after launch." },
+  { title: "Direct communication", text: "Clear updates from the team doing the work." },
+];

@@ -3,7 +3,12 @@ import { Split } from "../common/ui";
 
 export default function Models() {
   return (
-    <section data-index="12" data-label="Flexible Engagement Models" className="on-light section bg-glacier">
+    <section
+      data-over
+      data-index="12"
+      data-label="Flexible Engagement Models"
+      className="on-light section relative rounded-t-[40px] bg-glacier"
+    >
       <div className="wrap">
         <p className="eyebrow" data-reveal>Flexible engagement</p>
         <h2 className="t-xl mt-8"><Split text="Work with us your way" dot /></h2>
