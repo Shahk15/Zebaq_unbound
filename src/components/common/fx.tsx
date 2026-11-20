@@ -29,7 +29,7 @@ export function Loader({ onDone }: { onDone: () => void }) {
       </div>
       <div>
         <p className="ld-word overflow-hidden text-[clamp(40px,8vw,120px)] font-medium leading-none tracking-[-0.05em]" style={{ fontFamily: "var(--font-display)" }}>
-          <span className="inline-block">We’re ZEBAQ<span className="dot" /></span>
+          <span className="inline-block">Built around you<span className="dot" /></span>
         </p>
         <div className="mt-8 flex items-end justify-between gap-6">
           <div className="h-px flex-1 bg-white/15"><div className="ld-bar h-px origin-left scale-x-0 bg-lemon" /></div>

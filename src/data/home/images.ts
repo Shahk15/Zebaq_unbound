@@ -5,7 +5,6 @@ export const IMAGES = {
   horseSeams: "/v2/horse-hero-gold.webp",
   horsePristine: "/v2/horse-pristine.webp",
   horseCracked: "/v2/horse-cracked.webp",
-  about: "/about.png",
   broken: Unsplash("photo-1649307008469-2cf0dfe23134", 1200),
   perfected: Unsplash("photo-1705921321311-e92e80ac8e59", 1200),
   ai: Unsplash("photo-1694903062502-6df8204136af", 2200),
