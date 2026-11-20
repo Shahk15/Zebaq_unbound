@@ -64,4 +64,40 @@ export const CASES: CaseStudy[] = [
       alt: "Chico's Choice Dogs website displayed on a tablet",
     },
   },
+  {
+    slug: "destination-360",
+    title: "Destination 360",
+    text: "A hospitality experience showcasing sustainable stays and destination discovery.",
+    href: "/work/destination-360",
+    theme: "dark",
+    media: {
+      type: "image",
+      src: "/v2/mock%20up%202.png",
+      alt: "Destination 360 sustainable hospitality website displayed on a laptop",
+    },
+  },
+  {
+    slug: "royal-blessings",
+    title: "Royal Blessings",
+    text: "An elegant e-commerce experience for jewelry and occasion collections.",
+    href: "/work/royal-blessings",
+    theme: "light",
+    media: {
+      type: "image",
+      src: "/v2/mock%20up%203.png",
+      alt: "Royal Blessings jewelry storefront displayed on a tablet",
+    },
+  },
+  {
+    slug: "palm-residential",
+    title: "Palm Residential",
+    text: "A mobile-first residential experience for home services, repairs, and projects.",
+    href: "/work/palm-residential",
+    theme: "light",
+    media: {
+      type: "image",
+      src: "/v2/mock%20up%204.png",
+      alt: "Palm Residential home services website displayed on a phone",
+    },
+  },
 ];

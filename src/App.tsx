@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import { useCallback, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Cursor, Loader, ScrollProgress, SectionIndex } from "./components/common/fx";
 import SmoothScroll from "./components/layout/SmoothScroll";
 import PageTransition from "./components/common/PageTransition";
 
+=======
+import { useCallback, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Cursor, Loader, ScrollProgress, SectionIndex } from "./components/common/fx";
+import SmoothScroll from "./components/layout/SmoothScroll";
+>>>>>>> 89eed06 (updated image)
 import Home from "./pages/Home";
 import ServicesPage from "./pages/ServicesPage";
 import WorkPage from "./pages/WorkPage";
@@ -34,8 +41,12 @@ export default function App() {
       <PageTransition />
       <Routes>
         <Route path="/" element={<Home play={ready} />} />
+<<<<<<< HEAD
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/work" element={<WorkPage />} />
+=======
+        <Route path="*" element={<Home play={ready} />} />
+>>>>>>> 89eed06 (updated image)
       </Routes>
     </>
   );
