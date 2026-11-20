@@ -25,10 +25,12 @@ export default function Header({ play = true }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [solidTop, setSolidTop] = useState(false);
 
+  /* ---------- Pages whose first section is dark ask for the light bar from the top ---------- */
   useEffect(() => {
-    menuOpenRef.current = menuOpen;
-  }, [menuOpen]);
+    setSolidTop(!!document.querySelector("main [data-header-solid]"));
+  }, []);
 
   /* ---------- Hide header items until the loader reveals ---------- */
   useGSAP(
@@ -114,7 +116,7 @@ export default function Header({ play = true }: HeaderProps) {
     ? ""
     : dropdownOpen
       ? "bg-off"
-      : scrolled
+      : scrolled || solidTop
         ? "bg-off/75 shadow-[0_1px_0_rgba(10,31,68,0.06)] backdrop-blur-md"
         : "";
 

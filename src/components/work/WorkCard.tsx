@@ -1,9 +1,9 @@
 
 import { useRef } from "react";
-import type { ServiceItem } from "../../data/services/index.ts";
+import type { WorkItem } from "../../data/work";
 
 type Props = {
-    item: ServiceItem;
+    item: WorkItem;
     view: "grid" | "list";
 };
 
@@ -92,7 +92,7 @@ export default function ServiceCard({ item, view }: Props) {
                             {item.title}
                         </span>
                         <span className="mt-2 block text-sm text-navy-2">
-                            {item.kicker}
+                            {item.year}
                         </span>
                     </span>
 
@@ -153,7 +153,7 @@ export default function ServiceCard({ item, view }: Props) {
                     <h3 className="min-w-0 text-[clamp(21px,2vw,30px)] font-medium leading-[1.1] tracking-[-0.03em]">
                         {item.title}
                         <span className="text-navy-2/60">
-                            {" "}— {item.kicker}
+                            {" "}— {item.year}
                         </span>
                     </h3>
 

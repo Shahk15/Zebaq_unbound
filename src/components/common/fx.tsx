@@ -41,24 +41,54 @@ export function Loader({ onDone }: { onDone: () => void }) {
 }
 
 /* ── Custom cursor ─────────────────────────────────────────────────── */
+// Links and buttons: the ring grows with a soft lemon fill.
+// data-cursor="View" (any text except "hover"): the ring grows more and shows that label.
 export function Cursor() {
   const dot = useRef<HTMLDivElement>(null);
   const ring = useRef<HTMLDivElement>(null);
+  const label = useRef<HTMLSpanElement>(null);
   const [enabled] = useState(() => window.matchMedia("(pointer: fine)").matches && !reduced());
 
   useEffect(() => {
     if (!enabled) return;
     document.documentElement.classList.add("has-cursor");
+
+    // Centre both elements on the pointer
+    gsap.set([dot.current, ring.current], { xPercent: -50, yPercent: -50 });
+
     const dx = gsap.quickTo(dot.current, "x", { duration: 0.08 });
     const dy = gsap.quickTo(dot.current, "y", { duration: 0.08 });
     const rx = gsap.quickTo(ring.current, "x", { duration: 0.45, ease: "power3" });
     const ry = gsap.quickTo(ring.current, "y", { duration: 0.45, ease: "power3" });
     const move = (e: PointerEvent) => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); };
+
     const over = (e: PointerEvent) => {
-      const hot = (e.target as HTMLElement).closest("a,button,[data-cursor]");
-      gsap.to(ring.current, { scale: hot ? 1.8 : 1, borderColor: hot ? "rgba(227,212,0,1)" : "rgba(10,31,68,.4)", backgroundColor: hot ? "rgba(245,234,59,.18)" : "rgba(245,234,59,0)", duration: 0.35 });
-      gsap.to(dot.current, { scale: hot ? 0 : 1, duration: 0.25 });
+      const target = e.target as HTMLElement;
+      const tagged = target.closest<HTMLElement>("[data-cursor]");
+      const text = tagged && tagged.dataset.cursor && tagged.dataset.cursor !== "hover" ? tagged.dataset.cursor : "";
+      const hot = !!target.closest("a,button,[data-cursor]");
+
+      if (label.current) label.current.textContent = text;
+      gsap.to(label.current, { opacity: text ? 1 : 0, duration: 0.25 });
+
+      if (text) {
+        // Labelled: big lemon disc with the text
+        gsap.to(ring.current, { width: 92, height: 92, borderColor: "rgba(227,212,0,1)", backgroundColor: "rgba(245,234,59,0.95)", duration: 0.4, ease: "power3.out", overwrite: "auto" });
+        gsap.to(dot.current, { scale: 0, duration: 0.25 });
+      } else {
+        gsap.to(ring.current, {
+          width: hot ? 72 : 40,
+          height: hot ? 72 : 40,
+          borderColor: hot ? "rgba(227,212,0,1)" : "rgba(10,31,68,.4)",
+          backgroundColor: hot ? "rgba(245,234,59,.18)" : "rgba(245,234,59,0)",
+          duration: 0.35,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+        gsap.to(dot.current, { scale: hot ? 0 : 1, duration: 0.25 });
+      }
     };
+
     window.addEventListener("pointermove", move);
     window.addEventListener("pointerover", over);
     return () => {
@@ -71,12 +101,13 @@ export function Cursor() {
   if (!enabled) return null;
   return (
     <>
-      <div ref={ring} className="pointer-events-none fixed left-0 top-0 z-[90] -ml-5 -mt-5 h-10 w-10 rounded-full border-2 border-navy/40" />
-      <div ref={dot} className="pointer-events-none fixed left-0 top-0 z-[91] -ml-1 -mt-1 h-2 w-2 rounded-full bg-navy" />
+      <div ref={ring} className="pointer-events-none fixed left-0 top-0 z-[90] grid h-10 w-10 place-items-center rounded-full border-2 border-navy/40">
+        <span ref={label} className="text-[14px] font-semibold uppercase tracking-[0.14em] text-navy opacity-0" />
+      </div>
+      <div ref={dot} className="pointer-events-none fixed left-0 top-0 z-[91] h-2 w-2 rounded-full bg-navy" />
     </>
   );
 }
-
 /* ── Scroll progress hairline ──────────────────────────────────────── */
 export function ScrollProgress() {
   const bar = useRef<HTMLDivElement>(null);

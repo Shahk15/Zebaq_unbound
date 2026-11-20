@@ -1,143 +1,151 @@
 
-export type ServiceCategory = "Design" | "Development" | "Growth" | "AI";
+import { SERVICES } from "../shared/services";
 
-export type ServiceItem = {
+type Loose = Record<string, unknown>;
+
+const str = (o: Loose, keys: string[]) => {
+    for (const k of keys) {
+        const v = o[k];
+
+        if (typeof v === "string" && v) {
+            return v;
+        }
+    }
+
+    return "";
+};
+
+/* =========================================================
+   SERVICE CARD DATA
+========================================================= */
+
+export type ServiceCardData = {
     slug: string;
+    n: string;
     title: string;
-    kicker: string;
-    category: ServiceCategory;
+    caption: string;
     tags: string[];
-    image: string;
-    video?: string;
     href: string;
-    surface: string;
 };
 
-export const PAGE_COPY = {
-    eyebrow: "OUR SERVICES",
-    titleLine1: "Ten disciplines.",
-    titleLine2: "One growth system",
-    sub: "Every engagement starts with the outcome you need. Pick one discipline, or connect them all.",
-    label: "All services",
+export const SERVICE_CARDS: ServiceCardData[] = (
+    SERVICES as unknown as Loose[]
+).map((s, i) => {
+    const slug = str(s, ["slug"]) || `service-${i + 1}`;
+
+    return {
+        slug,
+        n: String(i + 1).padStart(2, "0"),
+        title: str(s, ["title", "short", "name"]),
+        caption: str(s, ["caption", "outcome", "name"]),
+        tags: Array.isArray(s.tags)
+            ? (s.tags as unknown[]).filter(
+                (t): t is string => typeof t === "string"
+            )
+            : [],
+        href: str(s, ["href"]) || `/services/${slug}`,
+    };
+});
+
+/* =========================================================
+   SERVICES HERO
+========================================================= */
+
+export const HERO = {
+    eyebrow: "Services",
+    line1: "Ten services.",
+    line2: "One system that grows you",
+
+    text: "Strategy, design, development and growth under one roof. Pick the discipline you need today, and connect the rest as you scale.",
+
+    primary: {
+        label: "Book a strategy call",
+        href: "/contact",
+    },
+
+    secondary: {
+        label: "View case studies",
+        href: "/work",
+    },
 };
 
-export const SERVICE_FILTERS: ("All" | ServiceCategory)[] = [
-    "All",
-    "Design",
-    "Development",
-    "Growth",
-    "AI",
-];
+/* =========================================================
+   SERVICES GRID
+========================================================= */
 
-export const SERVICE_ITEMS: ServiceItem[] = [
-    {
-        slug: "web-design",
-        title: "Web Design",
-        kicker: "Websites",
-        category: "Design",
-        tags: ["UI/UX", "Branding"],
-        image: "/images/work/case1.png",
-        video: "/videos/services/case1.mp4",
-        href: "/services/web-design",
-        surface: "#E5EDF3",
+export const GRID = {
+    label: "Our Services",
+
+    line1: "Ten disciplines.",
+    line2: "One growth system",
+
+    cta: {
+        title: "Not sure where to start?",
+        text: "Tell us the outcome you need. We will map the right mix.",
+        label: "Let's talk",
+        href: "/contact",
     },
-    {
-        slug: "web-development",
-        title: "Web Development",
-        kicker: "Build",
-        category: "Development",
-        tags: ["React", "WordPress"],
-        image: "/images/services/web-development.webp",
-        video: "/videos/services/web-development.mp4",
-        href: "/services/web-development",
-        surface: "#EAE9E2",
+};
+
+/* =========================================================
+   FEATURED WORK
+========================================================= */
+
+export const FEATURED = {
+    label: "Our Work",
+
+    heading: "Featured work",
+
+    count: 6,
+
+    all: {
+        label: "View all projects",
+        href: "/work",
     },
-    {
-        slug: "mobile-apps",
-        title: "Mobile Apps",
-        kicker: "iOS & Android",
-        category: "Development",
-        tags: ["App Dev", "Flutter"],
-        image: "/images/services/mobile-apps.webp",
-        video: "/videos/services/mobile-apps.mp4",
-        href: "/services/mobile-apps",
-        surface: "#E3ECF1",
-    },
-    {
-        slug: "branding",
-        title: "Branding",
-        kicker: "Identity",
-        category: "Design",
-        tags: ["Logo", "Guidelines"],
-        image: "/images/services/branding.webp",
-        video: "/videos/services/branding.mp4",
-        href: "/services/branding",
-        surface: "#EAE8E1",
-    },
-    {
-        slug: "ui-ux",
-        title: "UI/UX Design",
-        kicker: "Product",
-        category: "Design",
-        tags: ["Research", "Prototype"],
-        image: "/images/services/ui-ux.webp",
-        video: "/videos/services/ui-ux.mp4",
-        href: "/services/ui-ux",
-        surface: "#E5EDF3",
-    },
-    {
-        slug: "seo",
-        title: "SEO",
-        kicker: "Search",
-        category: "Growth",
-        tags: ["Technical", "Content"],
-        image: "/images/services/seo.webp",
-        video: "/videos/services/seo.mp4",
-        href: "/services/seo",
-        surface: "#EAE9E2",
-    },
-    {
-        slug: "social-media",
-        title: "Social Media",
-        kicker: "Community",
-        category: "Growth",
-        tags: ["Strategy", "Creative"],
-        image: "/images/services/social-media.webp",
-        video: "/videos/services/social-media.mp4",
-        href: "/services/social-media",
-        surface: "#E3ECF1",
-    },
-    {
-        slug: "performance-marketing",
-        title: "Performance Marketing",
-        kicker: "Ads",
-        category: "Growth",
-        tags: ["Google Ads", "Meta Ads"],
-        image: "/images/services/performance-marketing.webp",
-        video: "/videos/services/performance-marketing.mp4",
-        href: "/services/performance-marketing",
-        surface: "#EAE8E1",
-    },
-    {
-        slug: "content",
-        title: "Content Creation",
-        kicker: "Stories",
-        category: "Growth",
-        tags: ["Video", "Copy"],
-        image: "/images/services/content.webp",
-        video: "/videos/services/content.mp4",
-        href: "/services/content",
-        surface: "#E5EDF3",
-    },
-    {
-        slug: "ai-solutions",
-        title: "AI & Automation",
-        kicker: "Systems",
-        category: "AI",
-        tags: ["Chatbots", "Workflows"],
-        image: "/images/services/ai-solutions.webp",
-        video: "/videos/services/ai-solutions.mp4",
-        href: "/services/ai-solutions",
-        surface: "#EAE9E2",
-    },
-];
+};
+
+/* =========================================================
+   NUMBERS
+========================================================= */
+
+export const NUMBERS = {
+    label: "In numbers",
+    heading: "Zebaq in numbers",
+    text: "Growth you can measure. Here is what our work adds up to.",
+    cta: { label: "Let's talk", href: "/contact" },
+    // Placeholder stats: replace with real figures
+    stats: [
+        {
+            value: 100,
+            suffix: "+",
+            label: "Projects completed",
+            note: "From first sketch to launch, delivered end to end.",
+            image: "/images/numbers/projects.webp",
+            video: "/videos/numbers/projects.mp4",
+        },
+        {
+            value: 98,
+            suffix: "%",
+            label: "Client satisfaction",
+            note: "Clients who would recommend us to a friend.",
+            image: "/images/numbers/satisfaction.webp",
+            video: "/videos/numbers/satisfaction.mp4",
+        },
+        {
+            value: 25,
+            suffix: "+",
+            label: "Experts on the team",
+            note: "Strategists, designers, developers and marketers.",
+            image: "/images/numbers/team.webp",
+            video: "/videos/numbers/team.mp4",
+        },
+        {
+            value: 8,
+            suffix: "/10",
+            label: "Clients return for more",
+            note: "Most of our work comes from people we already work with.",
+            image: "/images/numbers/clients.webp",
+            video: "/videos/numbers/clients.mp4",
+        },
+    ],
+};

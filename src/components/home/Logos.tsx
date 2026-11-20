@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { INDUSTRIES, INDUSTRIES_VERIFY, LOGOS, LOGOS_TITLE } from "../../data/home/logos";
+import { INDUSTRIES, INDUSTRIES_VERIFY, LOGOS, LOGOS_TITLE } from "../../data/shared/logos";
 import { STATS } from "../../data/home/impact";
 import { Split, Verify } from "../common/ui";
 import { AutoCarousel } from "../common/fx";

@@ -1,0 +1,94 @@
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import DotWave from "../common/DotWave";
+import { Split } from "../common/ui";
+import { HERO } from "../../data/services";
+
+gsap.registerPlugin(useGSAP);
+
+function ArrowIcon() {
+    return (
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M7 17L17 7M9 7h8v8" />
+        </svg>
+    );
+}
+
+export default function ServicesHero() {
+    const root = useRef<HTMLElement>(null);
+
+    useGSAP(
+        () => {
+            const mm = gsap.matchMedia();
+            mm.add("(prefers-reduced-motion: no-preference)", () => {
+                const tl = gsap.timeline({ paused: true });
+                tl.from(".sh-eyebrow", { y: 18, opacity: 0, duration: 0.8, ease: "expo.out" })
+                    .from(".sh-title .sw > span", { yPercent: 110, duration: 1.4, ease: "expo.out", stagger: 0.07 }, "-=0.55")
+                    .from(".sh-sub", { y: 24, opacity: 0, duration: 1, ease: "expo.out" }, "-=0.9")
+                    .from(".sh-cta > *", { y: 24, opacity: 0, duration: 1, ease: "expo.out", stagger: 0.08 }, "-=0.9")
+                    .from(".sh-wave", { opacity: 0, y: 40, duration: 1.6, ease: "power3.out" }, "-=1.2");
+
+                const start = () => tl.play();
+                if (document.documentElement.dataset.pt === "busy") window.addEventListener("page:ready", start, { once: true });
+                else gsap.delayedCall(0.15, start);
+
+                return () => window.removeEventListener("page:ready", start);
+            });
+            return () => mm.revert();
+        },
+        { scope: root }
+    );
+
+    return (
+        <section
+            ref={root}
+            data-dark
+            data-hero
+            data-header-solid
+            data-index="01"
+            data-label="Services"
+            className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-off"
+        >
+            <DotWave className="sh-wave pointer-events-none absolute inset-x-0 bottom-0 h-[42%] [mask-image:linear-gradient(to_bottom,transparent,#000_45%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,#000_45%)]" />
+
+            <div className="wrap relative z-10 flex flex-1 flex-col justify-end pb-[clamp(110px,17vh,200px)] pt-[clamp(96px,11vh,130px)]">
+                <p className="eyebrow sh-eyebrow mb-8 text-glacier-3">{HERO.eyebrow}</p>
+
+                <h1
+                    className="sh-title text-[clamp(46px,8.4vw,150px)] font-light leading-[0.96] tracking-[-0.045em]"
+                    style={{ fontFamily: "var(--font-display)" }}
+                >
+                    <Split text={HERO.line1} />
+                    <br />
+                    <Split text={HERO.line2} dot />
+                </h1>
+
+                <div className="mt-[clamp(28px,4vw,56px)] flex flex-col justify-between gap-8 md:flex-row md:items-end">
+                    <p className="sh-sub max-w-[460px] text-[clamp(14px,1.1vw,17px)] leading-[1.7] text-glacier-3">{HERO.text}</p>
+
+                    <div className="sh-cta flex flex-wrap gap-3">
+                        <a
+                            href={HERO.primary.href}
+                            className="group inline-flex items-center gap-4 rounded-full bg-off py-2 pl-6 pr-2 text-sm font-medium text-navy transition-colors duration-300 hover:bg-lemon"
+                        >
+                            {HERO.primary.label}
+                            <span className="grid h-10 w-10 place-items-center rounded-full bg-ink text-off transition-transform duration-500 group-hover:rotate-45">
+                                <ArrowIcon />
+                            </span>
+                        </a>
+                        <a
+                            href={HERO.secondary.href}
+                            className="group inline-flex items-center gap-4 rounded-full border border-white/25 py-2 pl-6 pr-2 text-sm font-medium text-off transition-colors duration-300 hover:border-lemon hover:text-lemon"
+                        >
+                            {HERO.secondary.label}
+                            <span className="grid h-10 w-10 place-items-center rounded-full bg-off text-navy transition-transform duration-500 group-hover:rotate-45">
+                                <ArrowIcon />
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
