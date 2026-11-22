@@ -27,8 +27,8 @@ export const CASES: CaseStudy[] = [
     href: "/work/utopia-lounge",
     media: {
       type: "image",
-      src: "/images/work/utopia-lounge.png",
-      alt: "Utopia Lounge website displayed on a smartphone",
+      src: "/v2/utopia%2014.png",
+      alt: "Utopia Lounge website mockup",
     },
   },
   {
@@ -38,8 +38,8 @@ export const CASES: CaseStudy[] = [
     href: "/work/medusa-atl",
     media: {
       type: "image",
-      src: "/images/work/medusa-atl.png",
-      alt: "Medusa ATL website displayed on a tablet",
+      src: "/v2/mock%20up%209.png",
+      alt: "Medusa ATL website mockup",
     },
   },
   {
@@ -60,8 +60,8 @@ export const CASES: CaseStudy[] = [
     href: "/work/chicos-choice-dogs",
     media: {
       type: "image",
-      src: "/images/work/chicos-choice-dogs.png",
-      alt: "Chico's Choice Dogs website displayed on a tablet",
+      src: "/v2/mock%20up%2010.png",
+      alt: "Chico's Choice Dogs website mockup",
     },
   },
   {
@@ -98,6 +98,28 @@ export const CASES: CaseStudy[] = [
       type: "image",
       src: "/v2/mock%20up%204.png",
       alt: "Palm Residential home services website displayed on a phone",
+    },
+  },
+  {
+    slug: "dr-sanjay",
+    title: "Dr. Sanjay",
+    text: "A professional website experience for Dr. Sanjay.",
+    href: "#contact",
+    media: {
+      type: "image",
+      src: "/v2/mock%20up%2013.png",
+      alt: "Dr. Sanjay website mockup",
+    },
+  },
+  {
+    slug: "austin-limo",
+    title: "Austin Limo",
+    text: "A polished website experience for Austin Limo.",
+    href: "#contact",
+    media: {
+      type: "image",
+      src: "/v2/mock%20up%2012.png",
+      alt: "Austin Limo website mockup",
     },
   },
 ];
