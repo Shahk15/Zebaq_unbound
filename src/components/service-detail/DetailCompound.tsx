@@ -3,8 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
-import { useEdgeReveal } from "../../hooks/useEdgeReveal";
 import type { ServiceDetail } from "../../data/services/detail.types";
+import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -22,7 +22,8 @@ export default function DetailCompound({ data }: { data: ServiceDetail["compound
     const dropRef = useRef<SVGLineElement>(null);
     const valRef = useRef<HTMLSpanElement>(null);
 
-    useEdgeReveal(root);
+
+    useSectionReveal(root);
 
     useGSAP(
         () => {
@@ -95,7 +96,7 @@ export default function DetailCompound({ data }: { data: ServiceDetail["compound
     );
 
     return (
-        <section ref={root} data-dark className="relative z-10 flex flex-col justify-center bg-ink text-off md:min-h-[100svh]">
+        <section ref={root} data-dark className="relative z-10 flex flex-col justify-center overflow-hidden rounded-t-[clamp(28px,4vw,56px)] bg-ink text-off md:min-h-[100svh]">
             <div className="wrap py-[clamp(72px,10vh,120px)]">
                 <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
                     <div>
