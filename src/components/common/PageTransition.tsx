@@ -25,13 +25,25 @@ const prettify = (s: string) =>
 
 const titleFor = (path: string, custom?: string | null) => {
     if (custom) return custom;
-    const clean = path.replace(/\/+$/, "") || "/";
+    const clean = path.split(/[?#]/)[0].replace(/\/+$/, "") || "/";
     if (TITLES[clean]) return TITLES[clean];
     const last = clean.split("/").filter(Boolean).pop() ?? "";
     return prettify(last);
 };
 
-const isHome = (path: string) => (path.replace(/\/+$/, "") || "/") === "/";
+const isHome = (path: string) => (path.split(/[?#]/)[0].replace(/\/+$/, "") || "/") === "/";
+
+// Hard refresh or direct visit on an inner page: the curtain covers the screen from the very first frame
+const BOOT =
+    typeof window !== "undefined" &&
+    !isHome(window.location.pathname) &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Set before React renders so the page holds its intro until the curtain lifts
+if (BOOT) document.documentElement.dataset.pt = "busy";
+
+// Guards against React StrictMode running the mount effect twice
+let bootStarted = false;
 
 export default function PageTransition() {
     const navigate = useNavigate();
@@ -39,6 +51,7 @@ export default function PageTransition() {
 
     const rootRef = useRef<HTMLDivElement>(null);
     const panelRef = useRef<HTMLDivElement>(null);
+    const bandRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLDivElement>(null);
     const busy = useRef(false);
     const pathRef = useRef(location.pathname);
@@ -50,28 +63,16 @@ export default function PageTransition() {
     useEffect(() => {
         const root = rootRef.current!;
         const panel = panelRef.current!;
+        const band = bandRef.current!;
         const title = titleRef.current!;
 
-        gsap.set(panel, { yPercent: -100 });
-        root.style.visibility = "hidden";
+        // Resting position: the panel AND the lemon band trailing under it are fully above the screen
+        const off = () => -(window.innerHeight + band.offsetHeight + 4);
 
         const reduce = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        const swap = (to: string) => {
-            navigate(to);
-            window.scrollTo(0, 0);
-        };
-
-        const run = (to: string, custom?: string | null) => {
-            // Home gets no curtain, and neither does reduced motion
-            if (isHome(to) || reduce()) {
-                swap(to);
-                return;
-            }
-            if (busy.current) return;
-            busy.current = true;
-
-            const label = titleFor(to, custom);
+        // Builds the letter-by-letter page name and returns the letters
+        const buildTitle = (label: string) => {
             title.innerHTML = "";
             const line = document.createElement("span");
             line.className = "pt-line";
@@ -86,35 +87,89 @@ export default function PageTransition() {
             dot.textContent = ".";
             line.appendChild(dot);
             title.appendChild(line);
+            return title.querySelectorAll<HTMLElement>(".pt-ch");
+        };
 
-            const chars = title.querySelectorAll<HTMLElement>(".pt-ch");
+        const finish = () => {
+            gsap.set(panel, { y: off() });
+            root.style.visibility = "hidden";
+            root.style.pointerEvents = "none";
+            busy.current = false;
+            delete document.documentElement.dataset.pt;
+        };
+
+        const swap = (to: string) => {
+            navigate(to);
+            // Instant jump: a smooth scroll would be visible when the curtain lifts
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+        };
+
+        // Shared tail: name leaves upward, curtain lifts and the new page is revealed
+        const lift = (tl: gsap.core.Timeline, chars: NodeListOf<HTMLElement>) => {
+            tl.to(chars, { yPercent: -115, duration: 0.5, ease: "power3.in", stagger: 0.02 }, "+=0.25")
+                .to(panel, { y: () => off(), duration: 0.95, ease: "power4.inOut" }, "-=0.2")
+                .add(() => window.dispatchEvent(new Event("page:ready")), "-=0.55");
+        };
+
+        // Curtain for a link click
+        const run = (to: string, custom?: string | null) => {
+            // Home gets no curtain, and neither does reduced motion
+            if (isHome(to) || reduce()) {
+                swap(to);
+                return;
+            }
+            if (busy.current) return;
+            busy.current = true;
+            document.documentElement.dataset.pt = "busy";
+
+            const chars = buildTitle(titleFor(to, custom));
+            gsap.set(panel, { y: off() });
+            gsap.set(chars, { yPercent: 115 });
             root.style.visibility = "visible";
             root.style.pointerEvents = "auto";
-            gsap.set(panel, { yPercent: -100 });
-            gsap.set(chars, { yPercent: 115 });
 
-            const tl = gsap.timeline({
-                onComplete: () => {
-                    root.style.visibility = "hidden";
-                    root.style.pointerEvents = "none";
-                    busy.current = false;
-                },
-            });
+            const tl = gsap.timeline({ onComplete: finish });
 
             // 1) Curtain drops from the top, lemon edge leading
-            tl.to(panel, { yPercent: 0, duration: 0.85, ease: "power4.inOut" })
+            tl.to(panel, { y: 0, duration: 0.85, ease: "power4.inOut" })
                 // 2) Page name rises in letter by letter
                 .to(chars, { yPercent: 0, duration: 0.9, ease: "expo.out", stagger: 0.04 }, "-=0.25")
                 // 3) Swap the route while the screen is fully covered
                 .add(() => {
                     swap(to);
                     requestAnimationFrame(() => requestAnimationFrame(() => ScrollTrigger.refresh()));
-                }, "+=0.35")
-                // 4) Name leaves upward, curtain lifts and reveals the new page
-                .to(chars, { yPercent: -115, duration: 0.5, ease: "power3.in", stagger: 0.02 }, "+=0.25")
-                .to(panel, { yPercent: -100, duration: 0.95, ease: "power4.inOut" }, "-=0.2")
-                .add(() => window.dispatchEvent(new Event("page:ready")), "-=0.55");
+                }, "+=0.35");
+            // 4) Name leaves, curtain lifts
+            lift(tl, chars);
         };
+
+        // Curtain for a refresh / direct visit: the page is already mounted underneath
+        const intro = () => {
+            busy.current = true;
+            const chars = buildTitle(titleFor(pathRef.current));
+            gsap.set(panel, { y: 0 });
+            gsap.set(chars, { yPercent: 115 });
+            root.style.visibility = "visible";
+            root.style.pointerEvents = "auto";
+
+            const tl = gsap.timeline({ onComplete: finish });
+            tl.to(chars, { yPercent: 0, duration: 0.9, ease: "expo.out", stagger: 0.04 }, 0.15)
+                .add(() => {
+                    // Layout may have shifted after fonts and images; settle it while covered
+                    ScrollTrigger.refresh();
+                }, "+=0.2");
+            lift(tl, chars);
+        };
+
+        if (BOOT) {
+            if (!bootStarted) {
+                bootStarted = true;
+                intro();
+            }
+        } else {
+            gsap.set(panel, { y: off() });
+            root.style.visibility = "hidden";
+        }
 
         // Catch every internal link click
         const onClick = (e: MouseEvent) => {
@@ -143,11 +198,15 @@ export default function PageTransition() {
             ref={rootRef}
             aria-hidden="true"
             className="pointer-events-none fixed inset-0 z-[200] overflow-hidden"
-            style={{ visibility: "hidden" }}
+            style={{ visibility: BOOT ? "visible" : "hidden", pointerEvents: BOOT ? "auto" : "none" }}
         >
-            <div ref={panelRef} className="absolute inset-0 grid place-items-center bg-ink will-change-transform">
+            <div
+                ref={panelRef}
+                className="absolute inset-0 grid place-items-center bg-ink will-change-transform"
+                style={BOOT ? { transform: "translateY(0)" } : undefined}
+            >
                 {/* Lemon edge that trails the bottom of the curtain */}
-                <div className="absolute left-0 right-0 top-full h-[clamp(36px,7vh,72px)] bg-lemon" />
+                <div ref={bandRef} className="absolute left-0 right-0 top-full h-[clamp(36px,7vh,72px)] bg-lemon" />
 
                 <div ref={titleRef} className="text-off" />
             </div>

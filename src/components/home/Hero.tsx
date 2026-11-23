@@ -63,15 +63,26 @@ export default function Hero({ play }: { play: boolean }) {
     };
   }, []);
 
+  // hide the intro elements right away, so nothing is visible behind the loader
+  useGSAP(
+    () => {
+      gsap.set(".hz-horse", { yPercent: 16, scale: 1.1, opacity: 0 });
+      gsap.set(".hz-glint", { clipPath: "inset(0 0 100% 0)" });
+      gsap.set(".hz-line .sw > span", { yPercent: 115 });
+      gsap.set(".hz-fade", { y: 26, opacity: 0 });
+    },
+    { scope: root },
+  );
+
   // intro once the loader lifts
   useGSAP(
     () => {
       if (!play) return;
       gsap.timeline({ defaults: { ease: "expo.out" } })
-        .from(".hz-horse", { yPercent: 16, scale: 1.1, opacity: 0, duration: 2.4 }, 0)
-        .fromTo(".hz-glint", { clipPath: "inset(0 0 100% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 2.6, ease: "power2.inOut" }, 0.4)
-        .from(".hz-line .sw > span", { yPercent: 115, duration: 1.6, stagger: 0.08 }, 0.15)
-        .from(".hz-fade", { y: 26, opacity: 0, duration: 1.3, stagger: 0.07 }, 0.7);
+        .to(".hz-horse", { yPercent: 0, scale: 1, opacity: 1, duration: 2.4 }, 0)
+        .to(".hz-glint", { clipPath: "inset(0 0 0% 0)", duration: 2.6, ease: "power2.inOut" }, 0.4)
+        .to(".hz-line .sw > span", { yPercent: 0, duration: 1.6, stagger: 0.08 }, 0.15)
+        .to(".hz-fade", { y: 0, opacity: 1, duration: 1.3, stagger: 0.07 }, 0.7);
       gsap.utils.toArray<HTMLElement>(".hz-count").forEach((el) => {
         const o = { v: 0 };
         gsap.to(o, { v: Number(el.dataset.to), duration: 2.2, delay: 0.8, ease: "power3.out", onUpdate: () => (el.textContent = Math.round(o.v).toLocaleString()) });

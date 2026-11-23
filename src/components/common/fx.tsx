@@ -5,21 +5,23 @@ import LAND from "../../data/land-dots.json";
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ── Intro curtain: count to 100, then lift ─────────────────────────── */
-export function Loader({ onDone }: { onDone: () => void }) {
+export function Loader({ onDone, onReveal }: { onDone: () => void; onReveal?: () => void }) {
   const root = useRef<HTMLDivElement>(null);
   const num = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (reduced()) { onDone(); return; }
+    if (reduced()) { onReveal?.(); onDone(); return; }
     document.body.style.overflow = "hidden";
     const c = { v: 0 };
     const tl = gsap.timeline({ onComplete: () => { document.body.style.overflow = ""; onDone(); } });
     tl.to(c, { v: 100, duration: 1.4, ease: "power3.inOut", onUpdate: () => { if (num.current) num.current.textContent = String(Math.round(c.v)).padStart(3, "0"); } })
       .to(".ld-bar", { scaleX: 1, duration: 1.4, ease: "power3.inOut" }, 0)
       .to(".ld-word > span", { yPercent: -110, duration: 0.6, ease: "power3.in" }, "+=0.1")
-      .to(root.current, { yPercent: -100, duration: 1.1, ease: "expo.inOut" }, "-=0.2");
+      .to(root.current, { yPercent: -100, duration: 1.1, ease: "expo.inOut" }, "-=0.2")
+      // The site starts its intro just as the curtain begins to lift
+      .add(() => onReveal?.(), "<0.2");
     return () => { tl.kill(); document.body.style.overflow = ""; };
-  }, [onDone]);
+  }, [onDone, onReveal]);
 
   return (
     <div ref={root} className="fixed inset-0 z-[100] flex flex-col justify-between bg-ink p-[clamp(16px,3.2vw,64px)] text-off">

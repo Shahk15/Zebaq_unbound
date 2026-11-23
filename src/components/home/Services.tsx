@@ -7,7 +7,7 @@ import { Arrow, Pill, Split, Verify } from "../common/ui";
 // 05 — Ten disciplines. One growth system.
 // Oversized rows; a lemon card trails the cursor with each outcome;
 // a row's lemon wash sweeps in on hover; clicking opens the service drawer.
-export default function Services() {
+export default function Services({ embedded = false }: { embedded?: boolean }) {
   const root = useRef<HTMLElement>(null);
   const card = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null);
@@ -35,16 +35,20 @@ export default function Services() {
 
   return (
     <section id="services" ref={root} data-dark data-index="05" data-label="Core Services" onPointerMove={move} className="relative overflow-hidden bg-ink text-off">
-      <div className="wrap section">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
-          <div>
-            <p className="eyebrow text-glacier-3" data-reveal>10 core services</p>
-            <h2 className="t-xl mt-8"><Split text="Ten disciplines." /><br /><Split text="One growth system" dot /></h2>
+      <div className={`wrap section ${embedded ? "pt-0!" : ""}`}>
+        {!embedded && (
+          <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow text-glacier-3" data-reveal>10 core services</p>
+              <h2 className="t-xl mt-8"><Split text="Ten disciplines." /><br /><Split text="One growth system" dot /></h2>
+            </div>
+            <p className="max-w-sm text-lg leading-relaxed text-glacier-3" data-reveal>
+              More marketing doesn't always mean more customers. Every engagement starts with the outcome you need — pick one discipline, or connect them all.
+            </p>
           </div>
-          <p className="max-w-sm text-lg leading-relaxed text-glacier-3" data-reveal>
-            More marketing doesn't always mean more customers. Every engagement starts with the outcome you need — pick one discipline, or connect them all.
-          </p>
-        </div>
+        )}
+
+        <div className={`relative ${embedded ? "mt-0" : "mt-24"}`}></div>
 
         <div className="relative mt-24">
           {/* scroll meter */}

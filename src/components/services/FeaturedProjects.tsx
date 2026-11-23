@@ -44,7 +44,7 @@ function CaseCard({ c, index }: { c: CaseStudy; index: number }) {
                 data-cursor="View"
                 className={`fp-face group relative block h-full overflow-hidden rounded-[28px] ${dark
                     ? "bg-[radial-gradient(120%_90%_at_50%_0%,#1c3c78_0%,#0a1f44_45%,#071631_100%)] text-off"
-                    : "border border-navy/10 bg-glacier text-navy"
+                    : "border border-navy/10 bg-off text-navy"
                     }`}
             >
                 {/* Background: image or video */}
@@ -313,7 +313,6 @@ export default function FeaturedProjects() {
         <section
             ref={sectionRef}
             id="featured"
-            data-dark
             data-index="03"
             data-label="Featured Work"
             className="
@@ -321,8 +320,8 @@ export default function FeaturedProjects() {
                 relative
                 z-10
                 overflow-hidden
-                bg-ink
-                text-off
+                bg-glacier
+                text-navy
             "
         >
             {/* =========================================
@@ -345,7 +344,7 @@ export default function FeaturedProjects() {
                 "
             >
                 <div>
-                    <p className="eyebrow text-glacier-3">
+                    <p className="eyebrow text-navy-2">
                         {FEATURED.label}
                     </p>
 
@@ -364,17 +363,16 @@ export default function FeaturedProjects() {
                         gap-4
                         rounded-full
                         border
-                        border-white/25
+                        border-navy/25
                         py-2
                         pl-6
                         pr-2
                         text-sm
                         font-medium
-                        text-off
+                        text-navy
                         transition-colors
                         duration-300
-                        hover:border-lemon
-                        hover:text-lemon
+                        hover:border-navy
                     "
                 >
                     {FEATURED.all.label}

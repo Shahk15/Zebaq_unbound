@@ -197,7 +197,7 @@ export default function ClientsMarquee() {
             data-dark
             data-index="06"
             data-label="Our Clients"
-            className="relative z-10 overflow-hidden rounded-t-[56px] bg-ink py-[clamp(80px,10vw,150px)] text-off"
+            className="relative z-10 mb-[4vw] overflow-hidden rounded-t-[56px] bg-ink py-[clamp(80px,10vw,150px)] text-off"
         >
             <span aria-hidden="true" className="cm-line pointer-events-none absolute inset-x-0 top-0 h-[2px] origin-left bg-lemon" />
 
