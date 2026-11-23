@@ -49,7 +49,7 @@ export const CASES: CaseStudy[] = [
     href: "/work/a-best-insurance",
     media: {
       type: "image",
-      src: "/images/work/a-best-insurance.png",
+      src: "/v2/mock%20up%2015.png",
       alt: "A-Best Insurance website displayed on a laptop",
     },
   },
