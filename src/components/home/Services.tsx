@@ -3,10 +3,12 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SERVICES, type Service } from "../../data/shared/services";
 import { Arrow, Pill, Split, Verify } from "../common/ui";
+import { DETAILS } from "../../data/services/details/registry";
 
 // 05 — Ten disciplines. One growth system.
 // Oversized rows; a lemon card trails the cursor with each outcome;
-// a row's lemon wash sweeps in on hover; clicking opens the service drawer.
+// a row's lemon wash sweeps in on hover. A row opens its detail page when one exists,
+// otherwise the quick drawer.
 export default function Services({ embedded = false }: { embedded?: boolean }) {
   const root = useRef<HTMLElement>(null);
   const card = useRef<HTMLDivElement>(null);
@@ -34,8 +36,8 @@ export default function Services({ embedded = false }: { embedded?: boolean }) {
   const s = active !== null ? SERVICES[active] : null;
 
   return (
-    <section id="services" ref={root} data-dark data-index="05" data-label="Core Services" onPointerMove={move} className="relative overflow-hidden bg-ink text-off">
-      <div className={`wrap section ${embedded ? "pt-0!" : ""}`}>
+    <section id="services" ref={root} data-dark data-index="05" data-label="Core Services" onPointerMove={move} className={`relative overflow-hidden bg-ink text-off ${embedded ? "z-10 rounded-t-[clamp(28px,4vw,56px)] border-t border-white/10" : ""}`}>
+      <div className={`wrap section ${embedded ? "pt-[clamp(56px,6vw,96px)]!" : ""}`}>
         {!embedded && (
           <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
             <div>
@@ -48,21 +50,20 @@ export default function Services({ embedded = false }: { embedded?: boolean }) {
           </div>
         )}
 
-        <div className={`relative ${embedded ? "mt-0" : "mt-24"}`}></div>
-
-        <div className="relative mt-24">
+        <div className={`relative ${embedded ? "mt-0" : "mt-24"}`}>
           {/* scroll meter */}
           <div className="absolute -left-[clamp(8px,1.6vw,32px)] top-0 hidden h-full w-px bg-white/10 lg:block">
             <div className="svc-meter h-full w-px origin-top bg-lemon" />
           </div>
           <ul className="svc-list border-b border-white/10" onPointerLeave={() => setActive(null)}>
-            {SERVICES.map((sv, i) => (
-              <li key={sv.slug} className="svc-row relative overflow-hidden border-t border-white/10">
-                <button
-                  onPointerEnter={() => setActive(i)}
-                  onClick={() => setOpen(sv)}
-                  className="group relative grid w-full grid-cols-[40px_1fr_auto] items-center gap-4 py-7 text-left md:grid-cols-[80px_1fr_auto_56px] md:gap-8 md:py-9"
-                >
+            {SERVICES.map((sv, i) => {
+              // Services with a finished detail page open it; the rest keep the quick drawer for now
+              const hasPage = Boolean(DETAILS[sv.slug]);
+              const rowCls =
+                "group relative grid w-full grid-cols-[40px_1fr_auto] items-center gap-4 py-7 text-left md:grid-cols-[80px_1fr_auto_56px] md:gap-8 md:py-9";
+
+              const inner = (
+                <>
                   {/* hover wash */}
                   <span className="pointer-events-none absolute inset-y-0 -left-[100vw] -right-[100vw] origin-bottom scale-y-0 bg-white/[0.04] transition-transform duration-500 group-hover:scale-y-100" />
                   <span className="relative self-start pt-2 text-sm text-glacier-3 transition-colors group-hover:text-lemon md:self-center md:pt-0">{sv.n}</span>
@@ -78,9 +79,28 @@ export default function Services({ embedded = false }: { embedded?: boolean }) {
                   <span className="relative grid h-12 w-12 place-items-center rounded-full shadow-[inset_0_0_0_1px_rgba(255,255,255,.25)] transition-all duration-500 group-hover:rotate-45 group-hover:bg-lemon group-hover:text-navy group-hover:shadow-none md:h-14 md:w-14">
                     <Arrow />
                   </span>
-                </button>
-              </li>
-            ))}
+                </>
+              );
+
+              return (
+                <li key={sv.slug} className="svc-row relative overflow-hidden border-t border-white/10">
+                  {hasPage ? (
+                    <a
+                      href={`/services/${sv.slug}`}
+                      data-transition-title={sv.short}
+                      onPointerEnter={() => setActive(i)}
+                      className={rowCls}
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    <button onPointerEnter={() => setActive(i)} onClick={() => setOpen(sv)} className={rowCls}>
+                      {inner}
+                    </button>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
         <p className="mt-6 text-sm text-glacier-3">Click any discipline for what's included.</p>
