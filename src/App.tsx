@@ -6,6 +6,7 @@ import Footer from "./components/layout/Footer";
 import PageTransition from "./components/common/PageTransition";
 import Home from "./pages/Home";
 import ServicesPage from "./pages/ServicesPage";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 import WorkPage from "./pages/WorkPage";
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home play={revealed} />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/services/:slug" element={<ServiceDetailPage />} />
         <Route path="/work" element={<WorkPage />} />
       </Routes>
 
