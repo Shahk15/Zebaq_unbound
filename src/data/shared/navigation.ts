@@ -19,7 +19,7 @@ export type IconName =
     | "funnel"
     | "headset";
 
-export type NavKey = "home" | "services" | "about" | "resources";
+export type NavKey = "home" | "services" | "work" | "about" | "resources";
 
 export type NavChild = {
     label: string;
@@ -38,11 +38,11 @@ export type NavItem = {
     children?: NavChild[];
 };
 
-// Home uses "#" for now so it does not reload the page.
-// The other paths are for your pages; they work once routing (react-router) is added.
+// Every item is a real page link. Dropdowns open on hover, a click opens the page.
 export const NAV: NavItem[] = [
-    { key: "home", label: "Home", href: "#", icon: "home", kind: "link" },
+    { key: "home", label: "Home", href: "/", icon: "home", kind: "link" },
     { key: "services", label: "Services", href: "/services", icon: "grid", kind: "services" },
+    { key: "work", label: "Work", href: "/work", icon: "case", kind: "link" },
     {
         key: "about",
         label: "About",
@@ -100,6 +100,7 @@ export type ServiceLink = {
     icon: IconName;
 };
 
+// Every service opens the services page
 export const SERVICE_LINKS: ServiceLink[] = SERVICES.map((s) => ({
     slug: s.slug,
     label: s.short,

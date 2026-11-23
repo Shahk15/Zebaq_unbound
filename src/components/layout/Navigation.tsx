@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEvent } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { NAV, SERVICE_LINKS } from "../../data/shared/navigation";
 import type { NavItem, NavKey } from "../../data/shared/navigation";
 import { Pill } from "../common/ui";
@@ -62,21 +63,21 @@ function ServicesPanel({ open, onNavigate }: PanelProps) {
         <div className="p-3">
             <div className="flex items-center justify-between px-3 pb-3 pt-2">
                 <p className="eyebrow text-off">Our Services</p>
-                <a
-                    href="/services"
+                <Link
+                    to="/services"
                     onClick={onNavigate}
                     className="group inline-flex items-center gap-2 text-sm font-medium text-off/80 transition-colors duration-300 hover:text-lemon"
                 >
                     View all services
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </Link>
             </div>
 
             <ul className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
                 {SERVICE_LINKS.map((s, i) => (
                     <li key={s.slug} className={itemClass(open)} style={stagger(i, open)}>
-                        <a
-                            href={s.href}
+                        <Link
+                            to={s.href}
                             onClick={onNavigate}
                             className="group flex items-start gap-4 rounded-2xl p-3 transition-colors duration-300 hover:bg-white/[0.04]"
                         >
@@ -89,7 +90,7 @@ function ServicesPanel({ open, onNavigate }: PanelProps) {
                                 </span>
                                 <span className="mt-1 block text-sm leading-snug text-white/50">{s.description}</span>
                             </span>
-                        </a>
+                        </Link>
                     </li>
                 ))}
 
@@ -120,8 +121,8 @@ function LinksPanel({ item, open, onNavigate }: PanelProps & { item: NavItem }) 
         <ul className={`grid grid-cols-1 gap-2 p-3 ${cols}`}>
             {children.map((c, i) => (
                 <li key={c.label} className={itemClass(open)} style={stagger(i, open)}>
-                    <a
-                        href={c.href}
+                    <Link
+                        to={c.href}
                         onClick={onNavigate}
                         className="group flex items-start gap-4 rounded-2xl p-4 transition-colors duration-300 hover:bg-white/[0.04]"
                     >
@@ -134,7 +135,7 @@ function LinksPanel({ item, open, onNavigate }: PanelProps & { item: NavItem }) 
                             </span>
                             <span className="mt-1 block text-sm leading-snug text-white/50">{c.description}</span>
                         </span>
-                    </a>
+                    </Link>
                 </li>
             ))}
         </ul>
@@ -145,6 +146,8 @@ export default function Navigation({ disabled = false, onOpenChange }: Navigatio
     const [active, setActive] = useState<NavKey | null>(null);
     const navRef = useRef<HTMLElement>(null);
     const timer = useRef<number | null>(null);
+    const lastPointer = useRef("mouse");
+    const { pathname } = useLocation();
 
     const cancelClose = useCallback(() => {
         if (timer.current !== null) {
@@ -171,6 +174,14 @@ export default function Navigation({ disabled = false, onOpenChange }: Navigatio
         cancelClose();
         setActive(null);
     }, [cancelClose]);
+
+    // Home on the home page: scroll to the top instead of doing nothing
+    const goTop = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href === "/" && pathname === "/") {
+            e.preventDefault();
+            window.scrollTo({ top: 0 });
+        }
+    };
 
     useEffect(() => {
         onOpenChange?.(active !== null);
@@ -205,7 +216,7 @@ export default function Navigation({ disabled = false, onOpenChange }: Navigatio
                 {NAV.map((item) => {
                     const isOpen = active === item.key;
 
-                    // Plain link (Home)
+                    // Plain link (Home, Work)
                     if (item.kind === "link") {
                         return (
                             <li
@@ -214,14 +225,14 @@ export default function Navigation({ disabled = false, onOpenChange }: Navigatio
                                     if (e.pointerType === "mouse") closeSoon();
                                 }}
                             >
-                                <a href={item.href} className={LINK_CLASS}>
+                                <Link to={item.href} onClick={(e) => goTop(e, item.href)} className={LINK_CLASS}>
                                     <NavLabel label={item.label} />
-                                </a>
+                                </Link>
                             </li>
                         );
                     }
 
-                    // Link with a dropdown panel
+                    // Link with a dropdown: hover opens the panel, click opens the page
                     return (
                         <li
                             key={item.key}
@@ -232,27 +243,42 @@ export default function Navigation({ disabled = false, onOpenChange }: Navigatio
                                 if (e.pointerType === "mouse") closeSoon();
                             }}
                         >
-                            <button
-                                type="button"
+                            <Link
+                                to={item.href}
                                 data-open={isOpen}
+                                aria-haspopup="true"
                                 aria-expanded={isOpen}
                                 aria-controls={`dd-${item.key}`}
-                                onClick={() => openPanel(item.key)}
+                                onPointerDown={(e) => {
+                                    lastPointer.current = e.pointerType;
+                                }}
+                                onFocus={() => openPanel(item.key)}
+                                onClick={(e) => {
+                                    // Touch: the first tap opens the panel, the second tap opens the page
+                                    if (lastPointer.current === "touch" && !isOpen) {
+                                        e.preventDefault();
+                                        openPanel(item.key);
+                                        return;
+                                    }
+                                    closeNow();
+                                }}
                                 className={LINK_CLASS}
                             >
                                 <NavLabel label={item.label} />
-                            </button>
+                            </Link>
 
                             {/* Panel is positioned against the header bar (absolute, top-full).
                                 The wrapper only toggles visibility; the shutter is on the card. */}
                             <div
                                 id={`dd-${item.key}`}
-                                className={`absolute inset-x-[4.4%] top-full pt-2 transition-[visibility] duration-[650ms] ${isOpen ? "visible" : "pointer-events-none invisible"
-                                    }`}
+                                className={`absolute inset-x-[4.4%] top-full pt-2 transition-[visibility] duration-[650ms] ${
+                                    isOpen ? "visible" : "pointer-events-none invisible"
+                                }`}
                             >
                                 <div
-                                    className={`mx-auto mt-2 w-full ${PANEL_WIDTH[item.key] ?? "max-w-[860px]"} rounded-[28px] border border-white/10 bg-ink shadow-[0_40px_90px_-24px_rgba(7,22,49,0.6)] transition-[clip-path] duration-[650ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${isOpen ? SHUTTER_OPEN : SHUTTER_CLOSED
-                                        }`}
+                                    className={`mx-auto mt-2 w-full ${PANEL_WIDTH[item.key] ?? "max-w-[860px]"} rounded-[28px] border border-white/10 bg-ink shadow-[0_40px_90px_-24px_rgba(7,22,49,0.6)] transition-[clip-path] duration-[650ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                                        isOpen ? SHUTTER_OPEN : SHUTTER_CLOSED
+                                    }`}
                                 >
                                     {item.kind === "services" ? (
                                         <ServicesPanel open={isOpen} onNavigate={closeNow} />

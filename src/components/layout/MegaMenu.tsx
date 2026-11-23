@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import type { RefObject } from "react";
+import type { MouseEvent, RefObject } from "react";
+import { Link, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { CONTACT_EMAIL, NAV, NAV_CTA, SERVICE_LINKS, SOCIALS } from "../../data/shared/navigation";
 import type { IconName, NavItem, NavKey } from "../../data/shared/navigation";
+import { CASES } from "../../data/home/cases";
 import { SITE } from "../../data/home/site";
 import { Pill } from "../common/ui";
 import NavIcon, { ArrowRight, Plus } from "../common/NavIcon";
@@ -21,9 +23,10 @@ type PanelProps = { onClose: () => void };
 
 type SubLink = { label: string; href: string; icon: IconName };
 
-// Big link text (both flip lines share exactly the same classes so their heights match)
+// Big link text: sized by width AND height so five links always fit the screen without scrolling.
+// Both flip lines share exactly the same classes so their heights match.
 const BIG =
-    "text-[clamp(40px,5.2vw,80px)] font-medium leading-[1.05] tracking-[-0.045em] pb-[0.08em] [font-family:var(--font-display)]";
+    "text-[clamp(32px,min(4.6vw,7.4vh),68px)] font-medium leading-[1.05] tracking-[-0.045em] pb-[0.08em] [font-family:var(--font-display)]";
 
 // FLIP: the active link rolls up and a lemon copy comes in from below
 const ROLL =
@@ -59,8 +62,8 @@ function useIsDesktop() {
 
 function HomePanel({ onClose }: PanelProps) {
     return (
-        <div className="flex h-full flex-col justify-between gap-12">
-            <p className="mm-p-item max-w-[20ch] text-[clamp(30px,3.2vw,48px)] font-medium leading-[1.1] tracking-[-0.04em] text-off [font-family:var(--font-display)]">
+        <div className="flex h-full flex-col justify-between gap-10">
+            <p className="mm-p-item max-w-[20ch] text-[clamp(28px,min(3vw,5.4vh),46px)] font-medium leading-[1.1] tracking-[-0.04em] text-off [font-family:var(--font-display)]">
                 {SITE.tagline}
             </p>
             <div className="mm-p-item flex flex-wrap items-center gap-6">
@@ -83,35 +86,82 @@ function HomePanel({ onClose }: PanelProps) {
 function ServicesPanel({ onClose }: PanelProps) {
     return (
         <div>
-            <div className="mm-p-item mb-5 flex items-end justify-between">
+            <div className="mm-p-item mb-4 flex items-end justify-between">
                 <p className="text-[11px] uppercase tracking-[0.25em] text-white/45">
                     Our Services · {SERVICE_LINKS.length}
                 </p>
-                <a
-                    href="/services"
+                <Link
+                    to="/services"
                     onClick={onClose}
                     className="group inline-flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-white"
                 >
                     View all
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </a>
+                </Link>
             </div>
 
             <ul className="grid grid-cols-2 gap-x-10 border-b border-white/10">
                 {SERVICE_LINKS.map((s) => (
                     <li key={s.slug} className="mm-p-item border-t border-white/10">
-                        <a href={s.href} onClick={onClose} className="group flex items-center gap-4 py-3.5">
-                            <span className={`${ROW_ICON} h-10 w-10 rounded-xl`}>
-                                <NavIcon name={s.icon} className="h-[18px] w-[18px]" />
+                        <Link
+                            to={s.href}
+                            onClick={onClose}
+                            className="group flex items-center gap-4 py-[clamp(7px,1.3vh,13px)]"
+                        >
+                            <span className={`${ROW_ICON} h-9 w-9 rounded-xl`}>
+                                <NavIcon name={s.icon} className="h-[17px] w-[17px]" />
                             </span>
                             <span className="min-w-0 flex-1">
-                                <span className="block text-[17px] font-medium text-white/90 transition duration-300 group-hover:translate-x-1 group-hover:text-lemon">
+                                <span className="block text-[16px] font-medium text-white/90 transition duration-300 group-hover:translate-x-1 group-hover:text-lemon">
                                     {s.label}
                                 </span>
-                                <span className="block truncate text-[13px] text-white/45">{s.description}</span>
+                                <span className="block truncate text-[12.5px] text-white/45">{s.description}</span>
                             </span>
                             <ArrowRight className="h-4 w-4 -translate-x-2 text-lemon opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-                        </a>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+function WorkPanel({ onClose }: PanelProps) {
+    return (
+        <div>
+            <div className="mm-p-item mb-4 flex items-end justify-between">
+                <p className="text-[11px] uppercase tracking-[0.25em] text-white/45">
+                    Selected work · {CASES.length}
+                </p>
+                <Link
+                    to="/work"
+                    onClick={onClose}
+                    className="group inline-flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-white"
+                >
+                    View all
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+            </div>
+
+            <ul className="border-b border-white/10">
+                {CASES.map((c, i) => (
+                    <li key={c.slug} className="mm-p-item border-t border-white/10">
+                        <Link
+                            to="/work"
+                            onClick={onClose}
+                            className="group flex items-center gap-5 py-[clamp(10px,1.9vh,18px)]"
+                        >
+                            <span className="w-8 shrink-0 font-mono text-sm text-white/40 transition-colors duration-300 group-hover:text-lemon">
+                                {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span className="min-w-0 flex-1">
+                                <span className="block text-[clamp(18px,1.6vw,24px)] font-medium tracking-[-0.03em] text-off transition duration-300 group-hover:translate-x-1 group-hover:text-lemon">
+                                    {c.title}
+                                </span>
+                                <span className="block truncate text-[13px] text-white/45">{c.text}</span>
+                            </span>
+                            <ArrowRight className="h-5 w-5 -translate-x-2 text-lemon opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                        </Link>
                     </li>
                 ))}
             </ul>
@@ -122,22 +172,26 @@ function ServicesPanel({ onClose }: PanelProps) {
 function LinksPanel({ item, onClose }: PanelProps & { item: NavItem }) {
     return (
         <div>
-            <p className="mm-p-item mb-5 text-[11px] uppercase tracking-[0.25em] text-white/45">{item.label}</p>
+            <p className="mm-p-item mb-4 text-[11px] uppercase tracking-[0.25em] text-white/45">{item.label}</p>
             <ul className="border-b border-white/10">
                 {(item.children ?? []).map((c) => (
                     <li key={c.label} className="mm-p-item border-t border-white/10">
-                        <a href={c.href} onClick={onClose} className="group flex items-center gap-5 py-6">
-                            <span className={`${ROW_ICON} h-14 w-14 rounded-2xl`}>
-                                <NavIcon name={c.icon} className="h-6 w-6" />
+                        <Link
+                            to={c.href}
+                            onClick={onClose}
+                            className="group flex items-center gap-5 py-[clamp(10px,2.2vh,22px)]"
+                        >
+                            <span className={`${ROW_ICON} h-12 w-12 rounded-2xl`}>
+                                <NavIcon name={c.icon} className="h-5 w-5" />
                             </span>
                             <span className="min-w-0 flex-1">
-                                <span className="block text-2xl font-medium tracking-[-0.03em] text-off transition duration-300 group-hover:translate-x-1 group-hover:text-lemon">
+                                <span className="block text-[clamp(20px,1.9vw,26px)] font-medium tracking-[-0.03em] text-off transition duration-300 group-hover:translate-x-1 group-hover:text-lemon">
                                     {c.label}
                                 </span>
-                                <span className="mt-1 block text-[15px] text-white/50">{c.description}</span>
+                                <span className="mt-1 block text-[14px] text-white/50">{c.description}</span>
                             </span>
                             <ArrowRight className="h-5 w-5 -translate-x-2 text-lemon opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>
@@ -153,9 +207,19 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
     const wasOpen = useRef(false);
     const justOpened = useRef(false);
     const isDesktop = useIsDesktop();
+    const { pathname } = useLocation();
 
     const [active, setActive] = useState<NavKey>("services"); // desktop: section shown on the right
-    const [expanded, setExpanded] = useState<NavKey | null>("services"); // mobile: open accordion
+    const [expanded, setExpanded] = useState<NavKey | null>(null); // mobile: open submenu (closed by default so nothing scrolls)
+
+    // Every link closes the menu. Home on the home page scrolls to the top.
+    const go = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href === "/" && pathname === "/") {
+            e.preventDefault();
+            window.scrollTo({ top: 0 });
+        }
+        onClose();
+    };
 
     /* ----- Open / close: circle grows out of the hamburger button ----- */
     useGSAP(
@@ -198,7 +262,7 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
                 onComplete: () => {
                     gsap.set(ov, { autoAlpha: 0 });
                     setActive("services");
-                    setExpanded("services");
+                    setExpanded(null);
                 },
             });
             tlRef.current = tl;
@@ -258,26 +322,26 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
             style={{ visibility: "hidden" }}
             className="fixed inset-0 z-[60] overflow-y-auto bg-ink text-off"
         >
-            <div className="mx-auto flex min-h-full max-w-[1600px] flex-col px-[4.4%] pb-8 pt-[120px] lg:pt-[132px]">
-                <div className="grid flex-1 items-start gap-12 lg:grid-cols-12">
+            <div className="mx-auto flex min-h-full max-w-[1600px] flex-col px-[4.4%] pb-6 pt-[clamp(88px,12vh,124px)]">
+                <div className="grid flex-1 items-start gap-10 lg:grid-cols-12">
                     {/* ===== Left: primary links ===== */}
                     <nav aria-label="Menu" className="lg:col-span-5">
                         <ul className={isDesktop ? "flex flex-col" : "border-b border-white/10"}>
                             {NAV.map((item) => {
                                 const hasChildren = item.kind !== "link";
 
-                                /* Desktop: hover a link to preview its section on the right */
+                                /* Desktop: hover a link to preview its section on the right, click opens the page */
                                 if (isDesktop) {
                                     const isActive = active === item.key;
                                     return (
                                         <li key={item.key}>
-                                            <a
-                                                href={item.href}
-                                                onClick={onClose}
+                                            <Link
+                                                to={item.href}
+                                                onClick={(e) => go(e, item.href)}
                                                 onMouseEnter={() => setActive(item.key)}
                                                 onFocus={() => setActive(item.key)}
                                                 data-active={isActive}
-                                                className="group flex items-center gap-5 py-[clamp(8px,1.5vh,18px)]"
+                                                className="group flex items-center gap-5 py-[clamp(6px,1.2vh,14px)]"
                                             >
                                                 <span className="grid w-8 shrink-0 place-items-center text-white/35 transition-colors duration-300 group-data-[active=true]:text-lemon">
                                                     <NavIcon name={item.icon} className="h-5 w-5" />
@@ -297,24 +361,23 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
                                                         </span>
                                                     </span>
                                                 </span>
-                                            </a>
+                                            </Link>
                                         </li>
                                     );
                                 }
 
-                                /* Mobile: accordion */
+                                /* Mobile: the label opens the page, the plus button opens the submenu */
                                 const isExpanded = expanded === item.key;
                                 const labelClass =
-                                    "mm-link-inner block text-[clamp(34px,9vw,52px)] font-medium leading-[1.05] tracking-[-0.04em] text-off [font-family:var(--font-display)]";
+                                    "mm-link-inner block text-[clamp(30px,8vw,44px)] font-medium leading-[1.05] tracking-[-0.04em] text-off [font-family:var(--font-display)]";
 
                                 return (
                                     <li key={item.key} className="border-t border-white/10">
-                                        {hasChildren ? (
-                                            <button
-                                                type="button"
-                                                aria-expanded={isExpanded}
-                                                onClick={() => setExpanded(isExpanded ? null : item.key)}
-                                                className="flex w-full items-center gap-4 py-4 text-left"
+                                        <div className="flex items-center gap-3">
+                                            <Link
+                                                to={item.href}
+                                                onClick={(e) => go(e, item.href)}
+                                                className="flex min-w-0 flex-1 items-center gap-4 py-3"
                                             >
                                                 <span className="grid w-7 shrink-0 place-items-center text-white/40">
                                                     <NavIcon name={item.icon} className="h-5 w-5" />
@@ -322,39 +385,43 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
                                                 <span className="block overflow-hidden pb-[0.08em]">
                                                     <span className={labelClass}>{item.label}</span>
                                                 </span>
-                                                <Plus
-                                                    className={`ml-auto h-5 w-5 text-white/70 transition-transform duration-300 ${isExpanded ? "rotate-45" : ""
+                                            </Link>
+
+                                            {hasChildren && (
+                                                <button
+                                                    type="button"
+                                                    aria-expanded={isExpanded}
+                                                    aria-label={`${isExpanded ? "Hide" : "Show"} ${item.label} links`}
+                                                    onClick={() => setExpanded(isExpanded ? null : item.key)}
+                                                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15"
+                                                >
+                                                    <Plus
+                                                        className={`h-5 w-5 text-white/70 transition-transform duration-300 ${
+                                                            isExpanded ? "rotate-45" : ""
                                                         }`}
-                                                />
-                                            </button>
-                                        ) : (
-                                            <a href={item.href} onClick={onClose} className="flex items-center gap-4 py-4">
-                                                <span className="grid w-7 shrink-0 place-items-center text-white/40">
-                                                    <NavIcon name={item.icon} className="h-5 w-5" />
-                                                </span>
-                                                <span className="block overflow-hidden pb-[0.08em]">
-                                                    <span className={labelClass}>{item.label}</span>
-                                                </span>
-                                            </a>
-                                        )}
+                                                    />
+                                                </button>
+                                            )}
+                                        </div>
 
                                         {hasChildren && (
                                             <div
-                                                className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                                                    }`}
+                                                className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                                                    isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                                                }`}
                                             >
                                                 <div className="overflow-hidden">
-                                                    <ul className="pb-4 pl-11">
+                                                    <ul className="pb-3 pl-11">
                                                         {getSubLinks(item).map((s) => (
                                                             <li key={s.label}>
-                                                                <a
-                                                                    href={s.href}
+                                                                <Link
+                                                                    to={s.href}
                                                                     onClick={onClose}
-                                                                    className="flex items-center gap-3 py-2 text-lg text-white/70 transition-colors hover:text-lemon"
+                                                                    className="flex items-center gap-3 py-1.5 text-base text-white/70 transition-colors hover:text-lemon"
                                                                 >
                                                                     <NavIcon name={s.icon} className="h-4 w-4 shrink-0 text-white/40" />
                                                                     {s.label}
-                                                                </a>
+                                                                </Link>
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -368,7 +435,7 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
 
                         {/* Mobile CTA */}
                         {!isDesktop && (
-                            <div className="mm-fade mt-8">
+                            <div className="mm-fade mt-6">
                                 <span onClick={onClose}>
                                     <Pill href="#contact" variant="lemon">
                                         {NAV_CTA}
@@ -380,10 +447,11 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
 
                     {/* ===== Right: section preview (desktop only) ===== */}
                     {isDesktop && (
-                        <div className="mm-panel min-h-[420px] border-l border-white/10 pl-12 lg:col-span-7">
+                        <div className="mm-panel border-l border-white/10 pl-12 lg:col-span-7">
                             <div key={active} className="h-full">
                                 {active === "home" && <HomePanel onClose={onClose} />}
                                 {active === "services" && <ServicesPanel onClose={onClose} />}
+                                {active === "work" && <WorkPanel onClose={onClose} />}
                                 {(active === "about" || active === "resources") && (
                                     <LinksPanel item={activeItem} onClose={onClose} />
                                 )}
@@ -393,7 +461,7 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
                 </div>
 
                 {/* ===== Bottom bar ===== */}
-                <div className="mm-fade mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+                <div className="mm-fade mt-6 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
                     <span>
                         © {new Date().getFullYear()} {SITE.name}
                     </span>
