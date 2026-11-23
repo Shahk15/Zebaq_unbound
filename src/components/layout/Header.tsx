@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-<<<<<<< HEAD
 import { useGSAP } from "@gsap/react";
 import { MessageCircle } from "lucide-react";
 import { NAV_CTA } from "../../data/shared/navigation";
@@ -8,12 +7,6 @@ import { Pill } from "../common/ui";
 import Magnetic from "../common/Magnetic";
 import Navigation from "./Navigation";
 import MegaMenu from "./MegaMenu";
-=======
-import { NAV, NAV_CTA } from "../../data/header";
-import { SERVICES } from "../../data/shared/services";
-import { SITE } from "../../data/home/site";
-import { Arrow, Dot, Pill } from "../common/ui";
->>>>>>> 89eed06 (updated image)
 
 gsap.registerPlugin(useGSAP);
 
