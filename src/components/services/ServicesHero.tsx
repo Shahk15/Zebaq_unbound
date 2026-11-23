@@ -1,11 +1,12 @@
 import { useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import DotWave from "../common/DotWave";
 import { Split } from "../common/ui";
 import { HERO } from "../../data/services";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 function ArrowIcon() {
     return (
@@ -22,16 +23,38 @@ export default function ServicesHero() {
         () => {
             const mm = gsap.matchMedia();
             mm.add("(prefers-reduced-motion: no-preference)", () => {
+                // Hidden start state is set up front so nothing flashes before the intro plays
+                gsap.set([".sh-eyebrow", ".sh-sub"], { y: 24, opacity: 0 });
+                gsap.set(".sh-cta > *", { y: 24, opacity: 0 });
+                gsap.set(".sh-title .sw > span", { yPercent: 110 });
+                gsap.set(".sh-wave", { opacity: 0, y: 40 });
+
                 const tl = gsap.timeline({ paused: true });
-                tl.from(".sh-eyebrow", { y: 18, opacity: 0, duration: 0.8, ease: "expo.out" })
-                    .from(".sh-title .sw > span", { yPercent: 110, duration: 1.4, ease: "expo.out", stagger: 0.07 }, "-=0.55")
-                    .from(".sh-sub", { y: 24, opacity: 0, duration: 1, ease: "expo.out" }, "-=0.9")
-                    .from(".sh-cta > *", { y: 24, opacity: 0, duration: 1, ease: "expo.out", stagger: 0.08 }, "-=0.9")
-                    .from(".sh-wave", { opacity: 0, y: 40, duration: 1.6, ease: "power3.out" }, "-=1.2");
+                tl.to(".sh-eyebrow", { y: 0, opacity: 1, duration: 0.8, ease: "expo.out" })
+                    .to(".sh-title .sw > span", { yPercent: 0, duration: 1.4, ease: "expo.out", stagger: 0.07 }, "-=0.55")
+                    .to(".sh-sub", { y: 0, opacity: 1, duration: 1, ease: "expo.out" }, "-=0.9")
+                    .to(".sh-cta > *", { y: 0, opacity: 1, duration: 1, ease: "expo.out", stagger: 0.08 }, "-=0.9")
+                    .to(".sh-wave", { opacity: 1, y: 0, duration: 1.6, ease: "power3.out" }, "-=1.2");
 
                 const start = () => tl.play();
                 if (document.documentElement.dataset.pt === "busy") window.addEventListener("page:ready", start, { once: true });
                 else gsap.delayedCall(0.15, start);
+
+                // As the list below scrolls in, the hero content drifts up and softens
+                // Hero stays pinned while the list slides over it; it sinks back and dims as that happens
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: root.current,
+                        start: "top top",
+                        end: "bottom top",
+                        pin: true,
+                        pinSpacing: false,
+                        scrub: true,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                    .to(".sh-inner", { scale: 0.92, y: -40, transformOrigin: "50% 100%", ease: "none" }, 0)
+                    .to(".sh-shade", { opacity: 0.6, ease: "none" }, 0);
 
                 return () => window.removeEventListener("page:ready", start);
             });
@@ -50,9 +73,10 @@ export default function ServicesHero() {
             data-label="Services"
             className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-off"
         >
+            <div className="sh-shade pointer-events-none absolute inset-0 z-20 bg-black opacity-0" />
             <DotWave className="sh-wave pointer-events-none absolute inset-x-0 bottom-0 h-[42%] [mask-image:linear-gradient(to_bottom,transparent,#000_45%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,#000_45%)]" />
 
-            <div className="wrap relative z-10 flex flex-1 flex-col justify-end pb-[clamp(110px,17vh,200px)] pt-[clamp(96px,11vh,130px)]">
+            <div className="sh-inner wrap relative z-10 flex flex-1 flex-col justify-end pb-[clamp(56px,8vh,96px)] pt-[clamp(96px,11vh,130px)]">
                 <p className="eyebrow sh-eyebrow mb-8 text-glacier-3">{HERO.eyebrow}</p>
 
                 <h1
