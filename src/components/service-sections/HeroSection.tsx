@@ -4,11 +4,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import DotWave from "../common/DotWave";
 import { Arrow, Split } from "../common/ui";
-import type { ServiceDetail } from "../../data/services/detail.types";
+import type { HeroContent } from "../../data/services/types";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export default function DetailHero({ data }: { data: ServiceDetail["hero"] }) {
+export default function HeroSection({ data }: { data: HeroContent }) {
     const root = useRef<HTMLElement>(null);
 
     useGSAP(

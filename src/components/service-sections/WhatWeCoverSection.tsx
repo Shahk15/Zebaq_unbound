@@ -2,12 +2,12 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import type { ServiceDetail } from "../../data/services/detail.types";
+import type { WhatWeCoverContent } from "../../data/services/types";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export default function DetailCover({ data }: { data: ServiceDetail["cover"] }) {
+export default function WhatWeCoverSection({ data }: { data: WhatWeCoverContent }) {
     const root = useRef<HTMLElement>(null);
     useSectionReveal(root);
 

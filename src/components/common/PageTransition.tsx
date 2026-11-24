@@ -16,6 +16,9 @@ const TITLES: Record<string, string> = {
     "/blog": "Blog",
     "/blogs": "Blogs",
     "/case-studies": "Case Studies",
+    "/refund-policy": "Refund Policy",
+    "/terms-and-conditions": "Terms & Conditions",
+    "/privacy-policy": "Privacy Policy",
 };
 
 const prettify = (s: string) =>
@@ -170,7 +173,7 @@ export default function PageTransition() {
             gsap.set(panel, { y: off() });
             root.style.visibility = "hidden";
         }
-        
+
         // Capture phase: this must run BEFORE React Router's <Link> handler, which navigates on its own.
         const onClick = (e: MouseEvent) => {
             if (e.defaultPrevented || e.button !== 0) return;

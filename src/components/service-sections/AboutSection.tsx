@@ -3,12 +3,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
-import type { ServiceDetail } from "../../data/services/detail.types";
+import type { AboutContent } from "../../data/services/types";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export default function DetailAbout({ data }: { data: ServiceDetail["about"] }) {
+export default function AboutSection({ data }: { data: AboutContent }) {
     const root = useRef<HTMLElement>(null);
     useSectionReveal(root);
 

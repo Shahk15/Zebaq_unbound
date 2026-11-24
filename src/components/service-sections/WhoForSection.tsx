@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
-import type { ServiceDetail } from "../../data/services/detail.types";
+import type { WhoForContent } from "../../data/services/types";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -24,7 +24,7 @@ function Cross() {
     );
 }
 
-export default function DetailFit({ data }: { data: ServiceDetail["fit"] }) {
+export default function WhoForSection({ data }: { data: WhoForContent }) {
     const root = useRef<HTMLElement>(null);
     useSectionReveal(root);
 

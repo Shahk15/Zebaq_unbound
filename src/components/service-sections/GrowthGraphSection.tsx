@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
-import type { ServiceDetail } from "../../data/services/detail.types";
+import type { GraphContent } from "../../data/services/types";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -14,7 +14,7 @@ const H = 260;
 const LINE = "M0,244 C200,242 380,232 520,196 C680,154 820,76 1000,18";
 const AREA = `${LINE} L${W},${H} L0,${H} Z`;
 
-export default function DetailCompound({ data }: { data: ServiceDetail["compound"] }) {
+export default function GrowthGraphSection({ data }: { data: GraphContent }) {
     const root = useRef<HTMLElement>(null);
     const pathRef = useRef<SVGPathElement>(null);
     const clipRef = useRef<SVGRectElement>(null);
