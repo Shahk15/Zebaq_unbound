@@ -12,6 +12,9 @@ import WebDevelopmentPage from "./pages/services/WebDevelopmentPage";
 import RefundPolicyPage from "./pages/legal/RefundPolicyPage";
 import TermsPage from "./pages/legal/TermsPage";
 import PrivacyPage from "./pages/legal/PrivacyPage";
+import AboutPage from "./pages/AboutPage";
+import CareersPage from "./pages/CareersPage";
+import TeamPage from "./pages/TeamPage";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -47,6 +50,11 @@ export default function App() {
         <Route path="/refund-policy" element={<RefundPolicyPage />} />
         <Route path="/terms-and-conditions" element={<TermsPage />} />
         <Route path="/privacy-policy" element={<PrivacyPage />} />
+
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/team" element={<TeamPage />} />
+        
       </Routes>
 
       <Footer key={pathname} />

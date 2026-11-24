@@ -121,6 +121,10 @@
   /* split-text masks */
   .sw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
   .sw > span { display: inline-block; will-change: transform; }
+  /* Work page: tight headlines need a deeper mask or the tails of p, g, j get cut. The room
+     sits inside the moving word, so it still hides fully before it rises; layout is unchanged. */
+  .deep-split .sw { padding-bottom: 0; margin-bottom: -0.2em; }
+  .deep-split .sw > span { padding-bottom: 0.2em; }
 
   .grain::after {
     content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
