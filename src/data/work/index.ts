@@ -3,12 +3,14 @@ export type WorkCategory = "Web Design" | "Branding" | "UX/UI" | "Development";
 export type WorkItem = {
     slug: string;
     title: string;
-    year: string; // shown after the title
+    year: string;
     category: WorkCategory;
-    tags: string[]; // chips on the right (max 2 shown)
-    image: string; // resting state
-    video?: string; // plays on hover
-    surface: string; // tile background colour behind the image
+    tags: string[]; // disciplines shown on the slide and in the index (max 2)
+    sector?: string; // client industry, shown above the title
+    summary?: string; // one line on what we built (reel only)
+    image: string; // resting state (WebP for speed; PNG originals kept next to it)
+    video?: string; // plays when the slide is in focus / on hover in the index
+    surface: string; // brand colour: the reel background shifts to it
     href: string;
 };
 
@@ -17,12 +19,19 @@ export const PAGE_COPY = {
     titleLine1: "Real projects.",
     titleLine2: "Real growth",
     sub: "Every project started with a business reason. Here is what we built, and why it worked.",
-    label: "Our projects",
+    reelEyebrow: "Selected work",
+    reelTitle: "Scroll through the work",
+    indexEyebrow: "Project index",
+    indexTitle: "Every project",
+    ctaEyebrow: "Next up",
+    ctaTitle: "Your project could be next",
+    ctaSub: "Tell us where you want to grow. A strategist replies within one business day with practical next steps.",
 };
 
 export const WORK_FILTERS: ("All" | WorkCategory)[] = ["All", "Web Design", "Branding", "UX/UI", "Development"];
 
-// Put the files in public/images/work/ and public/videos/work/
+// Files live in public/images/work/ and public/videos/work/.
+// Sectors and summaries describe what each live site shows. Confirm the wording before launch.
 export const WORK_ITEMS: WorkItem[] = [
     {
         slug: "utopia-lounge-atlanta",
@@ -30,7 +39,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2026",
         category: "Web Design",
         tags: ["Web Design", "Development"],
-        image: "/images/work/utopiawork.png",
+        sector: "Restaurant & nightlife · Atlanta",
+        summary: "A premium restaurant and lounge site built around dining, cocktails and reservations.",
+        image: "/images/work/utopiawork.webp",
         video: "/videos/work/utopiawork.mp4",
         surface: "#ffd9a8",
         href: "/work/project-one",
@@ -41,7 +52,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2026",
         category: "Branding",
         tags: ["Branding", "Web Design"],
-        image: "/images/work/royalblessingwork.png",
+        sector: "Jewellery · E-commerce",
+        summary: "An elegant online store for necklaces, earrings and bridal sets.",
+        image: "/images/work/royalblessingwork.webp",
         video: "/videos/work/royalblessingwork.mp4",
         surface: "#f2d27a",
         href: "/work/project-two",
@@ -52,7 +65,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2026",
         category: "UX/UI",
         tags: ["UX/UI"],
-        image: "/images/work/destination360work.png",
+        sector: "Sustainable hospitality",
+        summary: "A hospitality website that puts sustainable stays at the centre of the story.",
+        image: "/images/work/destination360work.webp",
         video: "/videos/work/destination360work.mp4",
         surface: "#bfe6b8",
         href: "/work/project-three",
@@ -63,7 +78,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2025",
         category: "Development",
         tags: ["Development", "Web Design"],
-        image: "/images/work/tamarindwork.png",
+        sector: "Indian fine dining",
+        summary: "A fine-dining website that makes the menu, the room and booking a table feel effortless.",
+        image: "/images/work/tamarindwork.webp",
         video: "/videos/work/tamarindwork.mp4",
         surface: "#f2b5a8",
         href: "/work/project-four",
@@ -74,7 +91,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2025",
         category: "Web Design",
         tags: ["Web Design"],
-        image: "/images/work/chicoschoicework.png",
+        sector: "Pet products · E-commerce",
+        summary: "A clean e-commerce store for natural dog treats, built to turn browsers into buyers.",
+        image: "/images/work/chicoschoicework.webp",
         video: "/videos/work/chicoschoicework.mp4",
         surface: "#ffe08a",
         href: "/work/project-five",
@@ -85,7 +104,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2025",
         category: "Branding",
         tags: ["Branding"],
-        image: "/images/work/palmresidentialwork.png",
+        sector: "Home services",
+        summary: "A residential experience for home services, repairs and projects.",
+        image: "/images/work/palmresidentialwork.webp",
         video: "/videos/work/palmresidentialwork.mp4",
         surface: "#f3c98b",
         href: "/work/project-six",
@@ -96,7 +117,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2025",
         category: "UX/UI",
         tags: ["UX/UI", "Development"],
-        image: "/images/work/queensdesignwork.png",
+        sector: "Fashion & lifestyle · E-commerce",
+        summary: "An online store for quilted bags, clothing, accessories and made-to-order pieces.",
+        image: "/images/work/queensdesignwork.webp",
         video: "/videos/work/queensdesignwork.mp4",
         surface: "#b9c8ee",
         href: "/work/project-seven",
@@ -107,7 +130,9 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/dihomedecorwork.png",
+        sector: "Interior design · Bhubaneswar & Cuttack",
+        summary: "A website for an interior design service, built to turn visits into calls and WhatsApp enquiries.",
+        image: "/images/work/dihomedecorwork.webp",
         video: "/videos/work/dihomedecorwork.mp4",
         surface: "#bcd3f0",
         href: "/work/project-eight",
@@ -118,7 +143,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/americancupsandplateswork.png",
+        image: "/images/work/americancupsandplateswork.webp",
         video: "/videos/work/americancupsandplateswork.mp4",
         surface: "#ff9d5c",
         href: "/work/project-nine",
@@ -129,7 +154,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/bigmadrework.png",
+        image: "/images/work/bigmadrework.webp",
         video: "/videos/work/bigmadrework.mp4",
         surface: "#ffcf5e",
         href: "/work/project-ten",
@@ -140,7 +165,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/nirvanixwork.png",
+        image: "/images/work/nirvanixwork.webp",
         video: "/videos/work/nirvanixwork.mp4",
         surface: "#f58ac8",
         href: "/work/project-eleven",
@@ -151,7 +176,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/protonsportswork.png",
+        image: "/images/work/protonsportswork.webp",
         video: "/videos/work/protonsportswork.mp4",
         surface: "#ff6f91",
         href: "/work/project-twelve",
@@ -162,7 +187,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/aapricework.png",
+        image: "/images/work/aapricework.webp",
         video: "/videos/work/aapricework.mp4",
         surface: "#e6a6e8",
         href: "/work/project-thirteen",
@@ -173,7 +198,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/obsessionjewellerywork.png",
+        image: "/images/work/obsessionjewellerywork.webp",
         video: "/videos/work/obsessionjewellerywork.mp4",
         surface: "#5fcf9a",
         href: "/work/project-fourteen",
@@ -184,7 +209,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/collibetwork.png",
+        image: "/images/work/collibetwork.webp",
         surface: "#c3e86a",
         href: "/work/project-fifteen",
     },
@@ -194,7 +219,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/cogleuswork.png",
+        image: "/images/work/cogleuswork.webp",
         video: "/videos/work/cogleuswork.mp4",
         surface: "#aab4f7",
         href: "/work/project-sixteen",
@@ -205,7 +230,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/silvermasalawork.png",
+        image: "/images/work/silvermasalawork.webp",
         surface: "#7ed47a",
         href: "/work/project-seventeen",
     },
@@ -215,7 +240,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/honeylemongingerwork.png",
+        image: "/images/work/honeylemongingerwork.webp",
         video: "/videos/work/honeylemongingerwork.mp4",
         surface: "#cfa8f0",
         href: "/work/project-eighteen",
@@ -226,7 +251,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/v2/velocitalitywork.png",
+        image: "/images/work/velocitalitywork.webp",
         surface: "#3fc1c9",
         href: "/work/project-nineteen",
     },
@@ -236,7 +261,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/kashatrainingwork.png",
+        image: "/images/work/kashatrainingwork.webp",
         video: "/videos/work/kashatrainingwork.mp4",
         surface: "#4fc9a8",
         href: "/work/project-twenty",
@@ -247,7 +272,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/insomnianightclubwork.png",
+        image: "/images/work/insomnianightclubwork.webp",
         video: "/videos/work/insomnianightclubwork.mp4",
         surface: "#f2677a",
         href: "/work/project-twentyone",
@@ -258,7 +283,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/medusawork.png",
+        image: "/images/work/medusawork.webp",
         video: "/videos/work/medusawork.mp4",
         surface: "#9b7df0",
         href: "/work/project-twentytwo",
@@ -269,7 +294,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/v2/zamasamawork.png",
+        image: "/images/work/zamasamawork.webp",
         video: "/videos/work/zamasamawork.mp4",
         surface: "#ffc857",
         href: "/work/project-twentythree",
@@ -280,7 +305,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/enhancedmicroblendingwork.png",
+        image: "/images/work/enhancedmicroblendingwork.webp",
         video: "/videos/work/enhancedmicroblendingwork.mp4",
         surface: "#ffbf8a",
         href: "/work/project-twentyfour",
@@ -291,7 +316,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/platimun915work.png",
+        image: "/images/work/platimun915work.webp",
         video: "/videos/work/platinum915work.mp4",
         surface: "#ffa94d",
         href: "/work/project-twentyfive",
@@ -302,7 +327,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/nexusrollswork.png",
+        image: "/images/work/nexusrollswork.webp",
         video: "/videos/work/nexusrollswork.mp4",
         surface: "#6fa8f5",
         href: "/work/project-twentysix",
@@ -313,7 +338,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/DFWLIMOwork.png",
+        image: "/images/work/DFWLIMOwork.webp",
         surface: "#f0c36a",
         href: "/work/project-twentyseven",
     },
@@ -323,7 +348,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/artistryrecorderswork.png",
+        image: "/images/work/artistryrecorderswork.webp",
         video: "/videos/work/artistryrecorderswork.mp4",
         surface: "#6fd0f0",
         href: "/work/project-twentyeight",
@@ -334,7 +359,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/bubbletailwork.png",
+        image: "/images/work/bubbletailwork.webp",
         video: "/videos/work/bubbletailwork.mp4",
         surface: "#ffa6c9",
         href: "/work/project-twentynine",
@@ -345,7 +370,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/chikopokopowork.png",
+        image: "/images/work/chikopokopowork.webp",
         video: "/videos/work/chikopokopowork.mp4",
         surface: "#f4978e",
         href: "/work/project-thirty",
@@ -356,7 +381,7 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/abestwork.png",
+        image: "/images/work/abestwork.webp",
         video: "/videos/work/abestwork.mp4",
         surface: "#6fd4c4",
         href: "/work/project-thirtyone",
@@ -367,9 +392,17 @@ export const WORK_ITEMS: WorkItem[] = [
         year: "2024",
         category: "Development",
         tags: ["Development"],
-        image: "/images/work/lunarlightingwork.png",
+        image: "/images/work/lunarlightingwork.webp",
         video: "/videos/work/lunarlightingwork.mp4",
         surface: "#ffd84d",
         href: "/work/project-thirtytwo",
     },
 ];
+
+// The hero ribbon and the reel show the first projects; the index lists every one.
+export const FEATURED = WORK_ITEMS.slice(0, 8);
+
+export const YEARS = (() => {
+    const ys = WORK_ITEMS.map((w) => Number(w.year));
+    return `${Math.min(...ys)}–${Math.max(...ys)}`;
+})();
