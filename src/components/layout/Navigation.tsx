@@ -78,6 +78,7 @@ function ServicesPanel({ open, onNavigate }: PanelProps) {
                     <li key={s.slug} className={itemClass(open)} style={stagger(i, open)}>
                         <Link
                             to={s.href}
+                            data-transition-title={s.label}
                             onClick={onNavigate}
                             className="group flex items-start gap-4 rounded-2xl p-3 transition-colors duration-300 hover:bg-white/[0.04]"
                         >

@@ -4,11 +4,11 @@ import { Cursor, Loader, ScrollProgress, SectionIndex } from "./components/commo
 import SmoothScroll from "./components/layout/SmoothScroll";
 import Footer from "./components/layout/Footer";
 import PageTransition from "./components/common/PageTransition";
+import BookingDialog from "./components/svc/BookingDialog";
 import Home from "./pages/Home";
 import ServicesPage from "./pages/ServicesPage";
 import WorkPage from "./pages/WorkPage";
-import AiSearchVisibilityPage from "./pages/services/AiSearchVisibilityPage";
-import WebDevelopmentPage from "./pages/services/WebDevelopmentPage";
+import ServicePage from "./pages/services/ServicePage";
 import RefundPolicyPage from "./pages/legal/RefundPolicyPage";
 import TermsPage from "./pages/legal/TermsPage";
 import PrivacyPage from "./pages/legal/PrivacyPage";
@@ -36,6 +36,7 @@ export default function App() {
       <ScrollProgress />
       {isHome && <SectionIndex />}
       <PageTransition />
+      <BookingDialog />
 
       <Routes>
         <Route path="/" element={<Home play={revealed} />} />
@@ -43,8 +44,7 @@ export default function App() {
         <Route path="/work" element={<WorkPage />} />
 
         {/* Service detail pages */}
-        <Route path="/services/ai-search-visibility" element={<AiSearchVisibilityPage />} />
-        <Route path="/services/web-development" element={<WebDevelopmentPage />} />
+        <Route path="/services/:slug" element={<ServicePage />} />
 
         {/* Legal pages */}
         <Route path="/refund-policy" element={<RefundPolicyPage />} />
@@ -52,6 +52,7 @@ export default function App() {
         <Route path="/privacy-policy" element={<PrivacyPage />} />
 
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/career" element={<CareersPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/team" element={<TeamPage />} />
         

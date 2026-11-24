@@ -151,7 +151,7 @@ export default function RefundPolicyPage() {
                                         ["Void for", "Discounted or offer packages"],
                                         ["Void from", "The 2nd month of the campaign"],
                                     ].map(([title, copy]) => (
-                                        <div key={title} className="group rounded-xl border border-navy/10 bg-white/70 px-5 py-6 transition-all duration-300 hover:-translate-y-1 hover:border-lemon-deep/50 hover:bg-lemon/20 hover:shadow-[0_12px_30px_rgba(10,31,68,0.08)]">
+                                        <div key={title} className="rounded-xl border border-navy/10 bg-white/70 px-5 py-6 transition-all duration-300 hover:-translate-y-1 hover:border-lemon-deep/50 hover:bg-lemon/20 hover:shadow-[0_12px_30px_rgba(10,31,68,0.08)]">
                                             <p className="text-[15px] font-semibold text-navy">{title}</p>
                                             <p className="mt-2 text-[13px] leading-relaxed text-navy/55">{copy}</p>
                                         </div>

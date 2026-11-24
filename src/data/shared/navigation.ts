@@ -51,8 +51,8 @@ export const NAV: NavItem[] = [
         kind: "links",
         children: [
             { label: "Company", description: "Learn more about who we are.", href: "/about", icon: "company" },
-            { label: "Our Team", description: "Meet the people behind Zebaq.", href: "/about#team", icon: "team" },
-            { label: "Careers", description: "Join us and grow with us.", href: "/about#careers", icon: "careers" },
+            { label: "Our Team", description: "Meet the people behind Zebaq.", href: "/team", icon: "team" },
+            { label: "Careers", description: "Join us and grow with us.", href: "/career", icon: "careers" },
         ],
     },
     {
@@ -100,11 +100,11 @@ export type ServiceLink = {
     icon: IconName;
 };
 
-// Every service opens the services page
+// Every service opens its own page
 export const SERVICE_LINKS: ServiceLink[] = SERVICES.map((s) => ({
     slug: s.slug,
     label: s.short,
     description: s.outcome,
-    href: "/services",
+    href: `/services/${s.slug}`,
     icon: SERVICE_ICONS[s.slug] ?? "grid",
 }));
