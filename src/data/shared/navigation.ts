@@ -100,11 +100,11 @@ export type ServiceLink = {
     icon: IconName;
 };
 
-// Every service opens the services page
+// Every service opens its own page
 export const SERVICE_LINKS: ServiceLink[] = SERVICES.map((s) => ({
     slug: s.slug,
     label: s.short,
     description: s.outcome,
-    href: "/services",
+    href: `/services/${s.slug}`,
     icon: SERVICE_ICONS[s.slug] ?? "grid",
 }));

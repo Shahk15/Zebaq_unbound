@@ -105,6 +105,7 @@ function ServicesPanel({ onClose }: PanelProps) {
                     <li key={s.slug} className="mm-p-item border-t border-white/10">
                         <Link
                             to={s.href}
+                            data-transition-title={s.label}
                             onClick={onClose}
                             className="group flex items-center gap-4 py-[clamp(7px,1.3vh,13px)]"
                         >
@@ -416,6 +417,7 @@ export default function MegaMenu({ open, originRef, onClose }: MegaMenuProps) {
                                                             <li key={s.label}>
                                                                 <Link
                                                                     to={s.href}
+                                                                    data-transition-title={s.label}
                                                                     onClick={onClose}
                                                                     className="flex items-center gap-3 py-1.5 text-base text-white/70 transition-colors hover:text-lemon"
                                                                 >
