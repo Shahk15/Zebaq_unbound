@@ -6,8 +6,12 @@ import Footer from "./components/layout/Footer";
 import PageTransition from "./components/common/PageTransition";
 import Home from "./pages/Home";
 import ServicesPage from "./pages/ServicesPage";
-import ServiceDetailPage from "./pages/ServiceDetailPage";
 import WorkPage from "./pages/WorkPage";
+import AiSearchVisibilityPage from "./pages/services/AiSearchVisibilityPage";
+import WebDevelopmentPage from "./pages/services/WebDevelopmentPage";
+import RefundPolicyPage from "./pages/legal/RefundPolicyPage";
+import TermsPage from "./pages/legal/TermsPage";
+import PrivacyPage from "./pages/legal/PrivacyPage";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -33,8 +37,16 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home play={revealed} />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/services/:slug" element={<ServiceDetailPage />} />
         <Route path="/work" element={<WorkPage />} />
+
+        {/* Service detail pages */}
+        <Route path="/services/ai-search-visibility" element={<AiSearchVisibilityPage />} />
+        <Route path="/services/web-development" element={<WebDevelopmentPage />} />
+
+        {/* Legal pages */}
+        <Route path="/refund-policy" element={<RefundPolicyPage />} />
+        <Route path="/terms-and-conditions" element={<TermsPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPage />} />
       </Routes>
 
       <Footer key={pathname} />

@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
-import { PAGE_COPY, WORK_ITEMS } from "../../data/work";
+import { PAGE_COPY, FEATURED } from "../../data/work";
 import type { WorkItem } from "../../data/work";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -91,7 +91,7 @@ export default function WorkReel() {
     const videos = useRef<(HTMLVideoElement | null)[]>([]);
     const [active, setActive] = useState(0);
     const [desk, setDesk] = useState(() => window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference)").matches);
-    const total = WORK_ITEMS.length;
+    const total = FEATURED.length;
 
     useEffect(() => {
         const mq = window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference)");
@@ -128,7 +128,7 @@ export default function WorkReel() {
             };
             measure();
 
-            gsap.set(sec, { backgroundColor: WORK_ITEMS[0].surface });
+            gsap.set(sec, { backgroundColor: FEATURED[0].surface });
             let last = -1;
             const state = { p: 0 };
 
@@ -157,7 +157,7 @@ export default function WorkReel() {
                 if (best !== last) {
                     last = best;
                     setActive(best);
-                    gsap.to(sec, { backgroundColor: WORK_ITEMS[best].surface, duration: 0.9, ease: "power2.out", overwrite: "auto" });
+                    gsap.to(sec, { backgroundColor: FEATURED[best].surface, duration: 0.9, ease: "power2.out", overwrite: "auto" });
                 }
             };
 
@@ -198,7 +198,7 @@ export default function WorkReel() {
                     <p className="eyebrow" data-reveal>{PAGE_COPY.reelEyebrow}</p>
                     <h2 className="t-l mt-6"><Split text={PAGE_COPY.reelTitle} dot /></h2>
                     <div className="mt-12 space-y-5">
-                        {WORK_ITEMS.map((w, i) => (
+                        {FEATURED.map((w, i) => (
                             <article key={w.slug} className="rounded-[28px] p-5 sm:p-8" style={{ backgroundColor: w.surface }} data-reveal>
                                 <Screen item={w} active={false} />
                                 <div className="mt-7"><SlideCopy item={w} index={i} total={total} /></div>
@@ -220,11 +220,11 @@ export default function WorkReel() {
                         <DottedTitle text={PAGE_COPY.reelTitle} />
                     </h2>
                     <p className="mt-8 flex items-center gap-3 text-sm text-navy/70">
-                        <span className="inline-block h-px w-16 bg-navy/40" /> Keep scrolling · {total} projects
+                        <span className="inline-block h-px w-16 bg-navy/40" /> Keep scrolling · {total} featured projects
                     </p>
                 </div>
 
-                {WORK_ITEMS.map((w, i) => (
+                {FEATURED.map((w, i) => (
                     <article
                         key={w.slug}
                         className={`rl-slide flex w-screen shrink-0 justify-center px-[clamp(40px,5vw,110px)] transition-[opacity,filter] duration-700 ${i === active ? "opacity-100" : "opacity-35 saturate-50"}`}
@@ -245,7 +245,7 @@ export default function WorkReel() {
                     <p className="flex items-baseline gap-3">
                         <span key={active} className="animate-[fadein_.4s_ease] font-medium tabular-nums">{pad(active + 1)}</span>
                         <span className="text-navy/50">/ {pad(total)}</span>
-                        <span key={`t${active}`} className="ml-3 animate-[fadein_.4s_ease] text-navy/70">{WORK_ITEMS[active].title}</span>
+                        <span key={`t${active}`} className="ml-3 animate-[fadein_.4s_ease] text-navy/70">{FEATURED[active].title}</span>
                     </p>
                     <p className="text-navy/50">Scroll</p>
                 </div>

@@ -1,9 +1,20 @@
-import type { ServiceDetail } from "../detail.types";
+import type {
+    HeroContent,
+    AboutContent,
+    GraphContent,
+    WhoForContent,
+    WhatYouGetContent,
+    WhatWeCoverContent,
+} from "../types";
 
-const aiSearchVisibility: ServiceDetail = {
-    slug: "ai-search-visibility",
-    name: "AI Search Visibility",
-
+const content: {
+    hero: HeroContent;
+    about: AboutContent;
+    graph: GraphContent;
+    whoFor: WhoForContent;
+    whatYouGet: WhatYouGetContent;
+    whatWeCover: WhatWeCoverContent;
+} = {
     hero: {
         eyebrow: "AI Search · AEO · GEO",
         line1: "Customers now ask AI first.",
@@ -35,7 +46,7 @@ const aiSearchVisibility: ServiceDetail = {
         ],
     },
 
-    compound: {
+    graph: {
         eyebrow: "How visibility compounds",
         title: "Built to compound",
         meter: { label: "Visibility index", from: 0, to: 100, suffix: "/100" },
@@ -48,7 +59,7 @@ const aiSearchVisibility: ServiceDetail = {
         note: "Illustrative trajectory. Results vary by market, competition and starting point.",
     },
 
-    fit: {
+    whoFor: {
         eyebrow: "Who this is for",
         title: "We don't take on every project",
         text: "Visibility retainers are built for brands ready to commit to the long run. If that is not you right now, we will tell you honestly.",
@@ -74,7 +85,7 @@ const aiSearchVisibility: ServiceDetail = {
         },
     },
 
-    scope: {
+    whatYouGet: {
         eyebrow: "What you get",
         title: "Everything in scope, every month",
         items: [
@@ -101,10 +112,10 @@ const aiSearchVisibility: ServiceDetail = {
         },
     },
 
-    cover: {
+    whatWeCover: {
         eyebrow: "What we cover",
         items: ["AI Search", "AEO & GEO", "Technical SEO", "Entity & Schema", "Content", "Digital PR", "Analytics & Tracking"],
     },
 };
 
-export default aiSearchVisibility;
+export default content;

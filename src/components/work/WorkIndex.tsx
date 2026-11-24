@@ -140,7 +140,7 @@ export default function WorkIndex() {
                                     <span className="relative hidden text-sm tabular-nums text-navy/45 md:block">{pad(n)}</span>
                                     <span className="relative">
                                         <span className="block text-[clamp(28px,3.6vw,60px)] font-medium leading-[1] tracking-[-0.045em] transition-transform duration-500 group-hover:translate-x-3" style={{ fontFamily: "var(--font-display)" }}>{w.title}</span>
-                                        <span className="mt-2 block text-sm text-navy/55">{w.sector}</span>
+                                        {w.sector && <span className="mt-2 block text-sm text-navy/55">{w.sector}</span>}
                                     </span>
                                     {/* mobile: inline thumbnail */}
                                     <img src={w.image} alt="" loading="lazy" className="relative h-16 w-28 rounded-xl object-cover object-top md:hidden" />
@@ -163,7 +163,7 @@ export default function WorkIndex() {
                 <div ref={preview} className="pointer-events-none absolute left-0 top-0 z-20 -ml-[180px] -mt-[110px] w-[360px] scale-[.6] overflow-hidden rounded-[18px] opacity-0 shadow-[0_40px_80px_-30px_rgba(10,31,68,.5)]" aria-hidden="true">
                     <div className="relative aspect-[2.09]" style={{ backgroundColor: hover?.surface ?? "#e4eef5" }}>
                         {hover && <img src={hover.image} alt="" className="absolute inset-0 h-full w-full object-cover object-top" />}
-                        <video ref={pvideo} muted loop playsInline preload="none" className="absolute inset-0 h-full w-full object-cover object-top" />
+                        <video ref={pvideo} muted loop playsInline preload="none" className={`absolute inset-0 h-full w-full object-cover object-top ${hover?.video ? "" : "opacity-0"}`} />
                     </div>
                 </div>
             )}

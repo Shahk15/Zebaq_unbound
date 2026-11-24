@@ -27,7 +27,7 @@ export default function ServicesPage() {
     }, []);
 
     return (
-        <div ref={root} className="bg-off"> 
+        <div ref={root} className="bg-off">
             <Header />
             <main>
                 <ServicesHero />

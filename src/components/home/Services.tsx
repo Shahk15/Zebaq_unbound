@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SERVICES, type Service } from "../../data/shared/services";
 import { Arrow, Pill, Split, Verify } from "../common/ui";
-import { DETAILS } from "../../data/services/details/registry";
+import { LIVE_SERVICE_PAGES } from "../../data/services/live";
 
 // 05 — Ten disciplines. One growth system.
 // Oversized rows; a lemon card trails the cursor with each outcome;
@@ -14,6 +14,7 @@ export default function Services({ embedded = false }: { embedded?: boolean }) {
   const card = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null);
   const [open, setOpen] = useState<Service | null>(null);
+
 
   useGSAP(
     () => {
@@ -58,7 +59,7 @@ export default function Services({ embedded = false }: { embedded?: boolean }) {
           <ul className="svc-list border-b border-white/10" onPointerLeave={() => setActive(null)}>
             {SERVICES.map((sv, i) => {
               // Services with a finished detail page open it; the rest keep the quick drawer for now
-              const hasPage = Boolean(DETAILS[sv.slug]);
+              const hasPage = LIVE_SERVICE_PAGES.includes(sv.slug);
               const rowCls =
                 "group relative grid w-full grid-cols-[40px_1fr_auto] items-center gap-4 py-7 text-left md:grid-cols-[80px_1fr_auto_56px] md:gap-8 md:py-9";
 

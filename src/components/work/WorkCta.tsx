@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import DotWave from "../common/DotWave";
 import { Split } from "../common/ui";
 import { AutoCarousel } from "../common/fx";
-import { PAGE_COPY, WORK_ITEMS } from "../../data/work";
+import { PAGE_COPY, FEATURED } from "../../data/work";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -42,7 +42,7 @@ export default function WorkCta() {
         { scope: root }
     );
 
-    const names = WORK_ITEMS.map((w) => (
+    const names = FEATURED.map((w) => (
         <span key={w.slug} className="flex items-center gap-[0.5em] pr-[0.5em] text-transparent [-webkit-text-stroke:1.2px_rgba(247,246,241,.35)]">
             {w.title}
             <span className="inline-block h-[0.14em] w-[0.14em] rounded-full bg-lemon" />

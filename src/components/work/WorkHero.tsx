@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
 import { AutoCarousel } from "../common/fx";
-import { PAGE_COPY, WORK_FILTERS, WORK_ITEMS, YEARS } from "../../data/work";
+import { FEATURED, PAGE_COPY, WORK_FILTERS, WORK_ITEMS, YEARS } from "../../data/work";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -88,7 +88,7 @@ export default function WorkHero() {
         { scope: root }
     );
 
-    const thumbs = [...WORK_ITEMS, ...WORK_ITEMS].map((w, i) => <Thumb key={`${w.slug}-${i}`} src={w.image} title={w.title} />);
+    const thumbs = [...FEATURED, ...FEATURED].map((w, i) => <Thumb key={`${w.slug}-${i}`} src={w.image} title={w.title} />);
 
     return (
         <section

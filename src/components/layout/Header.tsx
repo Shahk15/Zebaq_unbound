@@ -7,6 +7,7 @@ import { Pill } from "../common/ui";
 import Magnetic from "../common/Magnetic";
 import Navigation from "./Navigation";
 import MegaMenu from "./MegaMenu";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(useGSAP);
 
@@ -129,9 +130,9 @@ export default function Header({ play = true }: HeaderProps) {
         >
           {/* Left: logo + contact badge */}
           <div className="flex items-center gap-3 justify-self-start">
-            <a href="#" onClick={closeMenu} aria-label="Home" className="hm-item flex items-center">
+            <Link to="/" onClick={closeMenu} aria-label="Home" className="hm-item flex items-center">
               <img src="/images/logo/full-logo.png" alt="Zebaq" className="hm-logo h-11 w-auto md:h-[52px]" />
-            </a>
+            </Link>
 
             {/* Round icon that opens into a pill on hover */}
             <div className="hm-item hm-nav-fade hidden md:block">
