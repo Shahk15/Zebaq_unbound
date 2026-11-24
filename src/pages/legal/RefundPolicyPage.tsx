@@ -49,13 +49,13 @@ export default function RefundPolicyPreview() {
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced || !("IntersectionObserver" in window)) return undefined;
-    const els = Array.from(document.querySelectorAll("[data-reveal]"));
+    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     els.forEach((el) => {
       el.style.opacity = "0";
       el.style.transform = "translateY(20px)";
       el.style.transition = "opacity .8s ease, transform .8s ease";
     });
-    const reveal = (el) => {
+    const reveal = (el: HTMLElement) => {
       el.style.opacity = "1";
       el.style.transform = "none";
     };
@@ -63,7 +63,7 @@ export default function RefundPolicyPreview() {
       (entries) => {
         entries.forEach((entry, i) => {
           if (entry.isIntersecting) {
-            setTimeout(() => reveal(entry.target), i * 60);
+            setTimeout(() => reveal(entry.target as HTMLElement), i * 60);
             observer.unobserve(entry.target);
           }
         });
