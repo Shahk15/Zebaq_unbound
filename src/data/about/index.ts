@@ -142,7 +142,7 @@ export const JOIN: JoinContent = {
     eyebrow: "Be part of Zebaq",
     title: "Join us, or meet the people",
     cards: [
-        { n: "01", title: "Careers", text: "Build the work you would be proud to put your name on, with a team that cares how it is made.", cta: "See open roles", href: "/careers", tone: "dark" },
+        { n: "01", title: "Careers", text: "Build the work you would be proud to put your name on, with a team that cares how it is made.", cta: "See open roles", href: "/career", tone: "dark" },
         { n: "02", title: "Our Team", text: "The strategists, designers and engineers behind every project.", cta: "Meet the team", href: "/team", tone: "light" },
     ],
 };

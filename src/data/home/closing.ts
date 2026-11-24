@@ -6,9 +6,11 @@ export const FINAL = {
 
 export const FOOTER_LINKS = [
   { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Our Work", href: "#work" },
+  { label: "Company", href: "/about" },
+  { label: "Our Team", href: "/team" },
+  { label: "Careers", href: "/career" },
   { label: "Contact", href: "#contact" },
-  { label: "Privacy", href: "https://zebaqweb.com/privacy-policy.php" },
-  { label: "Terms", href: "https://zebaqweb.com/term-conditions.php" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  { label: "Refund Policy", href: "/refund-policy" },
 ];

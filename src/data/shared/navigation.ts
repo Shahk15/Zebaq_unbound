@@ -51,8 +51,8 @@ export const NAV: NavItem[] = [
         kind: "links",
         children: [
             { label: "Company", description: "Learn more about who we are.", href: "/about", icon: "company" },
-            { label: "Our Team", description: "Meet the people behind Zebaq.", href: "/about#team", icon: "team" },
-            { label: "Careers", description: "Join us and grow with us.", href: "/about#careers", icon: "careers" },
+            { label: "Our Team", description: "Meet the people behind Zebaq.", href: "/team", icon: "team" },
+            { label: "Careers", description: "Join us and grow with us.", href: "/career", icon: "careers" },
         ],
     },
     {

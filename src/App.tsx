@@ -52,6 +52,7 @@ export default function App() {
         <Route path="/privacy-policy" element={<PrivacyPage />} />
 
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/career" element={<CareersPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/team" element={<TeamPage />} />
         
