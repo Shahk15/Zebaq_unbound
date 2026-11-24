@@ -3,11 +3,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import type { ServiceDetail } from "../../data/services/detail.types";
+import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function DetailCover({ data }: { data: ServiceDetail["cover"] }) {
     const root = useRef<HTMLElement>(null);
+    useSectionReveal(root);
 
     useGSAP(
         () => {
@@ -31,7 +33,7 @@ export default function DetailCover({ data }: { data: ServiceDetail["cover"] }) 
     );
 
     return (
-        <section ref={root} className="relative z-10 bg-off text-navy">
+        <section ref={root} className="relative z-10 overflow-hidden rounded-t-[clamp(28px,4vw,56px)] bg-off text-navy">
             <div className="wrap section">
                 <p className="eyebrow text-navy-2" data-reveal>{data.eyebrow}</p>
                 <p

@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
-import { useEdgeReveal } from "../../hooks/useEdgeReveal";
+import { useSectionReveal } from "../../hooks/useSectionReveal";
 import type { ServiceDetail } from "../../data/services/detail.types";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -11,7 +11,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function DetailScope({ data }: { data: ServiceDetail["scope"] }) {
     const root = useRef<HTMLElement>(null);
 
-    useEdgeReveal(root);
+    useSectionReveal(root);
 
     useGSAP(
         () => {
@@ -58,7 +58,7 @@ export default function DetailScope({ data }: { data: ServiceDetail["scope"] }) 
     );
 
     return (
-        <section ref={root} data-dark className="relative z-10 rounded-t-[clamp(28px,4vw,56px)] bg-ink text-off">
+        <section ref={root} data-dark className="relative z-10 overflow-hidden rounded-t-[clamp(28px,4vw,56px)] bg-ink text-off">
             <div className="wrap section">
                 <p className="eyebrow text-glacier-3" data-reveal>{data.eyebrow}</p>
                 <h2 className="t-xl mt-8 max-w-[14ch]">

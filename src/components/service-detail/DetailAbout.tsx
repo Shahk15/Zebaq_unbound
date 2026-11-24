@@ -4,11 +4,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Split } from "../common/ui";
 import type { ServiceDetail } from "../../data/services/detail.types";
+import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function DetailAbout({ data }: { data: ServiceDetail["about"] }) {
     const root = useRef<HTMLElement>(null);
+    useSectionReveal(root);
 
     useGSAP(
         () => {
@@ -29,7 +31,7 @@ export default function DetailAbout({ data }: { data: ServiceDetail["about"] }) 
     );
 
     return (
-        <section ref={root} className="relative z-10 rounded-t-[clamp(28px,4vw,56px)] bg-off text-navy">
+        <section ref={root} className="relative z-10 overflow-hidden rounded-t-[clamp(28px,4vw,56px)] bg-off text-navy">
             <div className="wrap section">
                 <div className="flex flex-col justify-between gap-12 md:flex-row md:items-start">
                     <div>
