@@ -170,8 +170,8 @@ export default function PageTransition() {
             gsap.set(panel, { y: off() });
             root.style.visibility = "hidden";
         }
-
-        // Catch every internal link click
+        
+        // Capture phase: this must run BEFORE React Router's <Link> handler, which navigates on its own.
         const onClick = (e: MouseEvent) => {
             if (e.defaultPrevented || e.button !== 0) return;
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -180,17 +180,21 @@ export default function PageTransition() {
             if (a.target && a.target !== "_self") return;
             if (a.hasAttribute("download") || a.dataset.noTransition !== undefined) return;
 
+            // Touch: a dropdown link opens its panel on the first tap, so do not start the curtain yet
+            if (a.getAttribute("aria-haspopup") === "true" && !window.matchMedia("(hover: hover)").matches) return;
+
             const url = new URL(a.href, window.location.href);
             if (url.origin !== window.location.origin) return;
             if (url.pathname === pathRef.current && !url.hash) return; // same page
             if (url.hash && url.pathname === pathRef.current) return; // in-page anchor
 
+            // Stops <Link> from navigating; its own onClick (closing the menu) still runs
             e.preventDefault();
             run(url.pathname + url.search + url.hash, a.dataset.transitionTitle);
         };
 
-        document.addEventListener("click", onClick);
-        return () => document.removeEventListener("click", onClick);
+        document.addEventListener("click", onClick, true);
+        return () => document.removeEventListener("click", onClick, true);
     }, [navigate]);
 
     return (
