@@ -59,21 +59,41 @@ export default function PrivacyPage() {
     const [activeSection, setActiveSection] = useState("information");
 
     useEffect(() => {
-        const context = gsap.context(() => {
-            const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            if (reduced) return;
-            gsap.from("[data-reveal]", {
-                y: 24,
-                opacity: 0,
-                duration: 0.9,
-                ease: "expo.out",
-                stagger: 0.06,
-                scrollTrigger: {
-                    trigger: root.current,
-                    start: "top 82%",
-                    once: true,
-                },
-            });
+        let startReveal: (() => void) | null = null;
+        const revealContext = gsap.context(() => {
+            const start = () => {
+                const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                if (reduced) return;
+
+                gsap.fromTo(
+                    "[data-reveal]",
+                    { y: 24, opacity: 0, immediateRender: false },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.9,
+                        ease: "expo.out",
+                        stagger: 0.06,
+                        clearProps: "opacity,transform",
+                        scrollTrigger: {
+                            trigger: root.current,
+                            start: "top 82%",
+                            once: true,
+                        },
+                    },
+                );
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => ScrollTrigger.refresh());
+                });
+            };
+            startReveal = start;
+
+            if (document.documentElement.dataset.pt === "busy") {
+                window.addEventListener("page:ready", start, { once: true });
+                return;
+            }
+            start();
         }, root);
 
         const observed = sections
@@ -93,7 +113,8 @@ export default function PrivacyPage() {
 
         return () => {
             observer.disconnect();
-            context.revert();
+            if (startReveal) window.removeEventListener("page:ready", startReveal);
+            revealContext.revert();
         };
     }, []);
 

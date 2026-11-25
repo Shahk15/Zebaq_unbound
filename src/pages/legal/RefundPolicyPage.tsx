@@ -35,16 +35,36 @@ export default function RefundPolicyPage() {
     const [activeSection, setActiveSection] = useState("refund");
 
     useEffect(() => {
-        const context = gsap.context(() => {
-            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-            gsap.from("[data-reveal]", {
-                y: 24,
-                opacity: 0,
-                duration: 0.9,
-                ease: "expo.out",
-                stagger: 0.06,
-                scrollTrigger: { trigger: root.current, start: "top 82%", once: true },
-            });
+        let startReveal: (() => void) | null = null;
+        const revealContext = gsap.context(() => {
+            const start = () => {
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+                gsap.fromTo(
+                    "[data-reveal]",
+                    { y: 24, opacity: 0, immediateRender: false },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.9,
+                        ease: "expo.out",
+                        stagger: 0.06,
+                        clearProps: "opacity,transform",
+                        scrollTrigger: { trigger: root.current, start: "top 82%", once: true },
+                    },
+                );
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => ScrollTrigger.refresh());
+                });
+            };
+            startReveal = start;
+
+            if (document.documentElement.dataset.pt === "busy") {
+                window.addEventListener("page:ready", start, { once: true });
+                return;
+            }
+            start();
         }, root);
 
         const observed = sections
@@ -64,7 +84,8 @@ export default function RefundPolicyPage() {
 
         return () => {
             observer.disconnect();
-            context.revert();
+            if (startReveal) window.removeEventListener("page:ready", startReveal);
+            revealContext.revert();
         };
     }, []);
 
