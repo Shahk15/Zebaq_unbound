@@ -15,6 +15,8 @@ import PrivacyPage from "./pages/legal/PrivacyPage";
 import AboutPage from "./pages/AboutPage";
 import CareersPage from "./pages/CareersPage";
 import TeamPage from "./pages/TeamPage";
+import InsightsPage from "./pages/InsightsPage";
+import WhiteLabelPage from "./pages/WhiteLabelPage";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -55,6 +57,8 @@ export default function App() {
         <Route path="/career" element={<CareersPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/insights" element={<InsightsPage />} />
+        <Route path="/white-label" element={<WhiteLabelPage />} />
         
       </Routes>
 

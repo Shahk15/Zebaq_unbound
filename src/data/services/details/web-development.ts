@@ -88,18 +88,14 @@ const content: {
 
     whatYouGet: {
         eyebrow: "What you get",
-        title: "Everything you'll have when we're done",
+        title: "From discovery to handover",
         items: [
-            { title: "Custom design and UX", text: "Layouts and flows designed around your brand and your visitors' goals." },
-            { title: "Mobile-first responsive build", text: "A site that feels right on every screen, from phone to widescreen." },
-            { title: "React and Next.js development", text: "Modern, component-based code that is fast and easy to extend." },
-            { title: "WordPress or Shopify builds", text: "The right platform for your team, set up so it is easy to manage." },
-            { title: "Performance optimisation", text: "Image, code and loading work to hit Core Web Vitals targets." },
-            { title: "SEO and structured data", text: "Clean markup, metadata and schema so search and AI can read you." },
-            { title: "CMS you can actually use", text: "Your team updates content without calling a developer." },
-            { title: "Integrations", text: "CRM, payments, booking, forms and analytics connected properly." },
-            { title: "Analytics and tracking", text: "Conversion tracking set up from day one, so you see what works." },
-            { title: "Launch and ongoing support", text: "A careful go-live, plus a team to turn to when you need changes." },
+            { title: "Discovery", text: "Clarify the offer, audience, conversion goal and approved scope." },
+            { title: "UX and visual design", text: "Plan pages and flows around how visitors understand and act." },
+            { title: "Development", text: "Build a fast, responsive, maintainable service website, store or landing page." },
+            { title: "Technical SEO setup", text: "Set metadata, clean markup, indexing foundations and applicable structured data." },
+            { title: "Analytics and conversion tracking", text: "Measure enquiries, bookings or ecommerce actions from launch." },
+            { title: "Handover", text: "Document the CMS, integrations, responsibilities and approved ongoing care." },
         ],
         timeline: {
             eyebrow: "A clear path from idea to launch",

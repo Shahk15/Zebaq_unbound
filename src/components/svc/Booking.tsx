@@ -121,13 +121,13 @@ export default function Booking({ slug }: { slug: string }) {
             <div className="wrap relative grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-[5vw]">
                 <div>
                     <p className="eyebrow text-glacier-3" data-reveal>Schedule a call or meeting</p>
-                    <h2 className="t-l mt-6 max-w-[11ch]"><Split text="Thirty minutes. A clear next step" dot /></h2>
+                    <h2 className="t-l mt-6 max-w-[11ch]"><Split text="Let’s decide what to work on first" dot /></h2>
                     <ol className="mt-10 max-w-md">
-                        {["You tell us the goal.", "We show what we would do first.", "You get a scope and price to decide on."].map((t, i) => (
+                        {["We review your growth goal.", "We identify where opportunities may be lost.", "We agree what to prioritize first."].map((t, i) => (
                             <li key={t} className="flex gap-5 border-t border-white/10 py-5 text-lg"><span className="text-lemon tabular-nums">0{i + 1}</span>{t}</li>
                         ))}
                     </ol>
-                    <p className="mt-4 text-glacier-2">No pressure to commit. Prefer email? <a className="underline decoration-lemon underline-offset-4" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+                    <p className="mt-4 text-glacier-2">In 30 minutes, we’ll review your growth goal, where you’re losing opportunities and what we’d prioritize first. Prefer to send a brief? Tell us what you sell, who you want to reach and what you’d like to improve.</p>
                 </div>
 
                 <div className="rounded-[32px] bg-off p-[clamp(22px,2.6vw,44px)] text-navy"><BookingCard slug={slug} /></div>

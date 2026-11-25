@@ -35,6 +35,17 @@ export default function RefundPolicyPage() {
     const [activeSection, setActiveSection] = useState("refund");
 
     useEffect(() => {
+        const previousTitle = document.title;
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const previousDescription = meta?.content;
+        document.title = "Refund Policy | ZEBAQ";
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = "Review the ZEBAQ refund and cancellation terms for web services and ongoing subscriptions.";
+
         let startReveal: (() => void) | null = null;
         const revealContext = gsap.context(() => {
             const start = () => {
@@ -86,6 +97,8 @@ export default function RefundPolicyPage() {
             observer.disconnect();
             if (startReveal) window.removeEventListener("page:ready", startReveal);
             revealContext.revert();
+            document.title = previousTitle;
+            if (meta && previousDescription !== undefined) meta.content = previousDescription;
         };
     }, []);
 

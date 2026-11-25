@@ -6,9 +6,9 @@ export const PAGES_B: ServicePageContent[] = [
         demo: "video",
         hero: {
             eyebrow: "Reels · Promo film · Motion",
-            line1: "One shoot.",
-            line2: "A month of scroll-stoppers",
-            text: "Reels, promo films and motion graphics that look like your brand on its best day, without building a studio of your own.",
+            line1: "Creative content",
+            line2: "and short-form video production",
+            text: "Turn briefs, interviews, product footage and campaign ideas into videos and visuals your team can publish. We plan the format, edit for the channel and deliver assets ready for review.",
             photo: "camera",
             floats: [
                 { logo: "instagram", title: "Reel ready to post", sub: "Captions and cover included" },
@@ -17,7 +17,7 @@ export const PAGES_B: ServicePageContent[] = [
             ],
         },
         platforms: ["adobepremierepro", "adobeaftereffects", "davinciresolve", "adobephotoshop", "capcut", "canva", "figma", "instagram", "tiktok", "youtube"],
-        demoCopy: { eyebrow: "Try it", title: "From raw to ready", text: "Drag across the footage to grade it. Then see how far one visit can go.", cta: "Plan my shoot" },
+        demoCopy: { eyebrow: "Before and after", title: "Turn one approved input into channel-ready deliverables", text: "Show the source asset, cut-downs, captions and platform formats agreed for the project.", cta: "Plan my shoot" },
         benefits: {
             title: "Look as good as you are",
             photo: "film-set",
@@ -39,7 +39,7 @@ export const PAGES_B: ServicePageContent[] = [
         },
         get: {
             eyebrow: "What you get",
-            title: "A studio without the overhead",
+            title: "Creative planning through final handover",
             items: [
                 { title: "Creative direction", text: "Ideas, hooks and references before filming." },
                 { title: "Shoot planning", text: "Shot lists your team or ours can follow." },
@@ -68,6 +68,7 @@ export const PAGES_B: ServicePageContent[] = [
             { q: "How fast is an edit?", a: "It depends on length and volume. Priority 24-hour editing can be added in the plan." },
             { q: "Is the music licensed?", a: "Yes. We use licensed or royalty-free tracks suitable for business use." },
             { q: "Do we own the final files?", a: "Yes, once the work is paid for, the finished files are yours." },
+            { q: "What do you confirm before editing?", a: "We define source assets, platform formats, captions, revision rounds and handover before production." },
         ],
     },
     {
@@ -75,9 +76,9 @@ export const PAGES_B: ServicePageContent[] = [
         demo: "agent",
         hero: {
             eyebrow: "WhatsApp · Chatbots · CRM",
-            line1: "While you sleep,",
-            line2: "your business replies",
-            text: "AI agents that answer questions, book appointments and follow up, with a person one step away whenever it matters.",
+            line1: "AI automation",
+            line2: "and AI agents for your business",
+            text: "Respond faster and give leads a clear next step. ZEBAQ builds AI-assisted workflows that answer routine questions, collect the right details, schedule bookings and hand exceptions to your team.",
             photo: "night-shop",
             floats: [
                 { logo: "whatsapp", title: "02:14 “Any table Friday?”", sub: "New message to {biz}" },
@@ -86,9 +87,9 @@ export const PAGES_B: ServicePageContent[] = [
             ],
         },
         platforms: ["whatsapp", "messenger", "instagram", "openai", "hubspot", "gohighlevel", "zapier", "make", "n8n", "calendly", "slack", "salesforce"],
-        demoCopy: { eyebrow: "Try it", title: "The 2:14 am test", text: "Drag through the night. Switch the agent off to see what you miss.", cta: "Put an agent on duty" },
+        demoCopy: { eyebrow: "Example workflow", title: "Enquiry to qualification, calendar or CRM update and handoff", text: "Show what happens to an uncertain request and when it moves to a person.", cta: "Plan my workflow" },
         benefits: {
-            title: "No enquiry left unanswered",
+            title: "Respond faster and route every enquiry clearly",
             photo: "support",
             cta: "Automate my replies",
             items: [
@@ -99,26 +100,23 @@ export const PAGES_B: ServicePageContent[] = [
             ],
         },
         scenes: {
-            title: "Where minutes matter",
+            title: "Workflow use cases",
             items: [
-                { photo: "dining-full", who: "Restaurants", before: "The phone rings out during service.", after: "Tables confirmed on WhatsApp while the kitchen cooks." },
-                { photo: "team-desk", who: "Home and local services", before: "Missed calls go to the next name on the list.", after: "Job details captured and a slot offered straight away." },
-                { photo: "parcels", who: "Online stores", before: "“Where is my order?” fills the inbox.", after: "Order answers handled, real problems passed to people." },
+                { photo: "dining-full", who: "Service businesses", before: "Enquiries arrive outside office hours or without the details needed to respond.", after: "The workflow qualifies the request and offers an appointment or handoff." },
+                { photo: "team-desk", who: "Ecommerce", before: "Shipping or product questions fill the inbox and interrupt operations.", after: "Approved answers resolve routine questions while exceptions escalate to a person." },
+                { photo: "parcels", who: "B2B", before: "Demo requests arrive without enough fit information or handoff context.", after: "The workflow routes the request by fit and captures the notes your sales team needs." },
             ],
         },
         get: {
             eyebrow: "What you get",
-            title: "Automation you can trust",
+            title: "Map, build, test and review the workflow",
             items: [
-                { title: "Process mapping", text: "What should be automated, and what should not." },
-                { title: "AI agent set-up", text: "Trained on your services, prices and policies." },
-                { title: "WhatsApp and web chat", text: "One agent, wherever people write." },
-                { title: "Booking flows", text: "Connected to your real calendar." },
-                { title: "CRM workflows", text: "Leads created, routed and updated." },
-                { title: "Automated follow-up", text: "Email, SMS and WhatsApp sequences." },
-                { title: "Human hand-off", text: "Rules for when a person steps in." },
-                { title: "Testing and guardrails", text: "Checked against tricky questions before launch." },
-                { title: "Monthly improvement", text: "Conversations reviewed, answers sharpened." },
+                { title: "Workflow map", text: "Agree the process, available channels and integrations." },
+                { title: "Approved answers", text: "Define the information the agent may use and the rules it must follow." },
+                { title: "Escalation rules", text: "Specify when it collects context or hands the conversation to a person." },
+                { title: "Build and test", text: "Build the booking, CRM or follow-up workflow and test it before launch." },
+                { title: "Error monitoring", text: "Review failed actions, uncertain requests and changes needed after launch." },
+                { title: "WhatsApp compatibility", text: "Confirm the customer’s WhatsApp setup before offering it as a channel." },
             ],
             timeline: {
                 eyebrow: "Live in clear stages",
@@ -133,10 +131,8 @@ export const PAGES_B: ServicePageContent[] = [
         },
         proof: { title: "Businesses that take enquiries daily", slugs: ["bubble-tail-dog-bath-groom", "dfw-limo-service", "enhanced-microblading-center"] },
         faq: [
-            { q: "Will customers know it is AI?", a: "We recommend saying so, and always offering a person. It builds trust." },
-            { q: "What if it gets something wrong?", a: "It answers only from what you approve, passes anything unclear to your team, and is reviewed regularly." },
-            { q: "Does it work with our CRM?", a: "Most likely. We connect HubSpot, GoHighLevel, Salesforce and others directly or through Zapier, Make or n8n." },
-            { q: "Is customer data safe?", a: "We collect only what the task needs, limit access and follow the privacy rules that apply to your business." },
+            { q: "What if the agent can’t answer?", a: "It can collect context and route the conversation to a person under agreed rules." },
+            { q: "Can this connect to our CRM?", a: "We first check your account, API access and permissions, then scope the integration and reporting." },
         ],
     },
     {
@@ -144,9 +140,9 @@ export const PAGES_B: ServicePageContent[] = [
         demo: "team",
         hero: {
             eyebrow: "Developers · Designers · Marketers",
-            line1: "Your next hire,",
-            line2: "without the hiring",
-            text: "Vetted specialists who work to your priorities, hourly, part-time or full-time. We handle finding, managing and replacing.",
+            line1: "Hire dedicated",
+            line2: "marketing and creative talent",
+            text: "Add a specialist who works within your team’s priorities and workflow. ZEBAQ helps define the role and match the skills, availability and responsibilities to the work you need done.",
             photo: "team-desk",
             floats: [
                 { logo: "figma", title: "Designer matched", sub: "Starts with {biz} on Monday" },
@@ -155,7 +151,7 @@ export const PAGES_B: ServicePageContent[] = [
             ],
         },
         platforms: ["react", "wordpress", "shopify", "figma", "adobephotoshop", "adobepremierepro", "googleads", "instagram", "slack", "clickup", "asana", "notion"],
-        demoCopy: { eyebrow: "Try it", title: "Assemble your team", text: "Tap the people you need and set the hours. Watch the week fill with work.", cta: "Build my team" },
+        demoCopy: { eyebrow: "Team builder", title: "Choose the role, availability and responsibilities", text: "Show who directs the work, which specialist owns it and how feedback and replacement terms work.", cta: "Build my team" },
         benefits: {
             title: "Capacity when you need it",
             photo: "team-table",
@@ -177,17 +173,13 @@ export const PAGES_B: ServicePageContent[] = [
         },
         get: {
             eyebrow: "What you get",
-            title: "People, managed properly",
+            title: "Role matching through operational handover",
             items: [
-                { title: "Role definition", text: "Skills, hours and outcomes agreed up front." },
-                { title: "Vetted shortlist", text: "Portfolio and skills checked before you meet." },
-                { title: "Intro call", text: "You choose who joins." },
-                { title: "Flexible hours", text: "Hourly, part-time, full-time or project." },
-                { title: "Your tools", text: "Slack, ClickUp, Asana or whatever you use." },
-                { title: "Daily updates", text: "What was done, what is next." },
-                { title: "Time records", text: "Clear hours for every task." },
-                { title: "Replacement cover", text: "A new match if the fit is not right." },
-                { title: "Account manager", text: "One person to call about anything." },
+                { title: "Role and availability", text: "Define the role, skills, availability, responsibilities and who directs the work." },
+                { title: "Onboarding", text: "Agree tools, priorities, feedback cadence and the first responsibilities." },
+                { title: "Dedicated support", text: "Add a marketer, developer, designer or editor without a permanent hiring process." },
+                { title: "Operational reporting", text: "Review progress and responsibilities in a cadence agreed for the engagement." },
+                { title: "Replacement terms", text: "Use operational approval terms to resolve a mismatch or change the assignment." },
             ],
             timeline: {
                 eyebrow: "From request to first task",
@@ -202,10 +194,9 @@ export const PAGES_B: ServicePageContent[] = [
         },
         proof: { title: "Work our people have delivered", slugs: ["nexus-rolls", "american-cups-and-plates", "honey-lemon-ginger"] },
         faq: [
-            { q: "Do they work only for us?", a: "Full-time specialists are dedicated to you. Part-time specialists have reserved hours for you." },
-            { q: "Which time zones do you cover?", a: "Our teams support the UK, USA and India, and hours can be matched to your day." },
-            { q: "Who manages them?", a: "You set the priorities. We handle hiring, HR, quality and replacement." },
-            { q: "Who owns the work?", a: "You do, under the agreement we sign before starting." },
+            { q: "Who directs the specialist?", a: "You direct priorities and day-to-day work within the agreed role and responsibilities." },
+            { q: "How is onboarding handled?", a: "We agree tools, feedback, availability and first responsibilities before the work starts." },
+            { q: "What happens if the fit is not right?", a: "Replacement terms are agreed operationally before the engagement." },
         ],
     },
     {
@@ -213,9 +204,9 @@ export const PAGES_B: ServicePageContent[] = [
         demo: "funnel",
         hero: {
             eyebrow: "CRO · Funnels · Lead nurturing",
-            line1: "You have the traffic.",
-            line2: "Keep more of it",
-            text: "We find where visitors drop out, fix what stops them, and prove it with tests, so the same traffic brings more customers.",
+            line1: "Conversion rate",
+            line2: "optimization for websites",
+            text: "Find where buyers hesitate or drop off. ZEBAQ reviews analytics, user journeys and conversion paths to prioritize changes to landing pages, forms, product pages and follow-up.",
             photo: "shop-full",
             floats: [
                 { logo: "hotjar", title: "Leak found at checkout", sub: "Visitors pause at delivery" },
@@ -224,7 +215,7 @@ export const PAGES_B: ServicePageContent[] = [
             ],
         },
         platforms: ["googleanalytics", "hotjar", "googletagmanager", "hubspot", "shopify", "woocommerce", "mailchimp", "stripe", "figma", "semrush"],
-        demoCopy: { eyebrow: "Try it", title: "Plug the leaks", text: "Enter your numbers, then tap each leak to fix it. See what stays in the business.", cta: "Audit my funnel" },
+        demoCopy: { eyebrow: "Diagnostic", title: "Turn a finding into a measured hypothesis", text: "Show the finding, the proposed change and the measurement plan for each conversion opportunity.", cta: "Audit my funnel" },
         benefits: {
             title: "More from what you already have",
             photo: "team-laptop",
@@ -246,17 +237,14 @@ export const PAGES_B: ServicePageContent[] = [
         },
         get: {
             eyebrow: "What you get",
-            title: "A complete growth loop",
+            title: "A prioritized diagnostic and testing plan",
             items: [
-                { title: "Funnel audit", text: "Every step measured from visit to sale." },
-                { title: "Behaviour review", text: "Heatmaps and recordings, properly read." },
-                { title: "Priority list", text: "Ranked by likely impact and effort." },
-                { title: "Page redesigns", text: "Messages, layout and proof that answer doubts." },
-                { title: "A/B testing", text: "Clean tests with clear decisions." },
-                { title: "Checkout improvement", text: "Fewer fields, fewer surprises." },
-                { title: "Lead nurturing", text: "Email and WhatsApp journeys." },
-                { title: "Attribution", text: "Know which channel earned the sale." },
-                { title: "Monthly report", text: "What we tried, learned and changed." },
+                { title: "Analytics and journey review", text: "Measure website and funnel behavior from visit to enquiry or sale." },
+                { title: "Finding and hypothesis", text: "Document where buyers drop off and the change that may address it." },
+                { title: "Measurement plan", text: "Define the conversion event, baseline and expected result before testing." },
+                { title: "Page and form priorities", text: "Prioritize landing pages, forms, product pages and follow-up by impact." },
+                { title: "Testing tier", text: "Choose a testing approach suited to high or low traffic." },
+                { title: "Post-test review", text: "Report the result, learning and next change in a clear loop." },
             ],
             timeline: {
                 eyebrow: "Learn, fix, repeat",
@@ -271,10 +259,9 @@ export const PAGES_B: ServicePageContent[] = [
         },
         proof: { title: "Stores and funnels we have shaped", slugs: ["aaprice", "royal-blessings", "nirvanix-health"] },
         faq: [
-            { q: "Do we have enough traffic to test?", a: "If not, we start with research-led improvements and test later. We tell you honestly at the audit." },
-            { q: "Will you need access to our site?", a: "Yes, limited access to analytics and the pages we improve. You approve changes before they go live." },
-            { q: "What increase should we expect?", a: "It depends on your starting point. The audit shows where the opportunity is before you commit to more." },
-            { q: "Do you work with our developers?", a: "Yes. We can hand over designs or build and ship the changes ourselves." },
+            { q: "Do we have enough traffic to test?", a: "We explain the appropriate testing tier for high- or low-traffic sites. Low-traffic sites may start with research-led improvements before a controlled test." },
+            { q: "What will you measure?", a: "We define the conversion event, baseline and measurement plan before changes are made." },
+            { q: "What will you review?", a: "Analytics, user journeys, forms, landing pages, product pages and follow-up flows." },
         ],
     },
     {
@@ -282,9 +269,9 @@ export const PAGES_B: ServicePageContent[] = [
         demo: "desk",
         hero: {
             eyebrow: "Enquiries · Bookings · Outreach",
-            line1: "A full front desk,",
-            line2: "around the clock",
-            text: "A trained team that answers, books and follows up for you, evenings, nights and weekends, with a clear report every morning.",
+            line1: "Managed enquiry",
+            line2: "handling and booking support",
+            text: "Give incoming enquiries a named owner. ZEBAQ can manage inboxes, log requests, coordinate bookings and route complex cases to your team during agreed coverage hours.",
             photo: "support",
             floats: [
                 { logo: "whatsapp", title: "23:40 late check-in", sub: "Answered for {biz}" },
@@ -293,7 +280,7 @@ export const PAGES_B: ServicePageContent[] = [
             ],
         },
         platforms: ["whatsapp", "instagram", "messenger", "gmail", "zendesk", "intercom", "hubspot", "slack", "googlemaps", "clickup"],
-        demoCopy: { eyebrow: "Try it", title: "Turn the clock", text: "See which hours your team covers today, and what happens when our desk joins.", cta: "Cover my hours" },
+        demoCopy: { eyebrow: "Coverage demo", title: "Intake, response, escalation and reporting", text: "Show the agreed hours and response targets, including what happens to complex cases and how results are reported.", cta: "Cover my hours" },
         benefits: {
             title: "Someone is always there",
             photo: "hotel",
@@ -315,17 +302,14 @@ export const PAGES_B: ServicePageContent[] = [
         },
         get: {
             eyebrow: "What you get",
-            title: "An operation, not an inbox",
+            title: "Coverage, escalation and reporting agreed upfront",
             items: [
-                { title: "Channel set-up", text: "Every inbox connected to one desk." },
-                { title: "Playbook", text: "Your tone, answers, prices and rules." },
-                { title: "Trained agents", text: "People who know your business." },
-                { title: "Enquiry handling", text: "DMs, email, chat and comments." },
-                { title: "Booking coordination", text: "Reservations, changes and reminders." },
-                { title: "Outreach support", text: "Campaign messages and follow-up." },
-                { title: "Review responses", text: "Thoughtful replies in your voice." },
-                { title: "Quality checks", text: "Regular sampling and coaching." },
-                { title: "Daily report", text: "Volumes, issues and wins by morning." },
+                { title: "Coverage hours", text: "Confirm the hours, channels and response targets covered by the engagement." },
+                { title: "Intake and logging", text: "Capture enquiries consistently and keep their status visible to the team." },
+                { title: "Response and booking", text: "Reply from an approved playbook and coordinate bookings or requests." },
+                { title: "Escalation", text: "Route complaints, sensitive cases and exceptions to the agreed owner." },
+                { title: "Quality checks", text: "Review responses against the approved rules and tone." },
+                { title: "Reporting", text: "Report volumes, issues, response activity and completed actions." },
             ],
             timeline: {
                 eyebrow: "Ready in four steps",
@@ -340,10 +324,9 @@ export const PAGES_B: ServicePageContent[] = [
         },
         proof: { title: "Guest-facing brands we know", slugs: ["destinatio_360", "tamarind-indian-fine-dining", "silver-masala"] },
         faq: [
-            { q: "Can we cover just evenings?", a: "Yes. Choose evenings, nights, weekends, seasonal peaks or the full day." },
-            { q: "Will replies sound like us?", a: "Yes. We write the playbook together and you approve the tone before we go live." },
-            { q: "What about complaints?", a: "We acknowledge quickly, follow your rules and escalate to your named contact." },
-            { q: "How do we see what happened?", a: "Every conversation stays in your systems, with a short report each morning." },
+            { q: "Can coverage be limited to selected hours?", a: "Yes. Coverage, channels and response targets are confirmed before publishing an availability promise." },
+            { q: "How are complex cases handled?", a: "They are logged and routed to the approved owner under the agreed escalation rules." },
+            { q: "How do you report activity?", a: "We provide reporting on intake, response, bookings, escalations and agreed measures." },
         ],
     },
 ];

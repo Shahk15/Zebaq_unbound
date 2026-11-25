@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -92,6 +92,7 @@ function LeaderCard({ m }: { m: Member }) {
                     <div className="min-w-0">
                         <h3 className="text-[clamp(22px,2.1vw,32px)] leading-tight">{m.name}</h3>
                         <p className="mt-2 text-[14px] leading-snug text-navy-2">{m.role}</p>
+                        {m.bio && <p className="mt-3 max-w-[38ch] text-[13px] leading-relaxed text-navy-2">{m.bio}</p>}
                     </div>
                     <LinkedInLogo href={m.linkedin} name={m.name} size={38} />
                 </div>
@@ -110,6 +111,7 @@ function MemberCard({ m }: { m: Member }) {
                     <div className="min-w-0">
                         <h3 className="text-[clamp(16px,1.25vw,20px)] leading-tight">{m.name}</h3>
                         <p className="mt-1 text-[12.5px] leading-snug text-navy-2">{m.role}</p>
+                        {m.bio && <p className="mt-2 hidden max-w-[28ch] text-[11.5px] leading-snug text-navy-2 lg:block">{m.bio}</p>}
                     </div>
                     <LinkedInLogo href={m.linkedin} name={m.name} size={30} />
                 </div>
@@ -120,6 +122,23 @@ function MemberCard({ m }: { m: Member }) {
 
 export default function TeamPage() {
     const rootRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const previousTitle = document.title;
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const previousDescription = meta?.content;
+        document.title = "Meet the ZEBAQ Team | Strategy, Marketing & Technology";
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = "Meet the people behind ZEBAQ’s digital strategy, SEO, lead generation, creative and technology delivery.";
+        return () => {
+            document.title = previousTitle;
+            if (meta && previousDescription !== undefined) meta.content = previousDescription;
+        };
+    }, []);
 
     useGSAP(
         () => {

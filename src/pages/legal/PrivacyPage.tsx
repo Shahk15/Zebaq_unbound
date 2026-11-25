@@ -59,6 +59,17 @@ export default function PrivacyPage() {
     const [activeSection, setActiveSection] = useState("information");
 
     useEffect(() => {
+        const previousTitle = document.title;
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const previousDescription = meta?.content;
+        document.title = "Privacy Policy | ZEBAQ";
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = "Read how ZEBAQ collects, uses and protects information submitted through our website, enquiry forms, booking process and analytics.";
+
         let startReveal: (() => void) | null = null;
         const revealContext = gsap.context(() => {
             const start = () => {
@@ -115,6 +126,8 @@ export default function PrivacyPage() {
             observer.disconnect();
             if (startReveal) window.removeEventListener("page:ready", startReveal);
             revealContext.revert();
+            document.title = previousTitle;
+            if (meta && previousDescription !== undefined) meta.content = previousDescription;
         };
     }, []);
 

@@ -21,8 +21,20 @@ export default function CareersPage() {
     useEffect(() => {
         const prev = document.body.style.backgroundColor;
         document.body.style.backgroundColor = "var(--color-off, #f7f6f1)";
+        const previousTitle = document.title;
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const previousDescription = meta?.content;
+        document.title = "Careers at ZEBAQ | Marketing, Creative & Technology";
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = "Explore careers at ZEBAQ across digital marketing, creative, web development and client delivery.";
         return () => {
             document.body.style.backgroundColor = prev;
+            document.title = previousTitle;
+            if (meta && previousDescription !== undefined) meta.content = previousDescription;
         };
     }, []);
 
@@ -192,6 +204,22 @@ export default function CareersPage() {
                                                     <div>
                                                         <p className="max-w-xl leading-relaxed text-glacier-2">{role.summary}</p>
                                                         <p className="mt-3 text-sm text-glacier-3">{role.type}</p>
+                                                        {role.responsibilities && (
+                                                            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                                                                <div>
+                                                                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-lemon">Responsibilities</p>
+                                                                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-glacier-2">
+                                                                        {role.responsibilities.map((item) => <li key={item}>• {item}</li>)}
+                                                                    </ul>
+                                                                </div>
+                                                                <div>
+                                                                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-lemon">Qualifications</p>
+                                                                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-glacier-2">
+                                                                        {role.qualifications.map((item) => <li key={item}>• {item}</li>)}
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                     <a href={CAREERS_EMAIL} className="group inline-flex shrink-0 items-center gap-3 rounded-full bg-lemon py-3 pl-5 pr-3 text-sm font-medium text-navy">
                                                         Apply now

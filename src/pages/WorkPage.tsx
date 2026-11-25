@@ -19,8 +19,20 @@ export default function WorkPage() {
     useEffect(() => {
         const prev = document.body.style.backgroundColor;
         document.body.style.backgroundColor = "var(--color-off, #f7f6f1)";
+        const previousTitle = document.title;
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const previousDescription = meta?.content;
+        document.title = "Digital Marketing & Website Case Studies | ZEBAQ";
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = "Explore ZEBAQ projects across business websites, ecommerce, hospitality and digital marketing.";
         return () => {
             document.body.style.backgroundColor = prev;
+            document.title = previousTitle;
+            if (meta && previousDescription !== undefined) meta.content = previousDescription;
         };
     }, []);
 

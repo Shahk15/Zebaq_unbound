@@ -19,8 +19,20 @@ export default function AboutPage() {
     useEffect(() => {
         const prev = document.body.style.backgroundColor;
         document.body.style.backgroundColor = "var(--color-off, #f7f6f1)";
+        const previousTitle = document.title;
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const previousDescription = meta?.content;
+        document.title = "About ZEBAQ | Digital Marketing & AI Agency";
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = "Meet ZEBAQ, a digital marketing and AI services team for service businesses, ecommerce brands and B2B companies.";
         return () => {
             document.body.style.backgroundColor = prev;
+            document.title = previousTitle;
+            if (meta && previousDescription !== undefined) meta.content = previousDescription;
         };
     }, []);
 

@@ -59,7 +59,7 @@ export default function SvcHero({ data }: { data: ServicePageContent["hero"] }) 
                     <NameField className="sv-name mt-8 max-w-[420px]" />
                     <div className="sv-cta mt-6 flex flex-wrap gap-3">
                         <Cta href="#demo" tone="navy">Show me how it works</Cta>
-                        <Cta href="#book" tone="ghost">Book a call</Cta>
+                        <Cta href="#book" tone="ghost">Book a Strategy Call</Cta>
                     </div>
                 </div>
 

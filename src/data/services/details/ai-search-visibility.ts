@@ -87,18 +87,14 @@ const content: {
 
     whatYouGet: {
         eyebrow: "What you get",
-        title: "Everything in scope, every month",
+        title: "A clear scope for search and AI visibility",
         items: [
-            { title: "AI visibility audit", text: "Where ChatGPT, Gemini, Perplexity and AI Overviews mention you today, and where competitors win." },
-            { title: "Technical SEO foundation", text: "Crawlability, speed, indexing and site health, so machines can read you cleanly." },
-            { title: "Entity and schema setup", text: "Structured data and entity signals that tell AI systems exactly who you are." },
-            { title: "Answer-first content", text: "Pages and articles written to be quoted: clear answers, proof and structure." },
-            { title: "llms.txt and crawler access", text: "Configuration that lets the right AI crawlers reach the right pages." },
-            { title: "Authority and citation building", text: "Mentions and links on the sources AI models already trust." },
-            { title: "Brand mention tracking", text: "Prompt-level tracking of how and where your brand appears in AI answers." },
-            { title: "Conversion-focused pages", text: "Landing pages that turn AI-driven visitors into enquiries." },
-            { title: "Analytics and attribution", text: "Dashboards that connect visibility to leads, not just to traffic." },
-            { title: "Monthly report and strategy call", text: "What shipped, what moved and what we do next, in plain language." },
+            { title: "Baseline and priority queries", text: "Establish a baseline and agree the queries, pages and outcomes that matter." },
+            { title: "Crawlability and indexing", text: "Audit crawlability and indexing, then improve priority pages and internal links." },
+            { title: "Visible business details", text: "Verify visible business details and keep names, services and locations consistent." },
+            { title: "Applicable structured data", text: "Add structured data where it helps search and AI systems understand the page." },
+            { title: "Search and AI referral tracking", text: "Track search activity and measurable AI referrals where they can be observed." },
+            { title: "Crawler policies", text: "Treat llms.txt as optional and distinguish Googlebot from OAI-SearchBot policies." },
         ],
         timeline: {
             eyebrow: "How the work unfolds",

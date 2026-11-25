@@ -54,19 +54,19 @@ export type JoinContent = {
 };
 
 export const ABOUT_HERO: AboutHeroContent = {
-    eyebrow: "About us",
-    line1: "We exist between what is",
-    line2: "and what is emerging",
-    text: "Strategy, technology and execution under one roof, built in Bhubaneswar for businesses around the world.",
+    eyebrow: "About ZEBAQ",
+    line1: "A hands-on digital marketing",
+    line2: "and AI team",
+    text: "ZEBAQ brings search, outreach, social content, web development and automation together in one delivery team. We start with how your customers find, evaluate and buy from you, then agree what your team needs us to own.",
     primary: { label: "Book a strategy call", href: "/contact" },
     secondary: { label: "Meet the team", href: "/team" },
 };
 
 export const WHO: WhoContent = {
     eyebrow: "Who we are",
-    line1: "One team for strategy,",
-    line2: "technology and growth",
-    lead: "A marketing and technology partner based in Bhubaneswar, working with businesses around the world. Strategy, design and engineering sit with one accountable team, so every decision leads to a result you can measure.",
+    line1: "One delivery team",
+    line2: "for growing businesses",
+    lead: "ZEBAQ is a marketing and technology team for service businesses, ecommerce brands and B2B companies. You get a named owner, an agreed scope, human review and reporting tied to the business goal.",
     chips: SERVICES.map((s) => s.short),
     figures: [
         { value: 30, suffix: "+", label: "Countries", note: "Businesses we support across borders" },
@@ -116,25 +116,25 @@ export const MAP: MapContent = {
 export const MISSION: MissionContent = {
     eyebrow: "Our mission",
     segments: [
-        { t: "To give every ambitious business the strength of a" },
-        { t: "full growth team:", em: true },
-        { t: "strategy, technology and execution under one roof, so each decision turns into" },
-        { t: "measurable growth.", em: true },
+        { t: "Bring strategy, search, outreach, social, web and automation into" },
+        { t: "one accountable delivery team,", em: true },
+        { t: "so every decision starts with the customer journey and ends with work tied to" },
+        { t: "a clear business goal.", em: true },
     ],
     tagline: "Innovate. Build. Grow.",
 };
 
 export const VALUES: ValuesContent = {
     eyebrow: "Our values",
-    title: "What we stand for",
-    text: "These are the habits we hold ourselves to, in every project and every conversation.",
+    title: "How clients see our work",
+    text: "A named owner, an agreed scope, human review and reporting tied to the goal.",
     items: [
-        { n: "01", title: "Outcomes over output", text: "We measure our work by what it changes for your business, not by how much we ship." },
-        { n: "02", title: "Clarity, always", text: "Plain language, honest timelines and reports you can actually read." },
-        { n: "03", title: "Craft in the details", text: "Small things decide whether work feels average or exceptional, so we sweat them." },
-        { n: "04", title: "Own it", text: "Whoever leads your work owns the result, including the parts that are hard." },
-        { n: "05", title: "Grow together", text: "We learn in the open, share what works and get better alongside our clients." },
-        { n: "06", title: "Stay curious", text: "Search, AI and the web keep changing. So do we, on purpose." },
+        { n: "01", title: "Named ownership", text: "Every engagement has a clear point of contact and an agreed owner for delivery." },
+        { n: "02", title: "Scope before activity", text: "We define the work, timeline and success measures before delivery begins." },
+        { n: "03", title: "Human review", text: "Specialists review strategy, customer-facing copy and workflows before they ship." },
+        { n: "04", title: "Reporting tied to goals", text: "We show progress against enquiries, bookings, sales or the measure agreed for the work." },
+        { n: "05", title: "One accountable team", text: "Strategy, execution and quality stay coordinated instead of moving between disconnected vendors." },
+        { n: "06", title: "Clear next decisions", text: "Clients see what changed, what we learned and what should happen next." },
     ],
 };
 

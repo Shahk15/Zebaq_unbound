@@ -42,6 +42,17 @@ export default function TermsPage() {
     const [activeSection, setActiveSection] = useState("terms");
 
     useEffect(() => {
+        const previousTitle = document.title;
+        let meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+        const previousDescription = meta?.content;
+        document.title = "Terms of Service | ZEBAQ";
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = "Review the terms that apply to the ZEBAQ website, services, account use and applicable agreements.";
+
         let startReveal: (() => void) | null = null;
         const revealContext = gsap.context(() => {
             const start = () => {
@@ -93,6 +104,8 @@ export default function TermsPage() {
             observer.disconnect();
             if (startReveal) window.removeEventListener("page:ready", startReveal);
             revealContext.revert();
+            document.title = previousTitle;
+            if (meta && previousDescription !== undefined) meta.content = previousDescription;
         };
     }, []);
 
