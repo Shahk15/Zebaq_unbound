@@ -25,8 +25,21 @@ export default function Testimonials() {
           </div>
           <div className="flex items-center gap-4" data-reveal>
             <span className="tabular-nums text-navy-2">0{i + 1} / 0{n}</span>
-            <button onClick={() => setI((i - 1 + n) % n)} aria-label="Previous testimonial" className="grid h-14 w-14 rotate-[-135deg] place-items-center rounded-full shadow-[inset_0_0_0_1px_rgba(10,31,68,.25)] transition hover:bg-navy hover:text-off"><Arrow /></button>
-            <button onClick={() => setI((i + 1) % n)} aria-label="Next testimonial" className="grid h-14 w-14 rotate-45 place-items-center rounded-full bg-navy text-off transition hover:bg-lemon hover:text-navy"><Arrow /></button>
+            {/* Only the arrow rotates, so the round button and its ring stay perfectly circular */}
+            <button
+              onClick={() => setI((i - 1 + n) % n)}
+              aria-label="Previous testimonial"
+              className="grid h-14 w-14 place-items-center rounded-full shadow-[inset_0_0_0_1px_rgba(10,31,68,.25)] transition-colors duration-300 hover:bg-navy hover:text-off"
+            >
+              <span className="block rotate-[-135deg]"><Arrow /></span>
+            </button>
+            <button
+              onClick={() => setI((i + 1) % n)}
+              aria-label="Next testimonial"
+              className="grid h-14 w-14 place-items-center rounded-full bg-navy text-off transition-colors duration-300 hover:bg-lemon hover:text-navy"
+            >
+              <span className="block rotate-45"><Arrow /></span>
+            </button>
           </div>
         </div>
 
@@ -40,7 +53,8 @@ export default function Testimonials() {
             <span className="grid h-14 w-14 place-items-center rounded-full bg-navy text-lg font-semibold text-off">{t.name[0]}</span>
             <span>
               <span className="block text-lg font-semibold">{t.name}<Verify on={t.verify} /></span>
-              <span className="block text-sm text-navy-2">{t.company} · {t.service}</span>
+              {/* Skips an empty company so there is never a stray separator */}
+              <span className="block text-sm text-navy-2">{[t.company, t.service].filter(Boolean).join(" · ")}</span>
             </span>
           </figcaption>
           <div className="relative mt-10 flex gap-2">

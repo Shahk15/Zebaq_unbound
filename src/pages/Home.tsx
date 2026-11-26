@@ -155,6 +155,7 @@ export default function Home({ play }: HomeProps) {
             if (item.company === "Add company") item.company = "";
         });
 
+        // Tip: rename these files without spaces (for example review-1.mp4) and compress them with faststart
         VIDEOS.splice(0, VIDEOS.length,
             {
                 name: "Client name",
@@ -306,23 +307,10 @@ export default function Home({ play }: HomeProps) {
                     copy.textContent = "Hear from clients about how we work, what we delivered and what changed for their business.";
                     heading.parentElement?.insertAdjacentElement("afterend", copy);
                 }
-
-                const attribution = testimonials.querySelectorAll("figcaption span.block.text-sm.text-navy-2");
-                attribution.forEach((line) => {
-                    const text = line.textContent?.trim() || "";
-                    if (text.startsWith("Add company")) {
-                        const parts = text.split(" · ");
-                        line.textContent = parts.slice(1).join(" · ");
-                    } else if (text.startsWith(" · ")) {
-                        line.textContent = text.replace(/^ · /, "");
-                    }
-                });
+                // The "company · service" line is now built inside Testimonials.tsx, so no DOM patching here
             }
 
-            const videoTestimonials = root.current?.querySelector<HTMLElement>("[data-index='09']");
-            if (videoTestimonials) {
-                videoTestimonials.style.display = "none";
-            }
+            // The video section (data-index 09) stays visible. It is styled in the effect below.
 
             const tech = root.current?.querySelector<HTMLElement>("[data-index='10']");
             if (tech) {
@@ -334,7 +322,8 @@ export default function Home({ play }: HomeProps) {
 
             const impact = root.current?.querySelector<HTMLElement>("[data-index='04']");
             if (impact) {
-                const paragraph = impact.querySelector("[data-reveal].max-w-[310px]");
+                // Class names with brackets are matched through the class attribute, not as a class selector
+                const paragraph = impact.querySelector("[data-reveal][class*='max-w-[310px]']");
                 if (paragraph) {
                     paragraph.textContent = "We work with businesses across North America, the UK, Europe, the Middle East and Asia-Pacific. Your plan reflects where your buyers search, how they compare providers and what moves them to enquire or buy.";
                 }
