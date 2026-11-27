@@ -185,13 +185,13 @@ export default function Home({ play }: HomeProps) {
             { group: "Website and ecommerce", items: ["Shopify", "WordPress", "Webflow", "WooCommerce"] },
         );
 
-        Object.assign(WHY_SIDES.left, { tag: "Disconnected marketing", line: "Work that cracks" });
-        Object.assign(WHY_SIDES.right, { tag: "Connected growth", line: "Search, content and follow-up working together" });
+        Object.assign(WHY_SIDES.left, { tag: "Without us", line: "Disconnected marketing" });
+        Object.assign(WHY_SIDES.right, { tag: "With us", line: "Search, content and follow-up working together" });
         WHY_ITEMS.splice(0, WHY_ITEMS.length,
-            { title: "Strategy before design", text: "Start with the business goal and agree what a qualified enquiry, booking or sale looks like." },
-            { title: "Named ownership", text: "Get a named point of contact and a clear delivery plan." },
-            { title: "AI with human review", text: "Specialists check strategy, customer-facing copy and workflows." },
-            { title: "Measurement", text: "Review search visibility, qualified conversations, bookings or sales according to scope." },
+            { title: "Start with the business goal", text: "Agree what a qualified enquiry, booking or sale looks like." },
+            { title: "Know who owns the work", text: "Get a named point of contact and a clear delivery plan." },
+            { title: "Use AI with human review", text: "Specialists check strategy, customer-facing copy and workflows." },
+            { title: "Measure what happened", text: "Review search visibility, qualified conversations, bookings or sales according to scope." },
         );
 
         MODELS.splice(0, MODELS.length,

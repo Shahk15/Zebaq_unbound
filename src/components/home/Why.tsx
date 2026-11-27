@@ -291,7 +291,7 @@ export default function Why() {
           <figure
             className="why-statue-l relative m-0 min-[821px]:absolute min-[821px]:inset-y-0 min-[821px]:left-0 min-[821px]:w-[min(44vw,720px)] [@media(min-width:821px)_and_(max-width:1100px)]:w-[35vw]"
           >
-            <div className="mb-3 min-[821px]:absolute min-[821px]:left-[4.4vw] min-[821px]:top-[clamp(92px,12vh,128px)] min-[821px]:z-10 min-[821px]:mb-0">
+            <div className="mb-3 min-[821px]:absolute min-[821px]:left-[4.4vw] min-[821px]:top-[clamp(92px,12vh,128px)] min-[821px]:z-10 min-[821px]:mb-0 min-[821px]:max-w-[min(19vw,340px)]">
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-lemon">
                 [ {WHY_SIDES.left.tag} ]
               </p>
@@ -318,7 +318,7 @@ export default function Why() {
           <figure
             className="why-statue-r relative m-0 min-[821px]:absolute min-[821px]:inset-y-0 min-[821px]:right-0 min-[821px]:w-[min(44vw,720px)] [@media(min-width:821px)_and_(max-width:1100px)]:w-[35vw]"
           >
-            <div className="mb-3 text-right min-[821px]:absolute min-[821px]:right-[4.4vw] min-[821px]:top-[clamp(92px,12vh,128px)] min-[821px]:z-10 min-[821px]:mb-0">
+            <div className="mb-3 text-right min-[821px]:absolute min-[821px]:right-[4.4vw] min-[821px]:top-[clamp(92px,12vh,128px)] min-[821px]:z-10 min-[821px]:mb-0 min-[821px]:max-w-[min(19vw,340px)]">
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-lemon">
                 [ {WHY_SIDES.right.tag} ]
               </p>
@@ -350,7 +350,7 @@ export default function Why() {
 
         {/* ===== Center: heading and four reasons ===== */}
         <div
-          className=" mt-5 relative z-10 mx-auto flex w-full max-w-[400px] flex-1 flex-col items-center justify-center px-6 py-14 text-center min-[821px]:py-0 [@media(min-width:821px)_and_(max-height:700px)]:justify-start [@media(min-width:821px)_and_(max-height:700px)]:pt-2"
+          className=" mt-5 relative z-10 mx-auto flex w-full max-w-[400px] flex-1 flex-col items-center justify-center px-6 py-14 text-center min-[821px]:py-0 [@media(min-width:821px)_and_(max-height:700px)]:justify-start [@media(min-width:821px)_and_(max-height:700px)]:pt-7"
         >
           <p className="eyebrow text-glacier-3" data-reveal>
             Why Zebaq
@@ -360,9 +360,9 @@ export default function Why() {
             className="mt-5 text-[clamp(38px,4.4vw,68px)] font-medium leading-[1] tracking-[-0.045em] text-off [@media(min-width:821px)_and_(max-height:700px)]:mt-3 [@media(min-width:821px)_and_(max-height:700px)]:text-[clamp(36px,4vw,52px)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            <Split text="One team from" />
+            <Split text="One Team," />
              <br />
-            <Split text="strategy to delivery" dot /> 
+            <Split text="End-to-End" dot /> 
           </h2>
 
           <ol className="why-list mt-9 w-full [@media(min-width:821px)_and_(max-height:700px)]:mt-4">
