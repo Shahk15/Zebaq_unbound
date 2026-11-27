@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { HERO } from "../../data/home/hero";
@@ -7,11 +7,16 @@ import { MARKETS, STATS } from "../../data/home/impact";
 import { Dot, Pill, Verify } from "../common/ui";
 import { DotField } from "../common/fx";
 
+// words of the statement shown on the navy veil
+const TRUTH = "Your website gets visitors. Your social gets likes. Your ads get clicks. So why isn't revenue keeping up?".split(" ");
+// words of the answer that follows the statement
+const ANSWER = "The problem isn't the channel. It's the missing connection between them".split(" ");
+
 // 02 — Hero. Centred headline over a rearing marble horse mended with gold (kintsugi).
 // Cursor: horse turns toward you, marble gilds under the light, seams burn molten,
 // dot field bends away; click floods the horse with gold + sends a ripple.
 // Scroll (pinned): horse charges toward camera, the two words part, then the screen
-// fades to navy and carries you into the next (navy) section.
+// fades to navy and the statement lights up word by word.
 export default function Hero({ play }: { play: boolean }) {
   const root = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
@@ -96,14 +101,22 @@ export default function Hero({ play }: { play: boolean }) {
     () => {
       const mm = gsap.matchMedia();
       mm.add("(min-width: 768px)", () => {
-        gsap.timeline({ scrollTrigger: { trigger: root.current, start: "top top", end: "+=130%", scrub: 0.8, pin: true } })
+        gsap.timeline({ scrollTrigger: { trigger: root.current, start: "top top", end: "+=500%", scrub: 0.8, pin: true } })
           .to(".hz-horse-wrap", { scale: 1.6, yPercent: -6, ease: "none" }, 0)
           .to(".hz-left", { xPercent: -30, opacity: 0, ease: "none" }, 0)
           .to(".hz-right", { xPercent: 30, opacity: 0, ease: "none" }, 0)
           .to(".hz-tail, .hz-band", { y: -60, opacity: 0, ease: "none" }, 0)
           .to(".hz-field", { opacity: 0, ease: "none" }, 0)
           .fromTo(".hz-veil", { opacity: 0 }, { opacity: 1, ease: "power1.inOut" }, 0.4)
-          .from(".hz-veil-word", { yPercent: 60, opacity: 0, ease: "none" }, 0.75);
+          // question lights up word by word
+          .fromTo(".hz-word", { opacity: 0.14 }, { opacity: 1, ease: "none", duration: 0.2, stagger: 0.1 }, 0.9)
+          // hold, then the question lifts away
+          .to(".hz-question", { y: -60, opacity: 0, duration: 0.4, ease: "power1.in" }, "+=0.3")
+          // answer rises into the same spot and lights up
+          .fromTo(".hz-answer", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power1.out" })
+          .fromTo(".hz-answer-word", { opacity: 0.14 }, { opacity: 1, ease: "none", duration: 0.2, stagger: 0.1 })
+          // short hold before unpinning
+          .to({}, { duration: 0.4 });
       });
     },
     { scope: root },
@@ -192,11 +205,37 @@ export default function Hero({ play }: { play: boolean }) {
         </div>
       </div>
 
-      {/* full-screen navy fade that carries you into the next section */}
-      <div className="hz-veil pointer-events-none absolute inset-0 z-20 grid place-items-center bg-ink" style={{ opacity: 0 }}>
-        <p className="hz-veil-word text-center text-[clamp(28px,4vw,56px)] font-medium tracking-[-0.04em] text-off" style={{ fontFamily: "var(--font-display)" }}>
-          Trusted by brands <span className="text-lemon">across industries</span>
-        </p>
+      {/* full-screen navy veil: question first, then the answer in the same spot */}
+      <div className="hz-veil pointer-events-none absolute inset-0 z-20 flex items-center bg-ink" style={{ opacity: 0 }}>
+        <div className="wrap grid w-full items-center">
+          <div className="hz-question [grid-area:1/1]">
+            <p className="eyebrow text-off">The uncomfortable truth</p>
+            <p
+              className="mt-[5vh] text-[clamp(36px,min(6.2vw,11vh),108px)] font-medium leading-[1.06] tracking-[-0.05em] text-off md:max-w-[18ch]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {TRUTH.map((w, i) => (
+                <Fragment key={i}>
+                  <span className={`hz-word inline-block ${w === "revenue" ? "text-lemon" : ""}`}>{w}</span>{" "}
+                </Fragment>
+              ))}
+            </p>
+          </div>
+
+          <p
+            className="hz-answer max-w-[18ch] text-[clamp(36px,min(6.2vw,11vh),108px)] font-medium leading-[1.12] tracking-[-0.05em] text-off [grid-area:1/1]"
+            style={{ fontFamily: "var(--font-display)", opacity: 0 }}
+          >
+            {ANSWER.map((w, i) => (
+              <Fragment key={i}>
+                <span className={`hz-answer-word inline-block ${w === "missing" || w === "connection" ? "text-lemon" : ""}`}>
+                  {w}
+                  {i === ANSWER.length - 1 && <span className="text-lemon">.</span>}
+                </span>{" "}
+              </Fragment>
+            ))}
+          </p>
+        </div>
       </div>
     </section>
   );
