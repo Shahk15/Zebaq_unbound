@@ -1,4 +1,4 @@
-export const LOGOS_TITLE = "Trusted by Brands Across Industries";
+export const LOGOS_TITLE = "Trusted by businesses across industries";
 export const INDUSTRIES_VERIFY = true;
 export const INDUSTRIES = [
   "Luxury & Jewellery", "E-commerce & Retail", "Education & EdTech", "Insurance & Finance",
