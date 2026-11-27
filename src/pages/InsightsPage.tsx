@@ -1,30 +1,8 @@
 import { useEffect, useRef } from "react";
 import Header from "../components/layout/Header";
 import { Arrow, Split } from "../components/common/ui";
+import { INSIGHT_ARTICLES } from "../data/insights";
 import { useSiteMotion } from "../hooks/useSiteMotion";
-
-const ARTICLES = [
-    {
-        title: "SEO vs AEO vs GEO: what to prioritize first",
-        summary: "Understand how search engines and AI assistants discover, interpret and cite your business.",
-        category: "AI search",
-    },
-    {
-        title: "What counts as a qualified B2B lead?",
-        summary: "Agree role, company, need and handoff criteria before measuring outreach results.",
-        category: "B2B lead generation",
-    },
-    {
-        title: "How to plan social content for an ecommerce launch",
-        summary: "Connect product discovery, customer stories and a clear buying action across the launch calendar.",
-        category: "Social media",
-    },
-    {
-        title: "When should an AI agent hand off to a person?",
-        summary: "Set escalation rules for uncertain requests, sensitive topics and exceptions that need human judgment.",
-        category: "AI automation",
-    },
-];
 
 export default function InsightsPage() {
     const root = useRef<HTMLDivElement>(null);
@@ -69,8 +47,8 @@ export default function InsightsPage() {
                         <h2 className="mt-8 max-w-[14ch] text-[48px] font-medium leading-[1] tracking-[-0.05em] md:text-[72px]">
                             <Split text="Guides for the decisions that come next" dot />
                         </h2>
-                        <div className="mt-12 grid gap-4 md:grid-cols-2" data-flip>
-                            {ARTICLES.map((article) => (
+                        <div className="mt-12 grid gap-4 md:grid-cols-2">
+                            {INSIGHT_ARTICLES.map((article) => (
                                 <article key={article.title} className="group rounded-[28px] border border-navy/10 bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-lemon-deep/40 hover:shadow-[0_24px_60px_-32px_rgba(10,31,68,.35)] md:p-9">
                                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-2">{article.category}</p>
                                     <h3 className="mt-5 max-w-[18ch] text-[28px] font-medium leading-[1.05] tracking-[-0.04em] md:text-[36px]">{article.title}</h3>
