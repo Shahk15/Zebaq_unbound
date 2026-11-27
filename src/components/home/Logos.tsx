@@ -127,12 +127,12 @@ export default function Logos() {
               Clients & industries
             </p>
 
-            <h2 className="t-xl mt-8 max-w-[12ch]">
+            <h2 className="t-xl mt-8">
               <Split text={LOGOS_TITLE.replace(/\.$/, "")} dot />
             </h2>
           </div>
 
-          <div className="flex gap-12 lg:justify-start" data-reveal>
+          <div className="flex gap-12 lg:justify-end" data-reveal>
             {[industries, countries].filter(Boolean).map((s) => (
               <div key={s!.label}>
                 <p
