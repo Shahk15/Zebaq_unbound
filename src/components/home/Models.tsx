@@ -38,7 +38,7 @@ export default function Models() {
               </div>
 
               <div>
-                <h3 className="text-2xl font-semibold tracking-tight">{m.t}</h3>
+                <h3 className="text-[clamp(20px,1.7vw,24px)] font-semibold leading-[1.15] tracking-[-0.02em]">{m.t}</h3>
                 <p className="mt-3 leading-relaxed text-navy-2 transition-colors duration-500 group-hover:text-navy">{m.d}</p>
 
                 {/* CTA on every card */}

@@ -17,7 +17,7 @@ export default function Audiences() {
       </div>
       <div className="relative">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-navy-2 group-hover:text-lemon">{a.flagship}</p>
-        <h3 className="mt-4 text-[clamp(32px,3vw,48px)] tracking-[-0.045em]">{a.t}</h3>
+        <h3 className="mt-4 text-[clamp(30px,2.8vw,44px)] leading-[1.1] tracking-[-0.03em]">{a.t}</h3>
         <p className="mt-4 leading-relaxed text-navy-2 group-hover:text-glacier-2">{a.d}</p>
         <div className="mt-6 flex flex-wrap gap-2">{a.tags.map((t) => <span key={t} className="chip">{t}</span>)}</div>
       </div>

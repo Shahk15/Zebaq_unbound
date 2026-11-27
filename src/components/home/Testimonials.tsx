@@ -46,7 +46,7 @@ export default function Testimonials() {
         <figure className="relative mt-16 overflow-hidden rounded-[32px] bg-off p-8 md:p-16" data-zoom>
           <span className="pointer-events-none absolute -right-6 -top-16 select-none text-[340px] leading-none text-glacier-2" style={{ fontFamily: "var(--font-display)" }} aria-hidden="true">”</span>
           <div className="relative flex gap-1 text-lemon-deep" aria-label="5 out of 5">★★★★★</div>
-          <blockquote key={i} className="relative mt-8 max-w-[28ch] animate-[fadein_.6s_ease] text-[clamp(30px,4vw,64px)] font-medium leading-[1.06] tracking-[-0.045em]" style={{ fontFamily: "var(--font-display)" }}>
+          <blockquote key={i} className="relative mt-8 max-w-[28ch] animate-[fadein_.6s_ease] text-[clamp(28px,3.7vw,60px)] font-medium leading-[1.08] tracking-[-0.03em]" style={{ fontFamily: "var(--font-display)" }}>
             “{t.quote}”
           </blockquote>
           <figcaption className="relative mt-12 flex flex-wrap items-center gap-4">

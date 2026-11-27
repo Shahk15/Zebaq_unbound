@@ -60,7 +60,7 @@ export default function Compare() {
             {WHY.points.map((p, i) => (
               <li key={p.t} className="cmp-pt border-t border-navy/10 py-5 text-center">
                 <p className="text-xs font-semibold text-navy-2">0{i + 1}</p>
-                <h3 className="mt-2 text-xl font-semibold tracking-tight">{p.t}</h3>
+                <h3 className="mt-2 text-[clamp(18px,1.5vw,20px)] font-semibold leading-[1.15] tracking-[-0.02em]">{p.t}</h3>
                 <p className="mt-2 text-[15px] leading-relaxed text-navy-2">{p.d}</p>
               </li>
             ))}

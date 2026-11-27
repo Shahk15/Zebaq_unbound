@@ -94,7 +94,7 @@ export default function Process() {
             {PROCESS.map((p, i) => (
               <li key={p.t} className="pr-step">
                 <p className="text-sm text-glacier-3">Step 0{i + 1}</p>
-                <h3 className="mt-4 text-4xl tracking-tight">{p.t}</h3>
+                <h3 className="mt-4 text-[clamp(30px,2.6vw,38px)] leading-[1.1] tracking-[-0.03em]">{p.t}</h3>
                 <p className="mt-4 max-w-[30ch] leading-relaxed text-glacier-3">{p.d}</p>
               </li>
             ))}

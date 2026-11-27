@@ -121,18 +121,18 @@ export default function Logos() {
       className="grain relative overflow-hidden bg-ink text-off"
     >
       <div className="wrap pt-[clamp(100px,11vw,160px)]">
-        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-end">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
           <div>
             <p className="eyebrow text-glacier-3" data-reveal>
               Clients & industries
             </p>
 
-            <h2 className="t-xl mt-8 max-w-[19ch]">
+            <h2 className="t-xl mt-8 max-w-[12ch]">
               <Split text={LOGOS_TITLE.replace(/\.$/, "")} dot />
             </h2>
           </div>
 
-          <div className="flex gap-12 lg:justify-end" data-reveal>
+          <div className="flex gap-12 lg:justify-start" data-reveal>
             {[industries, countries].filter(Boolean).map((s) => (
               <div key={s!.label}>
                 <p

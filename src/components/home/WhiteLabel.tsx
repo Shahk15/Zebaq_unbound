@@ -107,7 +107,7 @@ export default function WhiteLabel() {
               <p className="eyebrow text-navy-2">For marketing & development agencies</p>
             </div>
 
-            <h2 className="mx-auto mt-5 max-w-[22ch] text-[clamp(32px,4.2vw,68px)] leading-[0.98] tracking-[-0.05em] text-navy">              {words.map((w, i) => (
+            <h2 className="mx-auto mt-5 max-w-[22ch] text-[clamp(30px,3.9vw,64px)] leading-[1.02] tracking-[-0.03em] text-navy">              {words.map((w, i) => (
               <Fragment key={i}>
                 <span className="sw">
                   <span className="wl-w relative">

@@ -584,7 +584,7 @@ export default function Home({ play }: HomeProps) {
     );
 
     return (
-        <div ref={root} data-copy-ready={copyReady}>
+        <div ref={root} data-copy-ready={copyReady} data-homepage>
             <Header />
             <main>
                 <Hero play={play} />

@@ -357,7 +357,7 @@ export default function Why() {
           </p>
 
           <h2
-            className="mt-5 text-[clamp(38px,4.4vw,68px)] font-medium leading-[1] tracking-[-0.045em] text-off [@media(min-width:821px)_and_(max-height:700px)]:mt-3 [@media(min-width:821px)_and_(max-height:700px)]:text-[clamp(36px,4vw,52px)]"
+            className="mt-5 text-[clamp(36px,4vw,64px)] font-medium leading-[1.06] tracking-[-0.03em] text-off [@media(min-width:821px)_and_(max-height:700px)]:mt-3 [@media(min-width:821px)_and_(max-height:700px)]:text-[clamp(34px,3.7vw,50px)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             <Split text="One Team," />

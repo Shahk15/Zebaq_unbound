@@ -54,7 +54,7 @@ function CaseCard({ c, i }: { c: CaseStudy; i: number }) {
 
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-[clamp(22px,2.2vw,34px)]">
           <div className="min-w-0">
-            <h3 className="text-[clamp(28px,2.6vw,42px)] tracking-[-0.045em]">{c.title}</h3>
+            <h3 className="text-[clamp(26px,2.4vw,40px)] leading-[1.1] tracking-[-0.03em]">{c.title}</h3>
             <p className={`mt-3 max-w-[34ch] text-[15px] leading-[1.6] ${dark ? "text-off/70" : "text-navy-2"}`}>{c.text}</p>
           </div>
           <span

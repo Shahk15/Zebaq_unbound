@@ -126,7 +126,7 @@ export default function Tech() {
               className="tech-card group relative overflow-hidden rounded-[28px] border border-navy/10 bg-glacier/50 p-7 transition-all duration-500 hover:-translate-y-1 hover:bg-glacier hover:shadow-[0_30px_60px_-30px_rgba(10,31,68,.35)] md:p-9"
             >
               <div className="flex items-start justify-between gap-4">
-                <p className="tech-title text-[clamp(26px,2.4vw,36px)] font-medium tracking-[-0.04em]" style={{ fontFamily: "var(--font-display)" }}>
+                <p className="tech-title text-[clamp(24px,2.2vw,34px)] font-medium leading-[1.1] tracking-[-0.03em]" style={{ fontFamily: "var(--font-display)" }}>
                   {g.group}
                 </p>
                 <span className="tech-num text-sm font-medium text-navy-2">0{i + 1}</span>

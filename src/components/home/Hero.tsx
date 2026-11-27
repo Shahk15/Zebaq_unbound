@@ -187,7 +187,7 @@ export default function Hero({ play }: { play: boolean }) {
           <p className="hz-tail hz-fade eyebrow mx-auto text-center">{HERO.eyebrow}</p>
 
           <h1 className="mt-[1vh] text-center" aria-label={`${HERO.h1.join(" ")} ${HERO.h1Tail}`}>
-            <span className="flex flex-wrap justify-center gap-x-[0.24em] text-[clamp(56px,min(12vw,17.6vh),220px)] font-medium leading-[0.86] tracking-[-0.06em]" style={{ fontFamily: "var(--font-display)" }}>
+            <span className="flex flex-wrap justify-center gap-x-[0.24em] text-[clamp(52px,min(11.2vw,16.2vh),205px)] font-medium leading-[0.98] tracking-[-0.025em] [&_.sw]:mb-[-0.12em] [&_.sw]:pb-[0.12em]" style={{ fontFamily: "var(--font-display)" }}>
               <span className="hz-line hz-left" data-split><span className="sw"><span>AI-Driven<Dot /></span></span></span>
               <span className="hz-line hz-right" data-split><span className="sw"><span>Human-Led<Dot /></span></span></span>
             </span>

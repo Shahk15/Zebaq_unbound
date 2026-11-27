@@ -196,6 +196,21 @@
 .svc-caret::after { content: ""; display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -0.12em; background: currentColor; animation: svc-blink 1s step-end infinite; }
 @media (prefers-reduced-motion: reduce) { .svc-pop, .svc-bob, .svc-drop, .svc-caret::after { animation: none; } }
 
+/* Homepage-only typography rhythm. Keep this scoped until it is approved across the wider site. */
+[data-homepage] section:not([data-hero]) h1,
+[data-homepage] section:not([data-hero]) h2 {
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+[data-homepage] section:not([data-hero]) h3 {
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+[data-homepage] .t-fit { font-size: clamp(34px, min(5.8vw, 9.2vh), 128px); line-height: 1.08; letter-spacing: -0.028em; }
+[data-homepage] .t-xl { font-size: clamp(44px, 7vw, 112px); line-height: 1.06; letter-spacing: -0.03em; }
+[data-homepage] .t-l { font-size: clamp(38px, 5.4vw, 92px); line-height: 1.07; letter-spacing: -0.03em; }
+[data-homepage] .t-m { font-size: clamp(28px, 3.5vw, 56px); line-height: 1.08; letter-spacing: -0.028em; }
+
 /* Booking window: sits above the custom cursor, so it uses the normal one */
 .book-dialog::backdrop { background: rgb(7 22 49 / .72); backdrop-filter: blur(6px); }
 .book-dialog[open] { animation: svc-pop .45s cubic-bezier(.2,.9,.25,1) both; }
