@@ -411,7 +411,7 @@ export default function Home({ play }: HomeProps) {
                     calendar.href = "https://calendly.com/zebaq/30min";
                     calendar.target = "_blank";
                     calendar.rel = "noreferrer";
-                    calendar.className = "mt-7 inline-flex items-center rounded-full bg-lemon px-6 py-3 text-sm font-semibold text-navy";
+                    calendar.className = "mt-7 mr-2 inline-flex items-center rounded-full bg-lemon px-6 py-3 text-sm font-semibold text-navy";
                     calendar.textContent = "Book a Strategy Call";
                     brief.insertAdjacentElement("afterend", calendar);
                 }
