@@ -4,6 +4,13 @@ export const FINAL = {
   cta: "Book a Strategy Call",
 };
 
+// H18 footer content
+export const FOOTER = {
+  title: "ZEBAQ digital marketing and AI services",
+  sub: "SEO and AI search visibility, B2B lead generation, social media management and AI automation for service businesses, ecommerce brands and B2B companies.",
+  cta: { label: "Book a Strategy Call", href: "#contact" },
+};
+
 export const FOOTER_LINKS = [
   { label: "Services", href: "#services" },
   { label: "Company", href: "/about" },

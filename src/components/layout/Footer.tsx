@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { FOOTER_LINKS } from "../../data/home/closing";
+import { FOOTER, FOOTER_LINKS } from "../../data/home/closing";
 import { SERVICES } from "../../data/shared/services";
 import { SITE } from "../../data/home/site";
+import { Pill } from "../common/ui";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -48,8 +49,12 @@ export default function Footer() {
                 <div>
                     <img src="/images/logo/full-logo.png" alt="ZEBAQ" className="h-9 w-auto brightness-0 invert" />
                     <p className="mt-6 text-xl tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-                        {SITE.positioning}
+                        {FOOTER.title}
                     </p>
+                    <p className="mt-3 text-sm text-glacier-3">{FOOTER.sub}</p>
+                    <Pill href={link(FOOTER.cta.href)} variant="lemon" className="mt-5">
+                        {FOOTER.cta.label}
+                    </Pill>
                     <div className="mt-8 space-y-3 text-sm text-glacier-3">
                         {SITE.offices.map((o) => (
                             <p key={o.entity}>
