@@ -21,7 +21,7 @@ export default function Testimonials() {
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <p className="eyebrow" data-reveal>Client stories</p>
-            <h2 className="t-xl mt-8"><Split text="In their words" dot /></h2>
+            <h2 className="t-xl mt-8"><Split text="What our clients say" dot /></h2>
           </div>
           <div className="flex items-center gap-4" data-reveal>
             <span className="tabular-nums text-navy-2">0{i + 1} / 0{n}</span>

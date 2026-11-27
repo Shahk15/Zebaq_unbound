@@ -350,7 +350,7 @@ export default function Why() {
 
         {/* ===== Center: heading and four reasons ===== */}
         <div
-          className="relative z-10 mx-auto flex w-full max-w-[400px] flex-1 flex-col items-center justify-center px-6 py-14 text-center min-[821px]:py-0 [@media(min-width:821px)_and_(max-height:700px)]:justify-start [@media(min-width:821px)_and_(max-height:700px)]:pt-5"
+          className=" mt-5 relative z-10 mx-auto flex w-full max-w-[400px] flex-1 flex-col items-center justify-center px-6 py-14 text-center min-[821px]:py-0 [@media(min-width:821px)_and_(max-height:700px)]:justify-start [@media(min-width:821px)_and_(max-height:700px)]:pt-2"
         >
           <p className="eyebrow text-glacier-3" data-reveal>
             Why Zebaq
@@ -360,9 +360,9 @@ export default function Why() {
             className="mt-5 text-[clamp(38px,4.4vw,68px)] font-medium leading-[1] tracking-[-0.045em] text-off [@media(min-width:821px)_and_(max-height:700px)]:mt-3 [@media(min-width:821px)_and_(max-height:700px)]:text-[clamp(36px,4vw,52px)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            <Split text="Why brands" />
-            <br />
-            <Split text="choose us" dot />
+            <Split text="One team from" />
+             <br />
+            <Split text="strategy to delivery" dot /> 
           </h2>
 
           <ol className="why-list mt-9 w-full [@media(min-width:821px)_and_(max-height:700px)]:mt-4">

@@ -11,7 +11,7 @@ export default function Faq() {
       <div className="wrap grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <p className="eyebrow" data-reveal>FAQ</p>
-          <h2 className="t-xl mt-8"><Split text="Straight answers" dot /></h2>
+          <h2 className="t-xl mb-10"><Split text="Questions businesses ask before working with ZEBAQ" dot /></h2>
         </div>
         <div className="border-b border-navy/10" data-rise>
           {FAQ.map((f, i) => {

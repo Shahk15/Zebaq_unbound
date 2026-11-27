@@ -175,7 +175,7 @@ export default function Work() {
         <div>
           <p className="eyebrow" data-reveal>Featured work & results</p>
           <h2 className="t-xl mt-8">
-            <Split text="Selected work" dot />
+            <Split text="See what we’ve built for businesses like yours" dot />
           </h2>
         </div>
         <p className="max-w-xs text-lg leading-relaxed text-navy-2" data-reveal>

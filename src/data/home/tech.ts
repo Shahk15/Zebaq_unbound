@@ -1,4 +1,4 @@
-export const TECH_TITLE = "Technology That Adapts to Your Business";
+export const TECH_TITLE = "Connect the tools your team already uses";
 export const TECH = [
   { group: "CRM & Funnels", items: ["HubSpot", "GoHighLevel", "Salesforce", "ClickFunnels"] },
   { group: "AI & Automation", items: ["OpenAI", "Zapier", "Make", "n8n"] },

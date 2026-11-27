@@ -11,7 +11,7 @@ export default function Models() {
     >
       <div className="wrap">
         <p className="eyebrow" data-reveal>Flexible engagement</p>
-        <h2 className="t-xl mt-8"><Split text="Work with us your way" dot /></h2>
+        <h2 className="t-xl mt-8"><Split text="Choose the support your team needs" dot /></h2>
         <div className="mt-24 grid gap-4 md:grid-cols-2 lg:grid-cols-4" data-flip>
           {MODELS.map((m, i) => (
             <div

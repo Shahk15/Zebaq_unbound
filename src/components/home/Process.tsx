@@ -74,7 +74,7 @@ export default function Process() {
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <div>
             <p className="eyebrow text-glacier-3" data-reveal>Our process</p>
-            <h2 className="t-xl mt-8"><Split text="From first call" /><br /><Split text="to growth" dot /></h2>
+            <h2 className="t-xl mt-8"><Split text="What happens" /><br /><Split text="after you book" dot /></h2>
           </div>
           <div className="max-w-sm" data-reveal>
             <p className="text-lg leading-relaxed text-glacier-3">No mystery and no hard sell. You know exactly where you stand after every step.</p>

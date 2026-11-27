@@ -74,9 +74,10 @@ export default function Home({ play }: HomeProps) {
 
         Object.assign(HERO, {
             eyebrow: "AI-powered digital marketing. Human-led strategy.",
-            h1: ["AI-powered digital marketing.", "Human-led strategy."],
+            h1: ["AI digital marketing.", "Human-led strategy."],
             h1Tail: "Built around your growth goal.",
-            sub: "ZEBAQ helps service businesses, ecommerce and product brands, and B2B teams get discovered on Google and AI search, build a qualified pipeline, manage social media and automate lead follow-up.",
+            sub: "ZEBAQ helps businesses boost AI search visibility, generate quality leads, manage social media, and automate follow-ups.",
+            // sub: "ZEBAQ helps service businesses, ecommerce and product brands, and B2B teams get discovered on Google and AI search, build a qualified pipeline, manage social media and automate lead follow-up.",
             primary: "Book a Strategy Call",
             secondary: "Explore Services",
         });
@@ -244,16 +245,10 @@ export default function Home({ play }: HomeProps) {
         };
 
         const applySectionCopy = () => {
-            replaceText("AI-Driven", "AI-powered digital marketing");
+             replaceText("AI-Driven", "AI digital marketing");
+            // replaceText("AI-Driven", "AI-powered digital marketing");
             replaceText("Human-Led", "Human-led strategy");
             replaceText("Solutions. Strategies. Built around", "Built around");
-            replaceText("Trusted by businesses across industries", "Trusted by businesses across industries");
-            replaceText("Digital marketing and AI services built around your growth goals", "Digital marketing and AI services built around your growth goals");
-            replaceText("One growth system", "services built around your growth goals");
-            replaceText("Local insight", "An international team");
-            replaceText("Global reach", "that understands your market");
-            replaceText("Built for people who want customers", "Built for the way your customers buy");
-            replaceText("Selected work", "See what we’ve built for businesses like yours");
             replaceText("Featured work & results", "Selected work");
             replaceText("In their words", "What our clients say");
             replaceText("Hear it from them", "Hear directly from ZEBAQ clients");
@@ -268,10 +263,48 @@ export default function Home({ play }: HomeProps) {
             replaceText("Let’s Build a Solution That Fits Your Business.", "Let’s decide what to work on first");
             replaceText("Tell us where you want to grow. A strategist replies within one business day with practical next steps — no pressure to commit.", "Prefer to send a brief? Tell us what you sell, who you want to reach and what you’d like to improve.");
 
+            const services = root.current?.querySelector<HTMLElement>("#services");
+            const servicesHeading = services?.querySelector("h2");
+            if (servicesHeading) {
+                const split = document.createElement("span");
+                split.dataset.split = "";
+                "Digital marketing and AI services built around your growth goals".split(" ").forEach((word, index, words) => {
+                    const mask = document.createElement("span");
+                    mask.className = "sw";
+                    const content = document.createElement("span");
+                    content.textContent = word + (index < words.length - 1 ? "\u00a0" : "");
+                    mask.appendChild(content);
+                    split.appendChild(mask);
+                });
+                servicesHeading.replaceChildren(split);
+            }
+
+            const impactSection = root.current?.querySelector<HTMLElement>("section[data-index='04']");
+            if (impactSection) {
+                const impactHeading = impactSection.querySelector("h2");
+                if (impactHeading) {
+                    impactHeading.textContent = "An international team that understands your market";
+                }
+            }
+
             const logos = root.current?.querySelector<HTMLElement>("#logos");
             if (logos && !logos.querySelector("[data-home-doc-copy='logos']")) {
                 const heading = logos.querySelector("h2");
                 if (heading) {
+                    const splitHeading = heading.querySelector<HTMLElement>("[data-split]");
+                    if (splitHeading) {
+                        const words = splitHeading.querySelectorAll<HTMLElement>(".sw");
+                        const replacements = ["Trusted", "by", "businesses", "across", "industries"];
+                        words.forEach((word, index) => {
+                            if (!replacements[index]) return;
+                            const inner = word.querySelector<HTMLElement>(":scope > span");
+                            if (!inner) return;
+                            const textNode = Array.from(inner.childNodes)
+                                .find((node) => node.nodeType === Node.TEXT_NODE);
+                            if (textNode) textNode.textContent = replacements[index] + (index < replacements.length - 1 ? "\u00a0" : "");
+                        });
+                    }
+
                     const copy = document.createElement("p");
                     copy.dataset.homeDocCopy = "logos";
                     copy.className = "mt-6 max-w-2xl text-[18px] leading-relaxed text-glacier-3";
@@ -289,6 +322,21 @@ export default function Home({ play }: HomeProps) {
 
             const audiences = root.current?.querySelector<HTMLElement>("#who");
             if (audiences) {
+                const heading = audiences.querySelector("h2");
+                if (heading) {
+                    const split = document.createElement("span");
+                    split.dataset.split = "";
+                    "Built for the way your customers buy".split(" . ").forEach((word, index, words) => {
+                        const mask = document.createElement("span");
+                        mask.className = "sw";
+                        const content = document.createElement("span");
+                        content.textContent = word + (index < words.length - 1 ? "\u00a0" : "");
+                        mask.appendChild(content);
+                        split.appendChild(mask);
+                    });
+                    heading.replaceChildren(split);
+                }
+
                 const sideCopy = audiences.querySelector(".max-w-sm");
                 if (sideCopy) {
                     const p = sideCopy.querySelector("p");
